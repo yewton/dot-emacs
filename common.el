@@ -2,6 +2,22 @@
 (defvar cfg:base-dir)
 (defvar cfg:tmp-dir)
 (defvar cfg:el-get-dir)
+(defvar cfg:el-get-recipe-dir)
+(defvar el-get-recipe-path)
+(defvar migemo-command)
+(defvar migemo-user-dictionary)
+(defvar migemo-regex-dictionary)
+(defvar migemo-user-dictionary)
+(defvar migemo-use-pattern-alist)
+(defvar migemo-pattern-alist-length)
+(defvar migemo-pattern-alist-file)
+(defvar migemo-frequent-pattern-alist-file)
+(defvar migemo-use-frequent-pattern-alist)
+
+;; 関数宣言
+(declare-function el-get "el-get" (&optional sync &rest packages) t)
+(declare-function el-get-install "el-get" (package) t)
+(declare-function migemo-init "migemo" nil t)
 
 ;; 共通設定ファイル
 ;;;; custom-set-variables
@@ -53,8 +69,8 @@
 (show-paren-mode t)
 ;;; ツールバーを消す
 (tool-bar-mode 0)
-;;; タイトルバーにファイル名を表示する
-(setq frame-title-format (format "%%f" (system-name)))
+;;; タイトルバーにいろいろ表示する
+(setq frame-title-format (format "%%f - %s-%s@%s" invocation-name emacs-version system-name))
 ;; スクロールバーも消す
 (scroll-bar-mode 0)
 ;; 指定行ジャンプ
