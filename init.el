@@ -1,3 +1,23 @@
+;; 変数宣言
+(defvar cfg:base-dir)
+(defvar cfg:theme-dir)
+(defvar cfg:el-get-dir)
+(defvar cfg:el-get-recipe-dir)
+(defvar cfg:tmp-dir)
+(defvar cfg:common)
+(defvar cfg:system)
+(defvar cfg:frame)
+(defvar cfg:before-default)
+(defvar cfg:before)
+(defvar cfg:after-default)
+(defvar cfg:after)
+(defvar cfg:misc)
+(defvar w32-p)
+(defvar cocoa-p)
+(defvar x-p)
+(defvar term-p)
+(defvar gui-p)
+
 ;; emacs -l init.el のように起動されるとload-file-nameにinit.elのパスが入るので
 (when load-file-name
   ;; 設定ファイルの基準となるディレクトリを読み込んだinit.elのあるディレクトリへ変更する
@@ -49,8 +69,6 @@
        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
-(add-to-list 'el-get-recipe-path cfg:el-get-recipe-dir)
-(el-get 'sync)
 
 ;; テーマの読み込み
 (load-theme 'clarity t)

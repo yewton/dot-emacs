@@ -1,26 +1,22 @@
 ;; 変数宣言
 (defvar cfg:base-dir)
 (defvar cfg:tmp-dir)
-
-;; symlink を自動で解決する
-(setq vc-follow-symlinks t)
+(defvar cfg:el-get-dir)
 
 ;; 共通設定ファイル
 ;;;; custom-set-variables
-(custom-set-variables
- '(package-user-dir (concat cfg:package-install-dir))
- )
 
 ;;;; el-get
-(require 'el-get)
+(add-to-list 'el-get-recipe-path cfg:el-get-recipe-dir)
 (defvar cfg:packages
-  '(helm
-    helm-migemo
-    auto-async-byte-compile
+  '(migemo
     apel
-    migemo))
+    auto-async-byte-compile
+    helm
+    helm-migemo))
 (dolist (package cfg:packages)
   (el-get-install package))
+(el-get 'sync)
 
 ;;;; helm
 (require 'helm-config)
