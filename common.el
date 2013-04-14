@@ -1,3 +1,6 @@
+;; 変数宣言
+(defvar cfg:base-dir)
+
 ;; 共通設定ファイル
 ;;;; custom-set-variables
 (custom-set-variables
@@ -29,7 +32,7 @@
 (setq auto-save-file-name-transforms
       `((".*/Dropbox/.*" ,temporary-file-directory t)))
 ;; バックアップファイル
-(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+(setq backup-directory-alist '(("." . (concat cfg:base-dir "backup"))))
 ;; リージョンをハイライト
 (setq-default transient-mark-mode t)
 ;; 対応する括弧の強調表示

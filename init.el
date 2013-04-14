@@ -17,7 +17,6 @@
  gui-p (or w32-p cocoa-p x-p))
 
 ;; elisp 置き場を設定
-(setq cfg:common-dir (concat cfg:base-dir "common/"))
 (setq cfg:theme-dir (concat cfg:base-dir "themes/"))
 (setq cfg:el-get-dir (concat cfg:base-dir "el-get/"))
 (setq cfg:el-get-recipe-dir (concat cfg:base-dir "recipes/"))
@@ -30,17 +29,20 @@
            (t "term")) "/"))
 
 ;; 各種設定ファイル名の定義
+(setq cfg:common (concat cfg:base-dir "common.el"))
+(setq cfg:system (concat cfg:base-dir (cond (w32-p "win32") (cocoa-p "cocoa") (x-p "x") (t "term")) ".el"))
 (setq cfg:frame (concat cfg:base-dir "frame.el"))
+(setq cfg:before-default (concat cfg:base-dir "before-default.el"))
+(setq cfg:after-default (concat cfg:base-dir "after-default.el"))
 (setq cfg:before (concat cfg:base-dir "before.el"))
 (setq cfg:after (concat cfg:base-dir "after.el"))
 (setq cfg:misc (concat cfg:base-dir "misc.el"))
 
 ;; load-path の設定
-(mapc (lambda (path) (add-to-list 'load-path path))
-        (list
-         cfg:common-dir
-         cfg:system-dir))
 (add-to-list 'custom-theme-load-path cfg:theme-dir)
+
+;; before-default.el 読み込み
+(load cfg:before-default)
 
 ;; before.el があれば読み込み
 (when (file-exists-p cfg:before) (load cfg:before))
@@ -63,13 +65,16 @@
 (when gui-p (load cfg:frame))
 
 ;; 共通
-(load (concat cfg:common-dir "init.el"))
+(load cfg:common)
 
 ;; system 依存
-(load (concat cfg:system-dir "init.el"))
+(load cfg:system)
 
 ;; 雑多
 (load cfg:misc)
+
+;; after-default.el 読み込み
+(load cfg:after-default)
 
 ;; after.el があれば読み込み
 (when (file-exists-p cfg:after) (load cfg:after))
