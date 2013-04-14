@@ -16,17 +16,11 @@
  term-p (eq window-system nil)
  gui-p (or w32-p cocoa-p x-p))
 
-;; elisp 置き場を設定
+;; 各種ディレクトリ設定
 (setq cfg:theme-dir (concat cfg:base-dir "themes/"))
 (setq cfg:el-get-dir (concat cfg:base-dir "el-get/"))
 (setq cfg:el-get-recipe-dir (concat cfg:base-dir "recipes/"))
-(setq cfg:system-dir
-      (concat cfg:base-dir
-          (cond
-           (w32-p "win32")
-           (cocoa-p "cocoa")
-           (x-p "x")
-           (t "term")) "/"))
+(setq cfg:tmp-dir (concat cfg:base-dir "tmp/"))
 
 ;; 各種設定ファイル名の定義
 (setq cfg:common (concat cfg:base-dir "common.el"))

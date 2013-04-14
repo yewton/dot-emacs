@@ -1,5 +1,9 @@
 ;; 変数宣言
 (defvar cfg:base-dir)
+(defvar cfg:tmp-dir)
+
+;; symlink を自動で解決する
+(setq vc-follow-symlinks t)
 
 ;; 共通設定ファイル
 ;;;; custom-set-variables
@@ -13,19 +17,33 @@
   '(helm
     helm-migemo
     auto-async-byte-compile
-    apel))
+    apel
+    migemo))
 (dolist (package cfg:packages)
   (el-get-install package))
 
 ;;;; helm
 (require 'helm-config)
+(global-set-key (kbd "C-x C-b") 'helm-mini)
+(global-set-key "\C-xb" 'helm-buffers-list)
 
 ;;;; auto-async
 (require 'auto-async-byte-compile)
 ;;自動バイトコンパイルを無効にするファイル名の正規表現
 (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
-(setq auto-async-byte-compile-exclude-files-regexp "/init\.el/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+
+;; migemo
+(when migemo-command
+  (setq migemo-user-dictionary nil)
+  (setq migemo-regex-dictionary nil)
+  (setq migemo-use-pattern-alist t)
+  (setq migemo-pattern-alist-file (concat cfg:tmp-dir "migemo-pattern"))
+  (setq migemo-use-frequent-pattern-alist t)
+  (setq migemo-frequent-pattern-alist-file (concat cfg:tmp-dir "migemo-frequent"))
+  (setq migemo-pattern-alist-length 2048)
+  (load-library "migemo")
+  (migemo-init))
 
 ;;;; other
 ;; 自動保存ファイル（#ファイル名#）の設定

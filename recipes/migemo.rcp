@@ -1,0 +1,5 @@
+(:name migemo
+       :description "migemo.el provides Japanese increment search with 'Romanization of Japanese'(ローマ字)."
+       :type github
+       :pkgname "/emacs-jp/migemo"
+       :features migemo)
