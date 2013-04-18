@@ -52,6 +52,10 @@
 (setq cfg:after (concat cfg:base-dir "after.el"))
 (setq cfg:misc (concat cfg:base-dir "misc.el"))
 
+;; デフォルトエンコード指定
+(set-language-environment 'utf-8)
+(set-default-coding-systems 'utf-8-unix)
+
 ;; load-path の設定
 (add-to-list 'custom-theme-load-path cfg:theme-dir)
 
@@ -63,12 +67,14 @@
 
 ;; el-get
 (add-to-list 'load-path (concat cfg:el-get-dir "el-get"))
+(custom-set-variables `(el-get-dir ,cfg:el-get-dir))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
 
 ;; テーマの読み込み
 (load-theme 'clarity t)

@@ -1,3 +1,14 @@
+;; 変数宣言
+(defvar default-frame-top)
+(defvar default-frame-left)
+(defvar default-frame-width)
+(defvar default-frame-height)
+(defvar default-frame-alpha)
+(defvar migemo-command)
+(defvar migemo-options)
+(defvar migemo-coding-system)
+(defvar migemo-dictionary)
+
 ;; デフォルトフレームの設定
 (setq default-frame-top 0)
 (setq default-frame-left 0)
@@ -15,3 +26,4 @@
           (concat
            (file-name-directory (file-truename migemo-executable))
            "../share/migemo/utf-8/migemo-dict"))))
+

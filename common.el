@@ -1,4 +1,4 @@
-;; 変数宣言
+;;;; 変数宣言
 (defvar cfg:base-dir)
 (defvar cfg:tmp-dir)
 (defvar cfg:el-get-dir)
@@ -14,30 +14,33 @@
 (defvar migemo-frequent-pattern-alist-file)
 (defvar migemo-use-frequent-pattern-alist)
 
-;; 関数宣言
-(declare-function el-get "el-get" (&optional sync &rest packages) t)
-(declare-function el-get-install "el-get" (package) t)
+;;;; 関数宣言
 (declare-function migemo-init "migemo" nil t)
 
-;; 共通設定ファイル
-;;;; custom-set-variables
-
 ;;;; el-get
+(require 'el-get)
 (add-to-list 'el-get-recipe-path cfg:el-get-recipe-dir)
+(setq el-get-verbose t)
+
 (defvar cfg:packages
-  '(migemo
+  '(el-get
+    migemo
     apel
     auto-async-byte-compile
+    cl-lib
+    magit
     helm
     helm-migemo))
-(dolist (package cfg:packages)
-  (el-get-install package))
-(el-get 'sync)
+(el-get 'sync cfg:packages)
+(require 'package)
+(package-initialize)
 
 ;;;; helm
 (require 'helm-config)
 (global-set-key (kbd "C-x C-b") 'helm-mini)
 (global-set-key "\C-xb" 'helm-buffers-list)
+(global-set-key "\M-x" 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ;;;; auto-async
 (require 'auto-async-byte-compile)
@@ -45,7 +48,7 @@
 (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 
-;; migemo
+;;;; migemo
 (when migemo-command
   (setq migemo-user-dictionary nil)
   (setq migemo-regex-dictionary nil)
@@ -57,12 +60,15 @@
   (load-library "migemo")
   (migemo-init))
 
+;;;; magit
+(require 'magit)
+
 ;;;; other
 ;; 自動保存ファイル（#ファイル名#）の設定
 (setq auto-save-file-name-transforms
       `((".*/Dropbox/.*" ,temporary-file-directory t)))
 ;; バックアップファイル
-(setq backup-directory-alist '(("." . (concat cfg:base-dir "backup"))))
+(setq backup-directory-alist `(("." . ,(concat cfg:base-dir "backup"))))
 ;; リージョンをハイライト
 (setq-default transient-mark-mode t)
 ;; 対応する括弧の強調表示
