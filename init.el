@@ -25,8 +25,8 @@
 (defvar cfg:common (concat cfg:base-dir "common.el"))
 (defvar cfg:system (concat cfg:base-dir (cond (w32-p "win32") (cocoa-p "cocoa") (x-p "x") (t "term")) ".el"))
 (defvar cfg:frame (concat cfg:base-dir "frame.el"))
-(defvar cfg:before-default (concat cfg:base-dir "before-default.el"))
-(defvar cfg:after-default (concat cfg:base-dir "after-default.el"))
+(defvar cfg:prepare (concat cfg:base-dir "prepare.el"))
+(defvar cfg:post-init (concat cfg:base-dir "post-init.el"))
 (defvar cfg:before (concat cfg:base-dir "before.el"))
 (defvar cfg:after (concat cfg:base-dir "after.el"))
 (defvar cfg:misc (concat cfg:base-dir "misc.el"))
@@ -38,8 +38,8 @@
 ;; load-path の設定
 (add-to-list 'custom-theme-load-path cfg:theme-dir)
 
-;; before-default.el 読み込み
-(load cfg:before-default)
+;; prepare.el 読み込み
+(load cfg:prepare)
 
 ;; before.el があれば読み込み
 (when (file-exists-p cfg:before) (load cfg:before))
@@ -70,8 +70,8 @@
 ;; 雑多
 (load cfg:misc)
 
-;; after-default.el 読み込み
-(load cfg:after-default)
+;; post-init.el 読み込み
+(load cfg:post-init)
 
 ;; after.el があれば読み込み
 (when (file-exists-p cfg:after) (load cfg:after))
