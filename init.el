@@ -1,23 +1,3 @@
-;; 変数宣言
-(defvar cfg:base-dir)
-(defvar cfg:theme-dir)
-(defvar cfg:el-get-dir)
-(defvar cfg:el-get-recipe-dir)
-(defvar cfg:tmp-dir)
-(defvar cfg:common)
-(defvar cfg:system)
-(defvar cfg:frame)
-(defvar cfg:before-default)
-(defvar cfg:before)
-(defvar cfg:after-default)
-(defvar cfg:after)
-(defvar cfg:misc)
-(defvar w32-p)
-(defvar cocoa-p)
-(defvar x-p)
-(defvar term-p)
-(defvar gui-p)
-
 ;; emacs -l init.el のように起動されるとload-file-nameにinit.elのパスが入るので
 (when load-file-name
   ;; 設定ファイルの基準となるディレクトリを読み込んだinit.elのあるディレクトリへ変更する
@@ -25,32 +5,31 @@
 (add-to-list 'load-path user-emacs-directory)
 
 ;; 設定ディレクトリの場所を設定
-(setq cfg:base-dir
+(defvar cfg:base-dir
       (expand-file-name (file-name-directory user-emacs-directory)))
 
 ;; system-type predicates
-(setq
- w32-p (eq window-system 'w32)
- cocoa-p (eq window-system 'ns)
- x-p (eq window-system 'x)
- term-p (eq window-system nil)
- gui-p (or w32-p cocoa-p x-p))
+(defvar w32-p (eq window-system 'w32))
+(defvar cocoa-p (eq window-system 'ns))
+(defvar x-p (eq window-system 'x))
+(defvar term-p (eq window-system nil))
+(defvar gui-p (or w32-p cocoa-p x-p))
 
 ;; 各種ディレクトリ設定
-(setq cfg:theme-dir (concat cfg:base-dir "themes/"))
-(setq cfg:el-get-dir (concat cfg:base-dir "el-get/"))
-(setq cfg:el-get-recipe-dir (concat cfg:base-dir "recipes/"))
-(setq cfg:tmp-dir (concat cfg:base-dir "tmp/"))
+(defvar cfg:theme-dir (concat cfg:base-dir "themes/"))
+(defvar cfg:el-get-dir (concat cfg:base-dir "el-get/"))
+(defvar cfg:el-get-recipe-dir (concat cfg:base-dir "recipes/"))
+(defvar cfg:tmp-dir (concat cfg:base-dir "tmp/"))
 
 ;; 各種設定ファイル名の定義
-(setq cfg:common (concat cfg:base-dir "common.el"))
-(setq cfg:system (concat cfg:base-dir (cond (w32-p "win32") (cocoa-p "cocoa") (x-p "x") (t "term")) ".el"))
-(setq cfg:frame (concat cfg:base-dir "frame.el"))
-(setq cfg:before-default (concat cfg:base-dir "before-default.el"))
-(setq cfg:after-default (concat cfg:base-dir "after-default.el"))
-(setq cfg:before (concat cfg:base-dir "before.el"))
-(setq cfg:after (concat cfg:base-dir "after.el"))
-(setq cfg:misc (concat cfg:base-dir "misc.el"))
+(defvar cfg:common (concat cfg:base-dir "common.el"))
+(defvar cfg:system (concat cfg:base-dir (cond (w32-p "win32") (cocoa-p "cocoa") (x-p "x") (t "term")) ".el"))
+(defvar cfg:frame (concat cfg:base-dir "frame.el"))
+(defvar cfg:before-default (concat cfg:base-dir "before-default.el"))
+(defvar cfg:after-default (concat cfg:base-dir "after-default.el"))
+(defvar cfg:before (concat cfg:base-dir "before.el"))
+(defvar cfg:after (concat cfg:base-dir "after.el"))
+(defvar cfg:misc (concat cfg:base-dir "misc.el"))
 
 ;; デフォルトエンコード指定
 (set-language-environment 'utf-8)
