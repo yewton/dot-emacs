@@ -38,3 +38,10 @@
 (global-set-key (kbd "C-S-k")  'buf-move-down)
 (global-set-key (kbd "C-S-l")  'buf-move-left)
 (global-set-key (kbd "C-S-h")  'buf-move-right)
+
+;;;; markdown-mode
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))

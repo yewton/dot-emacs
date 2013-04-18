@@ -71,7 +71,8 @@
     helm
     helm-migemo
     open-junk-file
-    buffer-move))
+    buffer-move
+    markdown-mode))
 (el-get 'sync cfg:packages)
 
 ;; package
