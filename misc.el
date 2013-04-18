@@ -23,4 +23,14 @@
 (line-number-mode t)
 ;; いちいち音を鳴らすな
 (setq ring-bell-function 'ignore)
-
+;; ウィンドウ間移動
+(require 'windmove)
+(setq windmove-wrap-around t)
+(defvar my-keyjack-mode-map (make-sparse-keymap))
+(mapc (lambda (x)
+        (define-key my-keyjack-mode-map (car x) (cdr x))
+        (global-set-key (car x) (cdr x)))
+      '(("\C-\M-h" . windmove-left)
+        ("\C-\M-k" . windmove-up)
+        ("\C-\M-l" . windmove-right)
+        ("\C-\M-j" . windmove-down)))

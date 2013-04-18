@@ -70,7 +70,8 @@
     magit
     helm
     helm-migemo
-    open-junk-file))
+    open-junk-file
+    buffer-move))
 (el-get 'sync cfg:packages)
 
 ;; package
