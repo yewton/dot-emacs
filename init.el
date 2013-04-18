@@ -72,7 +72,9 @@
     helm-migemo
     open-junk-file
     buffer-move
-    markdown-mode))
+    markdown-mode
+    jaspace
+    whitespace))
 (el-get 'sync cfg:packages)
 
 ;; package
