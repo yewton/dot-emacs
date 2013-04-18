@@ -26,6 +26,7 @@
 ;; ウィンドウ間移動
 (require 'windmove)
 (setq windmove-wrap-around t)
+;; cf. Emacs のあらゆるモードで有効なキーバインドの設定方法 - http://pqrs.org/emacs/doc/keyjack-mode/
 (defvar my-keyjack-mode-map (make-sparse-keymap))
 (mapc (lambda (x)
         (define-key my-keyjack-mode-map (car x) (cdr x))
