@@ -37,10 +37,7 @@
 
 ;;;; helm
 (require 'helm-config)
-(global-set-key (kbd "C-x C-b") 'helm-mini)
-(global-set-key "\C-xb" 'helm-buffers-list)
-(global-set-key "\M-x" 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(helm-mode 1)
 
 ;;;; auto-async
 (require 'auto-async-byte-compile)
