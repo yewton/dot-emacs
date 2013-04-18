@@ -60,7 +60,8 @@
 (require 'el-get)
 (add-to-list 'el-get-recipe-path cfg:el-get-recipe-dir)
 (setq el-get-verbose t)
-(defvar cfg:packages
+(defvar cfg:packages)
+(setq cfg:packages
   '(el-get
     migemo
     apel
@@ -68,7 +69,8 @@
     cl-lib
     magit
     helm
-    helm-migemo))
+    helm-migemo
+    open-junk-file))
 (el-get 'sync cfg:packages)
 
 ;; package
