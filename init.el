@@ -35,6 +35,9 @@
 (set-language-environment 'utf-8)
 (set-default-coding-systems 'utf-8-unix)
 
+;; バックアップファイル
+(setq backup-directory-alist `(("." . ,(concat cfg:base-dir "backup"))))
+
 ;; load-path の設定
 (add-to-list 'custom-theme-load-path cfg:theme-dir)
 
@@ -54,6 +57,23 @@
     (let (el-get-master-branch)
       (goto-char (point-max))
       (eval-print-last-sexp))))
+(require 'el-get)
+(add-to-list 'el-get-recipe-path cfg:el-get-recipe-dir)
+(setq el-get-verbose t)
+(defvar cfg:packages
+  '(el-get
+    migemo
+    apel
+    auto-async-byte-compile
+    cl-lib
+    magit
+    helm
+    helm-migemo))
+(el-get 'sync cfg:packages)
+
+;; package
+(require 'package)
+(package-initialize)
 
 ;; テーマの読み込み
 (load-theme 'clarity t)
