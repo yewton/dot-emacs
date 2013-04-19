@@ -3,7 +3,7 @@
 (eval-when-compile
   (require 'cl-lib))
 (defvar cfg:font-list
-  '("Migu 1M-11"
+  '("Migu 1M-10"
     "M+2VM+IPAG circle-10"
     "Source Code Pro Medium-9"
     "Ricty-11"
