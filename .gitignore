@@ -4,3 +4,4 @@ el-get/
 tmp/
 before.el
 after.el
+tramp/
