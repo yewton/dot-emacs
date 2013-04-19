@@ -85,3 +85,8 @@
    `(w3m-form-textarea-directory ,(concat cfg:tmp-dir "w3m-textarea"))
    `(w3m-bookmark-file ,(concat cfg:tmp-dir "w3m-bookmark")))
   )
+
+;;;; dsvn
+(require 'vc-svn)
+(autoload 'svn-status "dsvn" "Run `svn status'." t)
+(autoload 'svn-update "dsvn" "Run `svn update'." t)

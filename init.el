@@ -75,7 +75,8 @@
     markdown-mode
     jaspace
     whitespace
-    emacs-w3m))
+    emacs-w3m
+    dsvn))
 (el-get 'sync cfg:packages)
 
 ;; package
