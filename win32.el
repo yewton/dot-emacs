@@ -1,4 +1,18 @@
 ;; win32
+;;;; 適当におすすめのフォント設定を試みる
+(eval-when-compile
+  (require 'cl-lib))
+(defvar cfg:font-list
+  '("Migu 1M-11"
+    "M+2VM+IPAG circle-10"
+    "Source Code Pro Medium-9"
+    "Ricty-11"
+    "Consolas-10"
+    "Inconsolata-10"))
+(dolist (font cfg:font-list)
+  (ignore-errors
+    (set-face-attribute 'default nil :font font)
+    (return)))
 
 ;;;; emacsのmagitの性能を改善した - さくらんぼのlambda日記 <http://lambdasakura.hatenablog.com/entry/2013/03/22/000211>
 (eval-when-compile
