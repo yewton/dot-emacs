@@ -32,8 +32,12 @@
 (defvar cfg:misc (concat cfg:base-dir "misc.el"))
 
 ;; デフォルトエンコード指定
-(set-language-environment 'utf-8)
+(set-language-environment 'Japanese)
+(prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
+(set-language-environment 'utf-8)
+(set-file-name-coding-system 'utf-8)
+(set-locale-environment nil)
 
 ;; バックアップファイル
 (setq backup-directory-alist `(("." . ,(concat cfg:base-dir "backup"))))
@@ -76,7 +80,8 @@
     jaspace
     whitespace
     emacs-w3m
-    dsvn))
+    dsvn
+    maxframe))
 (el-get 'sync cfg:packages)
 
 ;; package
