@@ -74,7 +74,8 @@
     buffer-move
     markdown-mode
     jaspace
-    whitespace))
+    whitespace
+    emacs-w3m))
 (el-get 'sync cfg:packages)
 
 ;; package
