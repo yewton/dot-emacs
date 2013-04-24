@@ -15,9 +15,7 @@
     (return)))
 ;;; 文字コードの設定
 (setq default-file-name-coding-system 'cp932-dos)
-;; (add-to-list 'process-coding-system-alist
-;;              (cons magit-git-executable 'utf-8)) ;; diff の文字化け回避
-(modify-coding-system-alist 'process "git" '(utf-8-dos . utf-8-unix))
+
 ;; http://www.greenwood.co.jp/~k-aki/diary/diary201004.xhtml
 ;; magitがshell-file-name(sh.exe)経由でgitを呼ぶとき、utf-8で入出力する。
 ;; magitがshell-file-nameを使ってprocess-fileやcall-processする関数には次のものがある。
@@ -25,6 +23,7 @@
 ;; - magit-git-exit-code
 ;; - magit-run-shell
 ;; これらの呼び出し時、一時的にprocess-coding-system-alistを書き換える。
+(modify-coding-system-alist 'process "git" '(utf-8-dos . utf-8-unix))
 (defun add-sh-utf8-process-coding-system-alist ()
   (cons (cons shell-file-name '(utf-8-dos . utf-8-unix)) process-coding-system-alist))
 

@@ -85,7 +85,8 @@
     ruby-electric
     ruby-end
     auto-complete
-    flymake-ruby))
+    flymake-ruby
+    php-mode-improved))
 (el-get 'sync cfg:packages)
 
 ;; package
