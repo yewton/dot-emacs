@@ -81,7 +81,13 @@
     whitespace
     emacs-w3m
     dsvn
-    maxframe))
+    maxframe
+    ruby-mode
+    ruby-block
+    ruby-electric
+    ruby-end
+    auto-complete
+    flymake-ruby))
 (el-get 'sync cfg:packages)
 
 ;; package
