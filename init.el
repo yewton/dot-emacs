@@ -35,8 +35,6 @@
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
-(set-language-environment 'utf-8)
-(set-file-name-coding-system 'utf-8)
 (set-locale-environment nil)
 
 ;; バックアップファイル
