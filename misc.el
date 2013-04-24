@@ -76,3 +76,5 @@
      (t (beginning-of-visual-line)))))
 (global-set-key "\C-a" 'beginning-of-visual-indented-line)
 (global-set-key "\C-e" 'end-of-visual-line)
+;; electric-pair
+(electric-pair-mode 1)
