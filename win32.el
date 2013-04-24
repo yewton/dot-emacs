@@ -23,7 +23,7 @@
 ;; - magit-git-exit-code
 ;; - magit-run-shell
 ;; これらの呼び出し時、一時的にprocess-coding-system-alistを書き換える。
-(modify-coding-system-alist 'process "git" '(utf-8-dos . utf-8-unix))
+(modify-coding-system-alist 'process magit-git-executable '(utf-8-dos . utf-8-unix))
 (defun add-sh-utf8-process-coding-system-alist ()
   (cons (cons shell-file-name '(utf-8-dos . utf-8-unix)) process-coding-system-alist))
 
