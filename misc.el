@@ -79,3 +79,10 @@
 (global-set-key "\C-e" 'end-of-visual-line)
 ;; electric-pair
 (electric-pair-mode 1)
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (ruby-electric-mode t)
+             ;; Want to avoid some weird completions arising from
+             ;; the use of ruby-electric.el and electric-pair-mode.
+             (when (>= emacs-major-version 24)
+               (set (make-local-variable 'electric-pair-mode) nil))))
