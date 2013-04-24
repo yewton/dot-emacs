@@ -10,7 +10,8 @@
 ;;; タイトルバーにいろいろ表示する
 (setq frame-title-format (format "%%f - %s-%s@%s" invocation-name emacs-version system-name))
 ;; スクロールバーも消す
-(scroll-bar-mode 0)
+(when (boundp 'scroll-bar-mode)
+  (scroll-bar-mode 0))
 ;; 指定行ジャンプ
 (global-set-key "\M-g" 'goto-line)
 ;; なにもしなくていい
