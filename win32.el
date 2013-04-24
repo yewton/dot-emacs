@@ -18,10 +18,5 @@
 (defadvice magit-diff (around magit-diff-around activate)
   (let ((default-process-coding-system 'utf-8))
       ad-do-it))
-(defadvice magit-log-edit (around magit-diff-around activate)
-  (let ((default-process-coding-system 'utf-8)
-        (default-file-name-coding-system 'utf-8)
-        (coding-system-for-write 'utf-8))
-    (set-terminal-coding-system 'utf-8)
-    ad-do-it))
-
+;; https://www.assembla.com/code/kyoto-emacsers/subversion/commit/296
+(modify-coding-system-alist 'process "^git$" '(utf-8 . utf-8))
