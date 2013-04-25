@@ -93,3 +93,6 @@
 
 ;;; ruby-mode
 (load "ruby-mode-conf")
+
+;;; scala-mode
+(load "scala-mode-conf")

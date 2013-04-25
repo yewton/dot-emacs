@@ -86,7 +86,8 @@
     ruby-end
     auto-complete
     flymake-ruby
-    php-mode-improved))
+    php-mode-improved
+    scala-mode2))
 (el-get 'sync cfg:packages)
 
 ;; package
