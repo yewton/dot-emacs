@@ -96,3 +96,7 @@
 
 ;;; scala-mode
 (load "scala-mode-conf")
+
+;;;; uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
