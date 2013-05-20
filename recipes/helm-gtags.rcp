@@ -1,0 +1,5 @@
+(:name helm-gtags
+       :description "gtags support for helm"
+       :type github
+       :pkgname "syohex/emacs-helm-gtags"
+       :features helm-gtags)

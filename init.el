@@ -67,7 +67,8 @@
     magit helm helm-migemo open-junk-file buffer-move
     markdown-mode jaspace whitespace emacs-w3m dsvn
     maxframe ruby-mode ruby-block ruby-electric ruby-end
-    auto-complete flymake-ruby php-mode-improved scala-mode2))
+    auto-complete flymake-ruby php-mode-improved scala-mode2
+    helm-gtags bookmark+ php-eldoc php-completion))
 (el-get 'sync cfg:packages)
 
 ;; package

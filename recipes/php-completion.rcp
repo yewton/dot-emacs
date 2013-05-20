@@ -1,0 +1,6 @@
+(:name php-completion
+       :description "complete everything PHP with Anything/Helm"
+       :type github
+       :pkgname "suzuki/php-completion"
+       :branch "feature/helm-version"
+       :features php-completion)
