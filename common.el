@@ -86,6 +86,11 @@
    `(w3m-bookmark-file ,(concat cfg:tmp-dir "w3m-bookmark")))
   )
 
+;;;; flymake
+(require 'flymake)
+;; どこだりさファイル作るんでねぇ
+(setq flymake-run-in-place nil)
+
 ;;;; dsvn
 (require 'vc-svn)
 (autoload 'svn-status "dsvn" "Run `svn status'." t)
