@@ -63,30 +63,11 @@
 (setq el-get-verbose t)
 (defvar cfg:packages)
 (setq cfg:packages
-  '(el-get
-    migemo
-    apel
-    auto-async-byte-compile
-    cl-lib
-    magit
-    helm
-    helm-migemo
-    open-junk-file
-    buffer-move
-    markdown-mode
-    jaspace
-    whitespace
-    emacs-w3m
-    dsvn
-    maxframe
-    ruby-mode
-    ruby-block
-    ruby-electric
-    ruby-end
-    auto-complete
-    flymake-ruby
-    php-mode-improved
-    scala-mode2))
+  '(el-get migemo apel auto-async-byte-compile cl-lib
+    magit helm helm-migemo open-junk-file buffer-move
+    markdown-mode jaspace whitespace emacs-w3m dsvn
+    maxframe ruby-mode ruby-block ruby-electric ruby-end
+    auto-complete flymake-ruby php-mode-improved scala-mode2))
 (el-get 'sync cfg:packages)
 
 ;; package
