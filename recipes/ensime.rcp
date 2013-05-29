@@ -1,0 +1,11 @@
+(:name ensime
+       :description "ENhanced Scala Interaction Mode for Emacs"
+       :type http-tar
+       :compile nil
+       :url "https://www.dropbox.com/sh/ryd981hq08swyqr/ZiCwjjr_vm/ENSIME%20Releases/ensime_2.10.0-0.9.8.9.tar.gz?dl=1"
+       :options ("xzf")
+       :depends scala-mode2
+       :features ensime
+       :load-path ("./elisp")
+       :post-init (progn
+                    (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)))
