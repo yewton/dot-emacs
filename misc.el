@@ -89,3 +89,6 @@
 ;; linum-mode
 (require 'linum)
 (global-linum-mode 1)
+;; 現在行をハイライト
+(global-hl-line-mode t)
+(set-face-background 'hl-line "DarkOrange4")
