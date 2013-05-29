@@ -86,3 +86,6 @@
              ;; the use of ruby-electric.el and electric-pair-mode.
              (when (>= emacs-major-version 24)
                (set (make-local-variable 'electric-pair-mode) nil))))
+;; linum-mode
+(require 'linum)
+(global-linum-mode 1)
