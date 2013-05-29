@@ -6,3 +6,4 @@ before.el
 after.el
 tramp
 /ac-comphist.dat
+/target/.history
