@@ -57,9 +57,6 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;;;; jaspace
-(require 'jaspace)
-
 ;;;; emacs-w3m
 (require 'el-get-core) ;; for `el-get-executable-find`
 (when (el-get-executable-find "w3m")
@@ -102,7 +99,6 @@
               (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
               (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))
 
-
 ;;;; ruby-mode
 (load "ruby-mode-conf")
 
@@ -118,3 +114,6 @@
 
 ;;;; ensime
 (require 'ensime)
+
+;;;; jaspace
+(load "jaspace-conf")
