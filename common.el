@@ -112,5 +112,5 @@
 (load "yasnippet-conf")
 
 ;;;; main-line
-(require 'main-line)
-(custom-set-variables '(main-line-separator-style 'wave))
+;; (require 'main-line)
+;; (custom-set-variables '(main-line-separator-style 'wave))
