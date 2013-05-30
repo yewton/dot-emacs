@@ -58,17 +58,7 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;;; emacs-w3m
-(require 'el-get-core) ;; for `el-get-executable-find`
-(when (el-get-executable-find "w3m")
-  (require 'w3m-load)
-  (autoload 'w3m "w3m" "Interface for w3m on Emacs." t)
-  (custom-set-variables
-   '(w3m-use-tab t)
-   `(w3m-arrived-file ,(concat cfg:tmp-dir "w3m-arrived"))
-   `(w3m-cookie-file ,(concat cfg:tmp-dir "w3m-cookie"))
-   `(w3m-form-textarea-directory ,(concat cfg:tmp-dir "w3m-textarea"))
-   `(w3m-bookmark-file ,(concat cfg:tmp-dir "w3m-bookmark")))
-  )
+(load "w3m-conf")
 
 ;;;; flymake
 (require 'flymake)
