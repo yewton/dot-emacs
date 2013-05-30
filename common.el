@@ -107,3 +107,6 @@
 
 ;;;; jaspace
 (load "jaspace-conf")
+
+;;;; yasnippet
+(load "yasnippet-conf")
