@@ -1,0 +1,20 @@
+(:name scala-mode
+       :description "Major mode for editing Scala code."
+       :type git
+       :url "https://github.com/scala/scala-dist.git"
+       :compile ("scala-mode"
+                 "scala-mode-auto"
+                 "scala-mode-inf"
+                 "scala-mode-indent"
+                 "scala-mode-navigation"
+                 "scala-mode-lib"
+                 "scala-mode-ui"
+                 "scala-mode-fontlock"
+                 "scala-mode-constants"
+                 "scala-mode-feature"
+                 "scala-mode-feature-electric"
+                 "scala-mode-feature-speedbar"
+                 "scala-mode-feature-tags"
+                 "scala-mode-variables")
+       :load-path ("tool-support/src/emacs")
+       :features scala-mode-auto)
