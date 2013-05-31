@@ -23,13 +23,13 @@
 
 ;; 各種設定ファイル名の定義
 (defvar cfg:common (concat cfg:base-dir "common.el"))
-(defvar cfg:system (concat cfg:base-dir (cond (w32-p "win32") (cocoa-p "cocoa") (x-p "x") (t "term")) ".el"))
-(defvar cfg:frame (concat cfg:base-dir "frame.el"))
+(defvar cfg:system (concat cfg:base-dir (cond (w32-p "win32") (cocoa-p "cocoa") (x-p "x") (t "my-term")) ".el"))
+(defvar cfg:frame (concat cfg:base-dir "my-frame.el"))
 (defvar cfg:prepare (concat cfg:base-dir "prepare.el"))
 (defvar cfg:post-init (concat cfg:base-dir "post-init.el"))
 (defvar cfg:before (concat cfg:base-dir "before.el"))
 (defvar cfg:after (concat cfg:base-dir "after.el"))
-(defvar cfg:misc (concat cfg:base-dir "misc.el"))
+(defvar cfg:misc (concat cfg:base-dir "my-misc.el"))
 
 ;; デフォルトエンコード指定
 (set-language-environment 'Japanese)
