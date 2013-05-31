@@ -68,7 +68,8 @@
     markdown-mode jaspace emacs-w3m dsvn yasnippet
     maxframe ruby-mode ruby-block ruby-electric ruby-end scala-mode
     auto-complete flymake flymake-ruby php-mode-improved scala-mode2
-    helm-gtags bookmark+ php-eldoc php-completion ensime))
+    helm-gtags bookmark+ php-eldoc php-completion ensime
+    term+))
 (el-get 'sync cfg:packages)
 
 ;; package

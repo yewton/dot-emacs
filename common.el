@@ -114,3 +114,7 @@
 ;;;; main-line
 ;; (require 'main-line)
 ;; (custom-set-variables '(main-line-separator-style 'wave))
+
+;;;; term+
+(require 'term+)
+(require 'xterm-256color)
