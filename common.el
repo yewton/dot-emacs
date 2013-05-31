@@ -121,3 +121,6 @@
 
 ;;;; crontab-mode
 (autoload 'crontab-mode "crontab-mode" nil t)
+
+;;;; git-gutter-fringe
+(require 'git-gutter-fringe)
