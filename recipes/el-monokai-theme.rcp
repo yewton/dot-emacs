@@ -1,0 +1,5 @@
+(:name el-monokai-theme
+       :description "Monokai Color Theme for Emacs 24"
+       :type github
+       :pkgname "lvillani/el-monokai-theme"
+       :prepare (add-to-list 'custom-theme-load-path default-directory))

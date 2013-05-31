@@ -107,3 +107,10 @@
 
 ;;;; jaspace
 (load "jaspace-conf")
+
+;;;; yasnippet
+(load "yasnippet-conf")
+
+;;;; main-line
+;; (require 'main-line)
+;; (custom-set-variables '(main-line-separator-style 'wave))
