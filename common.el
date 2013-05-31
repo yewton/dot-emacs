@@ -116,5 +116,8 @@
 ;; (custom-set-variables '(main-line-separator-style 'wave))
 
 ;;;; term+
-(require 'term+)
-(require 'xterm-256color)
+(autoload 'term+ "term+" nil t)
+(autoload 'xterm-256color "xterm-256color" nil t)
+
+;;;; crontab-mode
+(autoload 'crontab-mode "crontab-mode" nil t)
