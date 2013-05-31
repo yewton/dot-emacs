@@ -122,8 +122,11 @@
 ;;;; crontab-mode
 (autoload 'crontab-mode "crontab-mode" nil t)
 
-;;;; git-guer-fringe
-(require 'git-gutter-fringe)
+;;;; git-guer
+(if (or (eq window-system 'w32)
+        (eq window-system nil))
+    (require 'git-gutter)
+  (require 'git-gutter-fringe))
 
 ;;;; diff-mode
 (load "diff-mode-conf")
