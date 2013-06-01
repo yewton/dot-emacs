@@ -55,7 +55,8 @@
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(
+ add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;;; emacs-w3m
 (load "w3m-conf")
@@ -149,3 +150,6 @@
     ad-do-it
     (erase-buffer)
     (insert prefix)))
+
+;;;; multiple-cursors
+(load "multiple-cursors-conf")
