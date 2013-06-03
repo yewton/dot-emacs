@@ -21,7 +21,7 @@ git submodule update
 ## for Mac OS X
 1. Use Automator. Choose `Run shell script` and set it up like below:  
 ```bash
-open /Applications/Emacs.app --args -q --debug-init -l ~/dot-emacs/init.el &
+open /Applications/Emacs.app --args -q --debug-init -l ~/dot-emacs/init.el --chdir ~ &
 ```
 1. Save the workflow as an Application for your convenience.
 
