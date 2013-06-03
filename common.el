@@ -156,3 +156,6 @@
 
 ;;;; howm-mode
 (load "howm-mode-conf")
+
+;;;; server
+(load "server-conf")
