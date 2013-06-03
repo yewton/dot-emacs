@@ -6,7 +6,6 @@
 (set-face-attribute 'diff-removed nil
                     :foreground "white" :background "dark red")
 (set-face-attribute 'diff-refine-change nil
-                    :background
                     :foreground nil :background nil
                     :weight 'bold :inverse-video t)
 ;; diffを表示したらすぐに文字単位での強調表示も行う
