@@ -153,3 +153,6 @@
 
 ;;;; multiple-cursors
 (load "multiple-cursors-conf")
+
+;;;; howm-mode
+(load "howm-mode-conf")

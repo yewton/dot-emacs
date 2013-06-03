@@ -63,7 +63,7 @@
 (setq el-get-verbose t)
 (defvar cfg:packages)
 (setq cfg:packages
-  '(el-get migemo apel auto-async-byte-compile cl-lib
+  '(el-get migemo apel auto-async-byte-compile cl-lib howm
     magit helm helm-migemo open-junk-file buffer-move
     markdown-mode jaspace emacs-w3m dsvn yasnippet crontab-mode
     maxframe ruby-mode ruby-block ruby-electric ruby-end scala-mode
