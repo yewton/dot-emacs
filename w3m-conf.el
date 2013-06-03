@@ -1,6 +1,5 @@
-(require 'el-get-core) ;; for `el-get-executable-find`
 (defvar cfg:tmp-dir)
-(when (el-get-executable-find "w3m")
+(when (executable-find "w3m")
   (require 'w3m-load)
   (autoload 'w3m "w3m" "Interface for w3m on Emacs." t)
   (custom-set-variables
