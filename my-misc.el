@@ -117,3 +117,35 @@
          (delete
           (buffer-name)
           buffer-name-history))))
+;; dired でディレクトリを先に表示する
+(require 'ls-lisp)
+(custom-set-variables
+ '(ls-lisp-dirs-first t)
+ '(ls-lisp-use-insert-directory-program nil)
+ '(ls-lisp-use-localized-time-format t)
+ '(dired-listing-switches "-AFlh"))
+;; case-insensitive なソート
+;; (dolist (i (ci-sort (directory-files "~/dot-emacs" t) 'string<))
+;;   (insert (concat ";; " i "\n")))
+(defun ci-sort (l p)
+  (sort l
+        (lambda (a b)
+          (funcall p (upcase a) (upcase b)))))
+;; directory 優先でソート
+;; (dolist (i (sort-by-file-directory-p (directory-files "~/dot-emacs" t)))
+;;   (insert (concat ";; " i "\n")))
+(defun sort-by-file-directory-p (l)
+  (sort l
+        (lambda (a b)
+          (let ((a-is-a-directory (file-directory-p a))
+                (b-is-a-directory (file-directory-p b)))
+            (cond
+             ((and a-is-a-directory (not b-is-a-directory)) t)
+             ((and (not a-is-a-directory) b-is-a-directory) nil)
+             (t nil))))))
+;; ;; case-insensitive に、かつディレクトリを優先してリスティングする
+(defadvice directory-files
+  (after after-helm-ff-directory-find-files activate)
+  (setq ad-return-value
+        (sort-by-file-directory-p
+         (ci-sort ad-return-value 'string<))))
