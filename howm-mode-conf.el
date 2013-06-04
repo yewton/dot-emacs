@@ -3,7 +3,8 @@
 (setq howm-file-name-format "%Y/%m/%Y_%m_%d.howm")
 (setq howm-view-title-header "*")
 (custom-set-variables
- '(howm-menu-lang 'ja))
+ '(howm-menu-lang 'ja)
+ '(howm-menu-todo-num 20))
 (require 'howm)
 (require 'outline)
 (global-set-key "\C-c,," 'howm-menu)
