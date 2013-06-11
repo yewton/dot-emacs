@@ -147,3 +147,12 @@
 
 ;;;; server
 (load "server-conf")
+
+;;;; cc-mode
+(add-hook 'c-mode-common-hook
+          '(lambda ()
+             (c-set-style "stroustrup")
+             (setq c-basic-offset 4)
+             (setq indent-tabs-mode nil)
+             (c-set-offset 'arglist-close 0)
+             (setq tab-width 4)))
