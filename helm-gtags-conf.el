@@ -5,9 +5,10 @@
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
 ;; customize
-(setq helm-gtags-path-style 'relative)
-(setq helm-gtags-ignore-case t)
-(setq helm-gtags-read-only t)
+(custom-set-variables
+ '(helm-gtags-path-style 'relative)
+ '(helm-gtags-ignore-case nil)
+ '(helm-gtags-read-only nil))
 ;; key bindings
 (add-hook 'helm-gtags-mode-hook
           '(lambda ()
