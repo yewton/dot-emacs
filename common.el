@@ -43,8 +43,7 @@
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(
- add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;;; emacs-w3m
 (load "w3m-conf")
@@ -147,6 +146,15 @@
 
 ;;;; server
 (load "server-conf")
+
+;;;; cc-mode
+(add-hook 'c-mode-common-hook
+          '(lambda ()
+             (c-set-style "stroustrup")
+             (setq c-basic-offset 4)
+             (setq indent-tabs-mode nil)
+             (c-set-offset 'arglist-close 0)
+             (setq tab-width 4)))
 
 ;;;; sudo-ext
 (when (executable-find "sudoedit")
