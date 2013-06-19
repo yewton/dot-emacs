@@ -143,3 +143,6 @@
 ;;;; sudo-ext
 (when (executable-find "sudoedit")
   (require 'sudo-ext))
+
+;;;; camelize
+(load "camel-conf")
