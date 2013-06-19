@@ -24,4 +24,6 @@
                  'php-doc-eldoc-function)
             (eldoc-mode 1)
             (flymake-mode 1)
-            (define-abbrev php-mode-abbrev-table "ex" "extends")))
+            (define-abbrev php-mode-abbrev-table "ex" "extends")
+            (modify-syntax-entry ?_ "_" php-mode-syntax-table)))
+
