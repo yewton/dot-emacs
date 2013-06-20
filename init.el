@@ -22,14 +22,21 @@
 (defvar cfg:tmp-dir (concat cfg:base-dir "tmp/"))
 
 ;; 各種設定ファイル名の定義
+(defvar cfg:init (concat cfg:base-dir "init.el"))
 (defvar cfg:common (concat cfg:base-dir "common.el"))
-(defvar cfg:system (concat cfg:base-dir (cond (w32-p "win32") (cocoa-p "cocoa") (x-p "x") (t "my-term")) ".el"))
+(defvar cfg:win32 (concat cfg:base-dir "win32.el"))
+(defvar cfg:cocoa (concat cfg:base-dir "cocoa.el"))
+(defvar cfg:x (concat cfg:base-dir "x.el"))
+(defvar cfg:term (concat cfg:base-dir "my-term.el"))
 (defvar cfg:frame (concat cfg:base-dir "my-frame.el"))
 (defvar cfg:prepare (concat cfg:base-dir "prepare.el"))
 (defvar cfg:post-init (concat cfg:base-dir "post-init.el"))
 (defvar cfg:before (concat cfg:base-dir "before.el"))
 (defvar cfg:after (concat cfg:base-dir "after.el"))
 (defvar cfg:misc (concat cfg:base-dir "my-misc.el"))
+(defvar cfg:base-config-list
+  (list cfg:init cfg:common cfg:win32 cfg:cocoa cfg:x cfg:term cfg:frame cfg:prepare
+        cfg:post-init cfg:before cfg:after cfg:misc))
 
 ;; デフォルトエンコード指定
 (set-language-environment 'Japanese)
@@ -42,15 +49,16 @@
 ;; load-path の設定
 (add-to-list 'custom-theme-load-path cfg:theme-dir)
 
-;; バイトコンパイル
-(dolist (file (directory-files cfg:base-dir nil "\\.el$"))
-  (byte-recompile-file file t 0))
+;; バイトコンパイルしてから読み込む関数
+(require 'bytecomp)
+(defun load-after-recompile (file)
+  (byte-recompile-file file nil 0 t))
 
 ;; prepare.el 読み込み
-(load cfg:prepare)
+(load-after-recompile cfg:prepare)
 
 ;; before.el があれば読み込み
-(when (file-exists-p cfg:before) (load cfg:before))
+(when (file-exists-p cfg:before) (load-after-recompile cfg:before))
 
 ;; el-get
 (add-to-list 'load-path (concat cfg:el-get-dir "el-get"))
@@ -84,19 +92,24 @@
 (load-theme 'clarity t)
 
 ;; フレーム設定の読み込み
-(when gui-p (load cfg:frame))
+(when gui-p (load-after-recompile cfg:frame))
+
+;; 個別設定ファイルのバイトコンパイル
+(dolist (file (directory-files cfg:base-dir t "\\.el$"))
+  (unless (member (expand-file-name file) cfg:base-config-list)
+    (byte-recompile-file file nil 0)))
 
 ;; 共通
-(load cfg:common)
+(load-after-recompile cfg:common)
 
 ;; system 依存
-(load cfg:system)
+(load-after-recompile (cond (w32-p cfg:win32) (cocoa-p cfg:cocoa) (x-p cfg:x) (t cfg:term)))
 
 ;; 雑多
-(load cfg:misc)
+(load-after-recompile cfg:misc)
 
 ;; post-init.el 読み込み
-(load cfg:post-init)
+(load-after-recompile cfg:post-init)
 
 ;; after.el があれば読み込み
-(when (file-exists-p cfg:after) (load cfg:after))
+(when (file-exists-p cfg:after) (load-after-recompile cfg:after))
