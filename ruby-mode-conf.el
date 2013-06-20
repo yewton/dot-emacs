@@ -11,7 +11,8 @@
     (setq tab-width 4)
     (setq indent-tabs-mode nil)
     (setq c-recognize-knr-p nil)
-    (setq ruby-deep-indent-paren nil)))
+    (setq ruby-deep-indent-paren nil)
+    (local-set-key "\C-\M-h" 'windmove-left)))
 
 (defadvice ruby-indent-line (after unindent-closing-paren activate)
   (let ((column (current-column))
