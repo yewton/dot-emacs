@@ -1,10 +1,11 @@
 (require 'yasnippet)
+(require 'helm)
 (defvar cfg:base-dir)
 (defvar cfg:el-get-dir)
 (defun my-yas-prompt (prompt choices &optional display-fn)
   (let* ((names (loop for choice in choices
                       collect (or (and display-fn (funcall display-fn choice))
-                                  coice)))
+                                  choice)))
          (selected (helm-other-buffer
                     `(((name       . ,(format "%s" prompt))
                        (candidates . names)
@@ -26,3 +27,7 @@
 (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
 ;; 既存スニペットを閲覧・編集する
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+
+;; Local Variables:
+;; byte-compile-warnings: (not cl-functions)
+;; End:

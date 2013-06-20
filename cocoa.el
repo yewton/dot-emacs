@@ -1,4 +1,6 @@
 ;; CommandとOptionを入れ替える
+(defvar ns-command-modifier)
+(defvar ns-alternate-modifier)
 (setq ns-command-modifier (quote meta))
 (setq ns-alternate-modifier (quote super))
 
