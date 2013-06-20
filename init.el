@@ -42,6 +42,10 @@
 ;; load-path の設定
 (add-to-list 'custom-theme-load-path cfg:theme-dir)
 
+;; バイトコンパイル
+(dolist (file (directory-files cfg:base-dir nil "\\.el$"))
+  (byte-recompile-file file t 0))
+
 ;; prepare.el 読み込み
 (load cfg:prepare)
 
