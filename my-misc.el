@@ -169,3 +169,4 @@
 ;; お約束
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-c h") 'help-command)
+(global-set-key [backspace] 'help-command) ; 矯正用
