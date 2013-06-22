@@ -167,7 +167,10 @@
         (sort-by-file-directory-p
          (ci-sort ad-return-value 'string<))))
 ;; お約束
-(global-set-key (kbd "C-h") 'delete-backward-char)
+;; EmacsWiki: Backspace Key
+;; http://www.emacswiki.org/emacs/BackspaceKey
+(keyboard-translate ?\C-h ?\C-?)
+(global-set-key "\C-h" nil)
 (global-set-key (kbd "C-c h") 'help-command)
 (global-set-key [backspace] 'help-command) ; 矯正用
 ;; shell mode で、シェルがエコーをして2回表示されるのが鬱陶しいのですが。
