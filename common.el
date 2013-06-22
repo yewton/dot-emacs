@@ -146,3 +146,6 @@
 
 ;;;; camelize
 (load "camel-conf")
+
+;;;; auto-complete
+(load "auto-complete-conf")
