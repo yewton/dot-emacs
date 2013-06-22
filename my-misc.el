@@ -160,9 +160,12 @@
              ((and a-is-a-directory (not b-is-a-directory)) t)
              ((and (not a-is-a-directory) b-is-a-directory) nil)
              (t nil))))))
-;; ;; case-insensitive に、かつディレクトリを優先してリスティングする
+;; case-insensitive に、かつディレクトリを優先してリスティングする
 (defadvice directory-files
   (after after-helm-ff-directory-find-files activate)
   (setq ad-return-value
         (sort-by-file-directory-p
          (ci-sort ad-return-value 'string<))))
+;; お約束
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "C-c h") 'help-command)
