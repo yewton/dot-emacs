@@ -28,3 +28,15 @@
 (define-key helm-find-files-map (kbd "M-t") 'helm-toggle-resplit-and-swap-windows)
 (define-key helm-read-file-map (kbd "M-t") 'helm-toggle-resplit-and-swap-windows)
 (define-key helm-generic-files-map (kbd "M-t") 'helm-toggle-resplit-and-swap-windows)
+;; from dot-emacs/dot.emacs.d/inits/40_helm.el at master · handlename/dot-emacs
+;; https://github.com/handlename/dot-emacs/blob/master/dot.emacs.d/inits/40_helm.el
+;; overwrite helm debugging command prefix
+(eval-after-load 'helm
+  '(progn
+     (define-key helm-map (kbd "C-h") 'delete-backward-char)))
+(eval-after-load 'helm-files
+  '(progn
+     (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)))
+(eval-after-load 'helm-c-moccur
+  '(progn
+     (define-key helm-c-moccur-helm-map (kbd "C-h") 'delete-backward-char)))
