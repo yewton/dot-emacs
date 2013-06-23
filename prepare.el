@@ -40,3 +40,11 @@
           (concat
            (file-name-directory (file-truename migemo-executable))
            "../share/migemo/utf-8/migemo-dict"))))
+(custom-set-variables
+ '(el-get-sources
+   `((:name emacs-w3m
+        :build/windows-nt
+        (,(concat el-get-emacs
+              " -batch -q -no-site-file -l w3mhack.el"
+              " NONE -f w3mhack-nonunix-install"))
+        :info nil))))
