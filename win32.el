@@ -9,6 +9,7 @@
     "Ricty-11"
     "Consolas-10"
     "Inconsolata-10"))
+(eval-when-compile (require 'cl))
 (dolist (font cfg:font-list)
   (ignore-errors
     (set-face-attribute 'default nil :font font)

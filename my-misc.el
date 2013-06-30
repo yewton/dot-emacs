@@ -6,12 +6,11 @@
 ;; 対応する括弧の強調表示
 (show-paren-mode t)
 ;;; ツールバーを消す
-(tool-bar-mode 0)
+(when (fboundp 'tool-bar-mode) (tool-bar-mode 0))
 ;;; タイトルバーにいろいろ表示する
 (setq frame-title-format (format "%%f - %s-%s@%s" invocation-name emacs-version system-name))
 ;; スクロールバーも消す
-(when (boundp 'scroll-bar-mode)
-  (scroll-bar-mode 0))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode 0))
 ;; 指定行ジャンプ
 (global-set-key "\M-g" 'goto-line)
 ;; なにもしなくていい
