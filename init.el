@@ -81,7 +81,8 @@
     maxframe ruby-mode ruby-block ruby-electric ruby-end scala-mode
     auto-complete flymake flymake-ruby php-mode-improved scala-mode2
     helm-gtags bookmark+ php-eldoc php-completion ensime htmlize
-    term+ git-gutter git-gutter-fringe multiple-cursors sudo-ext))
+    term+ git-gutter git-gutter-fringe multiple-cursors sudo-ext
+    haskell-mode))
 (el-get 'sync cfg:packages)
 
 ;; package

@@ -47,4 +47,12 @@
         (,(concat el-get-emacs
               " -batch -q -no-site-file -l w3mhack.el"
               " NONE -f w3mhack-nonunix-install"))
-        :info nil))))
+        :info nil)
+     (:name haskell-mode
+            :load ,(let* ((target-dir (concat el-get-dir "haskell-mode"))
+                          (autoloads-file "haskell-mode-autoloads.el")
+                          (generated-autoload-file (concat el-get-dir "haskell-mode/" autoloads-file)))
+                     (update-directory-autoloads target-dir)
+                     autoloads-file)))))
+
+
