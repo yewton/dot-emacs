@@ -82,7 +82,7 @@
     auto-complete flymake flymake-ruby php-mode-improved scala-mode2
     helm-gtags bookmark+ php-eldoc php-completion ensime htmlize
     term+ git-gutter git-gutter-fringe multiple-cursors sudo-ext
-    haskell-mode))
+    haskell-mode emacs-mozc color-moccur))
 (el-get 'sync cfg:packages)
 
 ;; package

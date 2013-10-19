@@ -22,6 +22,12 @@
   (setq migemo-pattern-alist-length 2048)
   (load-library "migemo")
   (migemo-init))
+(define-key isearch-mode-map (kbd "C-e") 'migemo-isearch-toggle-migemo)
+(eval-when-compile
+  (require 'ibuffer))
+(byte-compile-no-warnings
+ (require 'color-moccur))
+(define-key isearch-mode-map  (kbd "C-o") 'occur-by-moccur)
 
 ;;;; magit
 (require 'magit)
