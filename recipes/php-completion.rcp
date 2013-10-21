@@ -1,4 +1,5 @@
 (:name php-completion
+       :depends (auto-complete helm)
        :description "complete everything PHP with Anything/Helm"
        :type github
        :pkgname "suzuki/php-completion"

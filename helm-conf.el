@@ -19,13 +19,13 @@
 (defadvice helm-ff-directory-files (after ad-helm-find-files-skip-boring-files activate)
  (when helm-findutils-skip-boring-files
    (setq ad-return-value (helm-skip-boring-files ad-return-value))))
-;; C-t で任意補完。選択肢が出てきたらC-nやC-pで上下移動してから決定することも可能
+;; C-e で任意補完。選択肢が出てきたら C-n  や C-p で上下移動してから決定することも可能
 (defvar helm-read-file-map)
 (defvar helm-find-files-map)
 (defvar helm-generic-files-map)
-(define-key helm-find-files-map (kbd "C-t") 'helm-execute-persistent-action)
-(define-key helm-read-file-map (kbd "C-t") 'helm-execute-persistent-action)
-(define-key helm-generic-files-map (kbd "C-t") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd "C-e") 'helm-execute-persistent-action)
+(define-key helm-read-file-map (kbd "C-e") 'helm-execute-persistent-action)
+(define-key helm-generic-files-map (kbd "C-e") 'helm-execute-persistent-action)
 (define-key helm-find-files-map (kbd "M-t") 'helm-toggle-resplit-and-swap-windows)
 (define-key helm-read-file-map (kbd "M-t") 'helm-toggle-resplit-and-swap-windows)
 (define-key helm-generic-files-map (kbd "M-t") 'helm-toggle-resplit-and-swap-windows)

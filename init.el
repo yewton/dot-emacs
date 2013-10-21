@@ -62,7 +62,12 @@
 
 ;; el-get
 (add-to-list 'load-path (concat cfg:el-get-dir "el-get"))
-(custom-set-variables `(el-get-dir ,cfg:el-get-dir))
+(custom-set-variables
+ `(el-get-dir ,cfg:el-get-dir)
+ '(package-archives
+   '(("gnu" . "http://elpa.gnu.org/packages/")
+     ("tromey" . "http://tromey.com/elpa/")
+     ("marmalade" . "http://marmalade-repo.org/packages/"))))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
@@ -71,19 +76,29 @@
       (goto-char (point-max))
       (eval-print-last-sexp))))
 (require 'el-get)
+(load "el-get-sources")
+(defun sync-packages ()
+  "Synchronize packages"
+  (interactive)
+  (el-get 'sync '(el-get package))
+  (let ((my-packages (mapcar 'el-get-source-name el-get-sources)))
+    (el-get 'sync my-packages)))
 (add-to-list 'el-get-recipe-path cfg:el-get-recipe-dir)
 (setq el-get-verbose t)
-(defvar cfg:packages)
-(setq cfg:packages
-  '(el-get migemo apel auto-async-byte-compile cl-lib howm
-    magit helm helm-migemo open-junk-file buffer-move
-    markdown-mode jaspace emacs-w3m dsvn yasnippet crontab-mode
-    maxframe ruby-mode ruby-block ruby-electric ruby-end scala-mode
-    auto-complete flymake flymake-ruby php-mode-improved scala-mode2
-    helm-gtags bookmark+ php-eldoc php-completion ensime htmlize
-    term+ git-gutter git-gutter-fringe multiple-cursors sudo-ext
-    haskell-mode emacs-mozc color-moccur))
-(el-get 'sync cfg:packages)
+
+;; たまに失敗することがあるので、5 回はリトライする
+(let ((trial (number-sequence 1 5)))
+  (while trial
+    (condition-case err-var
+        (progn
+          (sync-packages)
+          (setq trial nil))
+      (error
+       (message "Trial %d: failed with: %s" (car trial) err-var)
+       (unless (cdr trial)
+         (error "el-get failed with: %s" err-var)
+         (setq trial (cdr trial))
+         (sleep-for 1))))))
 
 ;; package
 (require 'package)
@@ -114,3 +129,8 @@
 
 ;; after.el があれば読み込み
 (when (file-exists-p cfg:after) (load-after-recompile cfg:after))
+
+;; Local Variables:
+;; byte-compile-warnings: (not cl-functions obolete)
+;; End:
+
