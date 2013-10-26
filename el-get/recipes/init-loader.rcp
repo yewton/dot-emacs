@@ -1,0 +1,5 @@
+(:name init-loader
+       :description "a loader of configuration files"
+       :type github
+       :pkgname "emacs-jp/init-loader"
+       :features init-loader)

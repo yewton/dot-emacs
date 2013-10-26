@@ -1,0 +1,12 @@
+;;;; cc-mode
+(defun my:c-mode-common-hook ()
+  (c-set-style "stroustrup")
+  (setq c-basic-offset 4)
+  (setq indent-tabs-mode nil)
+  (c-set-offset 'arglist-close 0)
+  (setq tab-width 4))
+(add-hook 'c-mode-common-hook #'my:c-mode-common-hook)
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars)
+;; End:
