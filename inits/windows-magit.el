@@ -1,0 +1,21 @@
+;; http://www.greenwood.co.jp/~k-aki/diary/diary201004.xhtml
+;; magitがshell-file-name(sh.exe)経由でgitを呼ぶとき、utf-8で入出力する。
+;; magitがshell-file-nameを使ってprocess-fileやcall-processする関数には次のものがある。
+;; - magit-shell-command-to-string
+;; - magit-git-exit-code
+;; - magit-run-shell
+;; これらの呼び出し時、一時的にprocess-coding-system-alistを書き換える。
+(eval-after-load "magit"
+  #'(progn
+      (modify-coding-system-alist 'process magit-git-executable '(utf-8-dos . utf-8-unix))
+      (defun add-sh-utf8-process-coding-system-alist ()
+        (cons (cons shell-file-name '(utf-8-dos . utf-8-unix)) process-coding-system-alist))
+      (defadvice magit-shell-command-to-string (around magit-shell-command-to-string-proc-coding activate)
+        (let ((process-coding-system-alist (add-sh-utf8-process-coding-system-alist)))
+          ad-do-it))
+      (defadvice magit-git-exit-code (around magit-git-exit-code-proc-coding activate)
+        (let ((process-coding-system-alist (add-sh-utf8-process-coding-system-alist)))
+          ad-do-it))
+      (defadvice magit-run-shell (around magit-run-shell-proc-coding activate)
+        (let ((process-coding-system-alist (add-sh-utf8-process-coding-system-alist)))
+          ad-do-it))))

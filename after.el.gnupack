@@ -1,3 +1,0 @@
-(eval-when-compile
-  (require 'magit))
-(setq magit-git-executable "c:/Git/bin/git.exe")

@@ -1,0 +1,32 @@
+;; php-mode
+(autoload 'php-mode "php-mode-improved")
+(eval-after-load "php-mode-improved"
+  #'(progn
+      (require 'php-completion)
+      (custom-set-variables
+       '(php-search-url "http://www.php.net/ja/")
+       '(php-manual-url "http://www.php.net/manual/ja/"))
+      (defun my:php-mode-hook ()
+        (setq c-basic-offset 4)
+        (c-set-offset 'case-label' 4)
+        (c-set-offset 'arglist-intro' 4)
+        (c-set-offset 'arglist-cont-nonempty' 4)
+        (c-set-offset 'arglist-close' 0)
+        (setq tab-width 4)
+        (setq indent-tabs-mode nil)
+        (setq c-recognize-knr-p nil)
+        (php-completion-mode t)
+        (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+        (add-to-list 'ac-sources 'ac-source-php-completion)
+        (auto-complete-mode t)
+        (imenu-add-menubar-index)
+        (local-set-key "\M-?" 'php-doc-complete-function)
+        (local-set-key (kbd "\C-c h") 'php-doc)
+        (set (make-local-variable 'eldoc-documentation-function)
+             'php-doc-eldoc-function)
+        (eldoc-mode 1)
+        (flymake-mode 1)
+        (define-abbrev php-mode-abbrev-table "ex" "extends")
+        (modify-syntax-entry ?_ "_" php-mode-syntax-table))
+      (add-hook 'php-mode-hook #'my:php-mode-hook)))
+

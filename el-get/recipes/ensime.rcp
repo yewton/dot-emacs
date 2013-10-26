@@ -1,0 +1,16 @@
+(:name ensime
+       :description "ENhanced Scala Interaction Mode for Emacs"
+       :type http-tar
+       :url "https://www.dropbox.com/sh/ryd981hq08swyqr/ZiCwjjr_vm/ENSIME%20Releases/ensime_2.10.0-0.9.8.9.tar.gz?dl=1"
+       :options ("xzf")
+       :depends scala-mode2
+       :compile nil
+       :load-path ("./elisp")
+       :build `((,el-get-emacs
+                 "--batch" "-q" "--no-site-file"
+                 "--eval" "(setq max-lisp-eval-depth 1500 max-specpdl-size 3000)"
+                 "--eval" "(mapc (lambda (dir) (add-to-list 'load-path dir)) (parse-colon-path (getenv \"LOAD_PATH\")))"
+                 "--eval" "(progn (add-to-list (quote load-path) \"./elisp\") (byte-recompile-directory \"./elisp\" 0))"))
+       :post-init (progn
+                    (autoload 'ensime-scala-mode-hook "ensime")
+                    (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)))

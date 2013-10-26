@@ -1,0 +1,11 @@
+;; デフォルトフレームの設定
+(defvar default-frame-top)
+(defvar default-frame-left)
+(defvar default-frame-width)
+(defvar default-frame-height)
+(defvar default-frame-alpha)
+(setq default-frame-top 0)
+(setq default-frame-left 0)
+(setq default-frame-width 100)
+(setq default-frame-height 50)
+(setq default-frame-alpha 85)

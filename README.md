@@ -30,6 +30,9 @@ open /Applications/Emacs.app --args -q --debug-init -l ~/dot-emacs/init.el --chd
 1. Make sure your `install-info` is that of the GNU Win 32 distribution of TexInfo for windows.  
 cf. https://github.com/dimitri/el-get#installation-dependencies
 
+## for Lubuntu
+1. Create a shortcut with option `/usr/bin/emacs24 -q --debug-init -l ~/dot-emacs/init.el`
+
 # Notes
 1. It takes several minutes to start up for the first time.
 1. Initialization often fails due to `el-get`(or Emacs itself).
