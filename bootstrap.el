@@ -50,10 +50,10 @@
           (setq trial nil))
       (error
        (message "Trial %d: failed with: %s" (car trial) err-var)
-       (unless (cdr trial)
-         (error "el-get failed with: %s" err-var)
-         (setq trial (cdr trial))
-         (sleep-for 1))))))
+       (setq trial (cdr trial))
+       (if trial
+	   (sleep-for (car trial))
+	 (error "el-get failed with: %s" err-var))))))
 
 (require 'init-loader)
 (custom-set-variables
