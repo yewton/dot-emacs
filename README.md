@@ -7,6 +7,13 @@ My .emacs.d files.
 
 # Usage
 ## common
+1. Clone the repository with submodules  
+```bash
+git clone --recursive git@github.com:yewton/dot-emacs.git ~/yewton.emacs.d
+```
+
+or
+
 1. Clone the repository  
 ```bash
 git clone git@github.com:yewton/dot-emacs.git ~/yewton.emacs.d
