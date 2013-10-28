@@ -9,5 +9,9 @@ emacs-w3m/
 eshell/
 howm/
 migemo/
+server/
 temp/
 url/
+
+inits/00_*.el
+inits/99_*.el
