@@ -55,6 +55,10 @@
 	   (sleep-for (car trial))
 	 (error "el-get failed with: %s" err-var))))))
 
+;; package
+(require 'package)
+(package-initialize)
+
 (require 'init-loader)
 (custom-set-variables
  '(init-loader-directory (concat user-emacs-directory "inits"))
