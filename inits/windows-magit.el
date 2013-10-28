@@ -19,3 +19,11 @@
       (defadvice magit-run-shell (around magit-run-shell-proc-coding activate)
         (let ((process-coding-system-alist (add-sh-utf8-process-coding-system-alist)))
           ad-do-it))))
+;; emacs - Magit is very slow when committing on Windows - Stack Overflow
+;; <http://stackoverflow.com/questions/16884377/magit-is-very-slow-when-committing-on-windows>
+(let ((git-executable (executable-find "git"))
+      git-base-dir)
+  (when git-executable
+    (setq git-base-dir (file-name-directory git-executable))
+    (add-to-list 'exec-path git-base-dir)
+    (setenv "PATH" (concat git-base-dir ";" (getenv "PATH")))))

@@ -47,6 +47,14 @@
          (:name multiple-cursors)
          (:name sudo-ext)
          (:name haskell-mode
+                :build/windows-nt nil
+                :before
+                (when (eq system-type 'windows-nt)
+                  (let* ((target-dir (concat el-get-dir "haskell-mode"))
+                         (autoloads-file "haskell-mode-autoloads.el")
+                         (generated-autoload-file (concat el-get-dir "haskell-mode/" autoloads-file)))
+                    (unless (file-exists-p generated-autoload-file)
+                      (update-directory-autoloads target-dir))))
                 :autoloads nil)
          (:name emacs-mozc)
          (:name color-moccur)

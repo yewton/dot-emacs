@@ -1,6 +1,4 @@
 ;; -*- mode: emacs-lisp; coding: utf-8; -*-
-(defvar migemo-dictionary)
-(setq migemo-dictionary "C:/gnupack/app/cmigemo/dict/utf-8/migemo-dict")
 (custom-set-variables
  '(w3m-imagick-convert-program "convert.exe")
  '(w3m-imagick-identify-program "identify.exe")

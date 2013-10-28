@@ -6,7 +6,8 @@
        (migemo-dictionary-candidates
         (when migemo-base-directory
           (list (concat migemo-base-directory "../share/migemo/utf-8/migemo-dict")
-                (concat migemo-base-directory "../share/cmigemo/utf-8/migemo-dict"))))
+                (concat migemo-base-directory "../share/cmigemo/utf-8/migemo-dict")
+                (concat migemo-base-directory "/dict/utf-8/migemo-dict"))))
        (migemo-dictionary-file
         (car-safe
          (delq nil (mapcar (lambda (x) (and (file-exists-p x) x))

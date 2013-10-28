@@ -1,8 +1,5 @@
 ;; -*- mode: emacs-lisp; coding: utf-8-unix; -*-
 ;;;; 適当におすすめのフォント設定を試みる
-(eval-when-compile
-  (require 'cl-lib)
-  (require 'cl))
 (let ((font-list '("Migu 1M-10"
                    "M+2VM+IPAG circle-10"
                    "Source Code Pro Medium-9"
