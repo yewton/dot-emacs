@@ -3,7 +3,9 @@
      '(el-get-sources
        `((:name init-loader
                 :checkout "a2fbec1382")
-         (:name open-junk-file)
+         (:name open-junk-file
+                :before
+                (autoload 'open-junk-file "open-junk-file" "" t))
          (:name buffer-move)
          (:name helm
                 :checkout "56df0e5c8b")
@@ -19,12 +21,14 @@
          (:name markdown-mode)
          (:name emacs-w3m
                 :build/windows-nt
-                (,(concat el-get-emacs
-                          " -batch -q -no-site-file -l w3mhack.el"
-                          " NONE -f w3mhack-nonunix-install"))
-                :autoloads nil
+                `((,el-get-emacs
+                   "--batch" "-q" "--no-site-file" "-l" "w3mhack.el"
+                   "NONE" "-f" "w3mhack-nonunix-install"))
                 :info nil)
-         (:name dsvn)
+         (:name dsvn
+                :before
+                (autoload 'svn-status "dsvn" "Run `svn status'." t)
+                (autoload 'svn-update "dsvn" "Run `svn update'." t))
          (:name yasnippet)
          (:name crontab-mode)
          (:name maxframe)
@@ -47,14 +51,18 @@
          (:name multiple-cursors)
          (:name sudo-ext)
          (:name haskell-mode
-                :build/windows-nt nil
-                :before
-                (when (eq system-type 'windows-nt)
-                  (let* ((target-dir (concat el-get-dir "haskell-mode"))
-                         (autoloads-file "haskell-mode-autoloads.el")
-                         (generated-autoload-file (concat el-get-dir "haskell-mode/" autoloads-file)))
-                    (unless (file-exists-p generated-autoload-file)
-                      (update-directory-autoloads target-dir))))
+                :build/windows-nt
+                (let* ((target-dir (concat el-get-dir "haskell-mode/"))
+                       (autoloads-file "haskell-mode-autoloads.el")
+                       (generated-autoload-file (concat el-get-dir "haskell-mode/" autoloads-file)))
+                  `((,el-get-emacs
+                     "--batch" "-q" "--no-site-file" "--eval"
+                     ,(concat
+                       "(progn (add-to-list (quote load-path) \".\") (ignore-errors (byte-recompile-directory \".\" 0))"
+                       (format "(let ((generated-autoload-file \"%s\"))" generated-autoload-file)
+                       (format "(update-directory-autoloads \"%s\")))" target-dir)))))
+                :info nil
+                :features haskell-mode-autoloads
                 :autoloads nil)
          (:name emacs-mozc)
          (:name color-moccur)

@@ -1,5 +1,4 @@
 ;;;; magit
-(autoload 'magit-status "magit" nil t)
 ;; diffを表示しているときに文字単位での変更箇所も強調表示する
 ;; 'allではなくtにすると現在選択中のhunkのみ強調表示する
 (custom-set-variables

@@ -1,8 +1,8 @@
 ;;;; dsvn
-(autoload 'svn-status "dsvn" "Run `svn status'." t)
 (autoload 'svn-update "dsvn" "Run `svn update'." t)
 (eval-after-load "dsvn"
-  (require 'vc-svn)) ;; これでいいのか不安
+  #'(progn
+      (require 'vc-svn))) ;; これでいいのか不安
 ;; ;; Emacs/Lisp/Drill - Emacsグループ <http://emacs.g.hatena.ne.jp/k1LoW/200810>
 (defadvice svn-commit (around svn-commit-around activate)
   (goto-char (point-min))

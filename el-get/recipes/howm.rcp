@@ -7,4 +7,5 @@
        :load-path (".")
        :build `((,el-get-emacs
                  "--batch" "-q" "--no-site-file" "--eval"
-                 "(progn (add-to-list (quote load-path) \".\") (byte-recompile-directory \".\" 0))")))
+                 "(progn (add-to-list (quote load-path) \".\") (byte-recompile-directory \".\" 0))"))
+       :autoloads nil)

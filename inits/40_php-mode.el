@@ -1,5 +1,4 @@
 ;; php-mode
-(autoload 'php-mode "php-mode-improved")
 (eval-after-load "php-mode-improved"
   #'(progn
       (require 'php-completion)

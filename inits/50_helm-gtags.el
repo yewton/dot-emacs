@@ -11,6 +11,7 @@
 ;; key bindings
 (eval-after-load "helm-gtags"
   #'(progn
+      (require 'my-macros)
       (my:define-keys helm-gtags-mode-map
                       ((kbd "C-c t") 'helm-gtags-find-tag)
                       ((kbd "M-.")   'helm-gtags-find-tag)
