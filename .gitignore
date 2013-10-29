@@ -5,6 +5,7 @@ el-get/el-get/
 auto-complete/
 auto-save-list/
 backup/
+elmo/
 emacs-w3m/
 eshell/
 howm/
@@ -14,6 +15,7 @@ recentf/
 server/
 temp/
 url/
+wanderlust/
 
 inits/00_*.el
 inits/99_*.el

@@ -71,4 +71,5 @@
          (:name jaspace)
          (:name recentf-ext)
          (:name popwin)
-         (:name anzu)))))
+         (:name anzu)
+         (:name wanderlust)))))
