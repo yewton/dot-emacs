@@ -4,7 +4,7 @@
  `(wl-init-file ,(concat my:wl-dir "init.el"))
  `(wl-folders-file ,(concat my:wl-dir "folders.conf"))
  `(wl-address-file ,(concat my:wl-dir "addresses"))
- `(wl-address-file ,(concat my:wl-dir "aliases")))
+ `(wl-alias-file ,(concat my:wl-dir "aliases")))
 (when (boundp 'mail-user-agent)
     (customize-set-value 'mail-user-agent 'wl-user-agent))
 (when (boundp 'read-mail-command)
