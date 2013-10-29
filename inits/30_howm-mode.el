@@ -1,6 +1,6 @@
 (setq howm-view-title-header "*")
+(setq howm-file-name-format "%Y/%m/%Y_%m_%d.howm")
 (custom-set-variables
- '(howm-file-name-format "%Y/%m/%Y_%m_%d.howm")
  `(howm-directory ,(concat user-emacs-directory "howm"))
  '(howm-menu-lang 'ja)
  '(howm-menu-todo-num 20)
