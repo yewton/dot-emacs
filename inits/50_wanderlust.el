@@ -1,4 +1,4 @@
-(defvar my:wl-dir (concat user-emacs-directory "wl/"))
+(defvar my:wl-dir (concat user-emacs-directory "wanderlust/"))
 (custom-set-variables
  `(wl-temporary-file-directory ,(concat user-emacs-directory "temp/"))
  `(wl-init-file ,(concat my:wl-dir "init.el"))
