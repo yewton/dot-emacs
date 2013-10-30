@@ -1,0 +1,46 @@
+# -*- mode: snippet -*-
+# name: setup-wl-gmail-init
+# key: setup-wl-gmail-init
+# expand-env: ((yas-indent-line 'fixed))
+# --
+;; [Emacs]Wanderlustの最小設定と送信設定 | Emacsのelispインストール・設定・使い方
+;;  - http://emacs.tsutomuonoda.com/emacs-wanderlust-smtp-setting/
+;; WanderlustでGmailを読めるようにする - gom68の日記
+;;  - http://gom.hatenablog.com/entry/20090620/1245487614
+;; mixメモ: EmacsのWanderlustからGmailの読み書き(.foldersの設定)
+;;  - http://mixmemo.blogspot.jp/2009/10/emacswanderlustgmail.html
+(custom-set-variables
+ '(wl-smtp-posting-server "smtp.gmail.com")
+ '(wl-smtp-posting-port ${7:587})
+ '(wl-smtp-posting-user "$1@gmail.com")
+ '(wl-smtp-authenticate-type "login")
+ '(wl-smtp-connection-type 'starttls)
+ '(wl-folder-check-async t)
+ '(wl-local-domain "${6:`(system-name)`}")
+ '(wl-interactive-send t)
+ '(wl-stay-folder-window t)
+ '(wl-summary-move-order 'unread)
+ '(wl-break-pages nil)
+ '(wl-message-ignored-field-list '("^.*:"))
+ '(wl-message-visible-field-list
+   '("^Subject:"
+     "^From:"
+     "^To:"
+     "^Cc:"
+     "^Date:"
+     "^Message-ID:"))
+ '(wl-from "$2 <$1@gmail.com>")
+ '(wl-default-folder "%Inbox")
+ '(wl-draft-folder "%[Gmail]/${3:下書き}")
+ '(wl-trash-folder "%[Gmail]/${4:ゴミ箱}")
+ '(wl-fcc "%[Gmail]/${5:送信済みメール}")
+ '(wl-fcc-force-as-read t)
+ '(wl-default-spec "%")
+ '(elmo-folder-update-threshold 50)
+ '(elmo-imap4-default-server "imap.gmail.com")
+ '(elmo-imap4-default-user "$1@gmail.com")
+ '(elmo-imap4-default-authenticate-type 'clear)
+ '(elmo-imap4-default-port '993)
+ '(elmo-imap4-default-stream-type 'ssl)
+ '(elmo-imap4-use-modified-utf7 t)
+ '(elmo-folder-update-confirm nil))
