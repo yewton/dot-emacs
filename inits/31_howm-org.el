@@ -1,6 +1,6 @@
 (eval-after-load "howm"
   #'(progn
-      (defun my:org-mode-hook ()
+      (defun my:org-mode-howm-hook ()
         (howm-mode)
         (iimage-mode)
         (show-all))
