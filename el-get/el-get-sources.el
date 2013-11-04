@@ -72,4 +72,5 @@
          (:name recentf-ext)
          (:name popwin)
          (:name anzu)
-         (:name wanderlust)))))
+         (:name wanderlust)
+         (:name japanese-holidays)))))
