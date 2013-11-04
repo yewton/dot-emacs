@@ -6,3 +6,7 @@
   (org-display-inline-images))
 
 (add-hook 'org-mode-hook #'my:org-mode-hook)
+
+;; Local Variables:
+;; byte-compile-warnings: (not unresolved)
+;; End:
