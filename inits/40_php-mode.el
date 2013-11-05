@@ -2,6 +2,9 @@
 (eval-after-load "php-mode-improved"
   #'(progn
       (require 'php-completion)
+      (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+      (define-key php-mode-map "\M-?" 'php-doc-complete-function)
+      (define-key php-mode-map (kbd "C-M-h") 'windmove-left)
       (custom-set-variables
        '(php-search-url "http://www.php.net/ja/")
        '(php-manual-url "http://www.php.net/manual/ja/"))
@@ -15,12 +18,9 @@
         (setq indent-tabs-mode nil)
         (setq c-recognize-knr-p nil)
         (php-completion-mode t)
-        (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
         (add-to-list 'ac-sources 'ac-source-php-completion)
         (auto-complete-mode t)
         (imenu-add-menubar-index)
-        (local-set-key "\M-?" 'php-doc-complete-function)
-        (local-set-key (kbd "\C-c h") 'php-doc)
         (set (make-local-variable 'eldoc-documentation-function)
              'php-doc-eldoc-function)
         (eldoc-mode 1)
