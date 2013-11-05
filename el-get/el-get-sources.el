@@ -73,4 +73,5 @@
          (:name popwin)
          (:name anzu)
          (:name wanderlust)
-         (:name japanese-holidays)))))
+         (:name japanese-holidays)
+         (:name ag)))))
