@@ -10,12 +10,13 @@
   (byte-recompile-file (concat user-emacs-directory "my-exec-path-from-shell-path.el") nil 0 t))
 
 ;; el-get
-(setq debug-on-error t)
 (defvar my:el-get-base-dir (concat user-emacs-directory "el-get/"))
 (defvar my:el-get-sources-file (concat my:el-get-base-dir "el-get-sources"))
 (defvar el-get-dir (concat my:el-get-base-dir "el-get/"))
-
+(defvar el-get-git-install-url "https://github.com/dimitri/el-get.git")
+(defvar el-get-github-default-url-type "https")
 (add-to-list 'load-path (concat el-get-dir "el-get/"))
+
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
@@ -23,7 +24,6 @@
     (let (el-get-master-branch)
       (goto-char (point-max))
       (eval-print-last-sexp))))
-
 (require 'el-get)
 (custom-set-variables
  '(package-archives
