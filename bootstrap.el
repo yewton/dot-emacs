@@ -11,7 +11,7 @@
 
 ;; el-get
 (defvar my:el-get-base-dir (concat user-emacs-directory "el-get/"))
-(defvar my:el-get-sources-file (concat my:el-get-base-dir "el-get-sources"))
+(defvar my:el-get-sources-file (concat my:el-get-base-dir "el-get-sources.el"))
 (defvar el-get-dir (concat my:el-get-base-dir "el-get/"))
 (defvar el-get-git-install-url "https://github.com/dimitri/el-get.git")
 (defvar el-get-github-default-url-type "https")
@@ -30,7 +30,7 @@
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("tromey" . "http://tromey.com/elpa/")
      ("marmalade" . "http://marmalade-repo.org/packages/"))))
-(load my:el-get-sources-file)
+(byte-recompile-file my:el-get-sources-file nil 0 t)
 (add-to-list 'el-get-recipe-path (concat my:el-get-base-dir "recipes/"))
 
 (defun sync-packages ()
@@ -52,8 +52,8 @@
        (message "Trial %d: failed with: %s" (car trial) err-var)
        (setq trial (cdr trial))
        (if trial
-	   (sleep-for (car trial))
-	 (error "el-get failed with: %s" err-var))))))
+       (sleep-for (car trial))
+     (error "el-get failed with: %s" err-var))))))
 
 ;; package
 (require 'package)
