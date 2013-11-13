@@ -79,4 +79,11 @@
                 :before
                   (autoload 'wikitext-mode
                     "wikitext-mode.el"
-                    "Major mode for editing wiki-documents." t))))))
+                    "Major mode for editing wiki-documents." t))
+         (:name web-mode
+                :before
+                  (autoload 'web-mode
+                    "web-mode.el"
+                    "Major mode for editing web templates:
+HTML files embedding parts (CSS/JavaScript)
+and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))))))
