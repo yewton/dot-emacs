@@ -1,0 +1,4 @@
+(add-to-list 'auto-mode-alist '("\\.wiki\\'" . wikitext-mode))
+(eval-after-load "wikitext-mode"
+  #'(progn
+      (remove-hook 'wikitext-mode-hook 'wikitext-turn-on-longlines)))

@@ -74,4 +74,9 @@
          (:name anzu)
          (:name wanderlust)
          (:name japanese-holidays)
-         (:name ag)))))
+         (:name ag)
+         (:name wikitext-mode
+                :before
+                  (autoload 'wikitext-mode
+                    "wikitext-mode.el"
+                    "Major mode for editing wiki-documents." t))))))
