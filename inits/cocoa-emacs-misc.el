@@ -8,3 +8,7 @@
     (add-hook 'server-visit-hook 'ns-raise-emacs)
     (add-hook 'before-make-frame-hook 'ns-raise-emacs)
     (ns-raise-emacs)))
+
+;; Local Variables:
+;; byte-compile-warnings: (not unresolved)
+;; End:
