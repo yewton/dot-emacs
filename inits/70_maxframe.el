@@ -1,6 +1,6 @@
 (when (display-graphic-p)
   (if (eq window-system 'ns)
-      (defun my:toggle-frame-size () (ns-toggle-fullscreen))
+      (defun my:toggle-frame-size () (interactive) (ns-toggle-fullscreen))
     (eval-and-compile (require 'maxframe))
     (defvar my:frame-max-flag nil)
     (defun my:toggle-frame-size ()
