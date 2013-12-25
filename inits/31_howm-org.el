@@ -4,5 +4,5 @@
         (howm-mode)
         (iimage-mode)
         (show-all))
-      (add-hook 'org-mode-hook #'my:org-mode-hook)
+      (add-hook 'org-mode-hook #'my:org-mode-howm-hook)
       (add-to-list 'auto-mode-alist '("\\.howm$" . org-mode))))
