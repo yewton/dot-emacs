@@ -86,4 +86,6 @@
                     "web-mode.el"
                     "Major mode for editing web templates:
 HTML files embedding parts (CSS/JavaScript)
-and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))))))
+and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
+         (:name rainbow-mode)
+         (:name rainbow-delimiters)))))
