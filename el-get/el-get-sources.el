@@ -88,4 +88,5 @@
 HTML files embedding parts (CSS/JavaScript)
 and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
          (:name rainbow-mode)
-         (:name rainbow-delimiters)))))
+         (:name rainbow-delimiters)
+         (:name js2-mode)))))
