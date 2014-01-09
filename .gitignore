@@ -19,3 +19,4 @@ wanderlust/
 
 inits/00_*.el
 inits/99_*.el
+/bookmarks
