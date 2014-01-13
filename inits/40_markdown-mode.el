@@ -1,0 +1,6 @@
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+(when (executable-find "gfm")
+  (customize-set-value 'markdown-command "gfm"))
+(let ((cmd "/Applications/Marked.app/Contents/Resources/mark"))
+  (when (file-exists-p cmd)
+    (customize-set-value 'markdown-open-command cmd)))
