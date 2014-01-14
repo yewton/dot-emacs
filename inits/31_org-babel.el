@@ -14,4 +14,10 @@
   (add-to-list 'my:ob-load-languages '(plantuml . t)))
 
 (custom-set-variables
- '(org-babel-load-languages my:ob-load-languages))
+ '(org-babel-load-languages my:ob-load-languages)
+ '(org-src-fontify-natively t)
+ '(org-edit-src-content-indentation 0))
+
+;; Local Variables:
+;; byte-compile-warnings: (not unresolved)
+;; End:
