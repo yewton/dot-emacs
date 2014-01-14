@@ -1,0 +1,4 @@
+(:name pig-mode
+       :description "Emacs mode for Pig"
+       :type github
+       :pkgname "motus/pig-mode")
