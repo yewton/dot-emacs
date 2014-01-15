@@ -7,8 +7,7 @@
              (list
               (read-string "Format: " "[%d-%02d-%02d %s]%s")
               (read-string "Time: " (concat " " (format-time-string "%H:%M")))
-              (read-string "Command(+@!):" "@")
-              )
+              (read-string "Command(+@!):" "@"))
            (list "[%d-%02d-%02d%s]%s" "" "@")))
         (let*
             ((date (calendar-cursor-to-date))
@@ -26,8 +25,8 @@
                     (mapcar 'number-to-string (number-sequence 1 12)))))
          ;; 曜日
          '(calendar-day-name-array
-          (vconcat
-           (mapcar (lambda (n) (concat (char-to-string n) "曜日")) "日月火水木金土"))))
+           (vconcat
+            (mapcar (lambda (n) (concat (char-to-string n) "曜日")) "日月火水木金土"))))
         (define-key calendar-mode-map "l" #'calendar-forward-day)
         (define-key calendar-mode-map "h" #'calendar-backward-day)
         (define-key calendar-mode-map "j" #'calendar-forward-week)
