@@ -3,11 +3,11 @@
   (defun w3m-google-search (word)
     (interactive "sSearch Word: ")
     (w3m-browse-url (concat "http://www.google.co.jp/search?hl=ja&q=" word)))
-  (global-set-key (kbd "C-<f3>") 'w3m-google-search)
+  (global-set-key (kbd "C-x <f3>") 'w3m-google-search)
   (defun w3m-alc-search (word)
     (interactive "sSearch Word: ")
     (w3m-browse-url (concat "http://eow.alc.co.jp/search?q=" word)))
-  (global-set-key (kbd "C-<f4>") 'w3m-alc-search)
+  (global-set-key (kbd "C-x <f4>") 'w3m-alc-search)
   (custom-set-variables
    '(w3m-use-tab t)
    `(w3m-profile-directory ,(concat user-emacs-directory "emacs-w3m"))))
