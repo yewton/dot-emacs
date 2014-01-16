@@ -1,10 +1,12 @@
 *~
 *.elc
 el-get/el-get/
+.DS_Store
 
 auto-complete/
 auto-save-list/
 backup/
+bookmark/
 elmo/
 emacs-w3m/
 eshell/
