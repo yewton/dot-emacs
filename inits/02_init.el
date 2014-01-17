@@ -2,6 +2,11 @@
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
+(setq locale-coding-system 'utf-8)
+(setq system-time-locale "ja_JP.UTF-8")
+(setenv "LANG" "ja_JP.UTF-8")
+(setenv "LC_ALL" "ja_JP.UTF-8")
+(setenv "LC_MESSAGES" "ja_JP.UTF-8")
 ;; 一時ファイル
 (customize-set-value
  'temporary-file-directory (concat user-emacs-directory "temp/"))
