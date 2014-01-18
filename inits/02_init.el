@@ -41,3 +41,6 @@
 ;; 現在行をハイライト
 (global-hl-line-mode t)
 (set-face-background 'hl-line "gray15")
+;; 現在いる関数名をモードラインに表示
+(which-function-mode t)
+(setq-default which-func-unknown "")

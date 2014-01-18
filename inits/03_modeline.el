@@ -42,7 +42,8 @@
 (make-face 'mode-line-filename-face)
 (make-face 'mode-line-mode-face)
 (make-face 'mode-line-minor-mode-face)
-(make-face 'mode-line-misc-info-face)
+(make-face 'mode-line-which-func-face)
+(make-face 'global-mode-string-face)
 
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
@@ -71,9 +72,12 @@
     :weight 'normal
     :foreground "gray40"
     :height 100)
-(set-face-attribute 'mode-line-misc-info-face nil
+(set-face-attribute 'mode-line-which-func-face nil
     :inherit 'mode-line-face
-    :foreground "gray80")
+    :foreground "aquamarine")
+(set-face-attribute 'global-mode-string-face nil
+    :inherit 'mode-line-face
+    :foreground "LightGoldenrod3")
 
 ;; Helper function
 (defun my:shorten-directory (dir max-length)
@@ -110,7 +114,14 @@
                 face mode-line-folder-face)
    (:propertize "%b"
                 face mode-line-filename-face)
-   "(%p)"
+   ;;; display which-function
+   (:propertize
+    (:eval
+     (let ((hash (gethash (selected-window) which-func-table)))
+       (if hash
+           (format "<%s>" (replace-regexp-in-string "%" "%%" hash))
+         which-func-unknown)))
+    face mode-line-which-func-face)
    ;;; print Narrow if appropriate.
    " %n "
    (vc-mode vc-mode)
@@ -121,5 +132,6 @@
    (:eval (propertize (format-mode-line minor-mode-alist)
                       'face 'mode-line-minor-mode-face))
    "  "
-   (:propertize mode-line-misc-info face mode-line-misc-info-face)
+   (:propertize global-mode-string
+                face global-mode-string-face)
    mode-line-end-spaces))
