@@ -1,6 +1,8 @@
 (when (display-graphic-p)
-  (if (fboundp 'ns-toggle-fullscreen)
-      (defun my:toggle-frame-size () (interactive) (ns-toggle-fullscreen))
+  (when (eq window-system 'ns)
+    (customize-set-value 'ns-use-native-fullscreen nil))
+  (if (fboundp 'toggle-frame-fullscreen)
+      (defun my:toggle-frame-size () (interactive) (toggle-frame-fullscreen))
     (eval-and-compile (require 'maxframe))
     (defvar my:frame-max-flag nil)
     (defun my:toggle-frame-size ()
@@ -13,4 +15,3 @@
         (setq my:frame-max-flag t))))
   (add-hook 'window-setup-hook 'my:toggle-frame-size t)
   (global-set-key [f11] 'my:toggle-frame-size))
-
