@@ -9,7 +9,9 @@
     (add-hook 'server-visit-hook 'ns-raise-emacs)
     (add-hook 'before-make-frame-hook 'ns-raise-emacs)
     (ns-raise-emacs)))
-
+(let ((ec "/usr/local/bin/emacsclient"))
+  (when (file-exists-p ec)
+    (customize-set-value 'magit-emacsclient-executable ec)))
 ;; Local Variables:
 ;; byte-compile-warnings: (not unresolved)
 ;; End:
