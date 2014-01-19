@@ -60,10 +60,18 @@
 (package-initialize)
 
 (require 'init-loader)
+(require 'org)
+
 (custom-set-variables
  '(init-loader-directory (concat user-emacs-directory "inits"))
  '(init-loader-show-log-after-init t)
  '(init-loader-byte-compile t))
+
+(loop for org in (directory-files init-loader-directory t)
+      for el = (concat (file-name-sans-extension org) ".el")
+      when (and (string-match "org\\'" (file-name-nondirectory org))
+                (file-newer-than-file-p org el))
+      do (org-babel-tangle-file org el "emacs-lisp"))
 
 (init-loader-load)
 
