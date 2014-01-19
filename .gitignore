@@ -4,6 +4,7 @@ el-get/el-get/
 .DS_Store
 
 auto-complete/
+auto-save/
 auto-save-list/
 backup/
 bookmark/

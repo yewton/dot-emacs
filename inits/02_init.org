@@ -1,25 +1,75 @@
+* 02_init - 初期設定
+基本的に一番最初に読み込まれる、雑多な設定です。
+
+** 言語環境設定
+どの =.emacs= にもほとんどおまじないのように書いてあるやつです。
+Emacs でマトモに日本語を扱えるように設定します。
+
+=window-system= ごとに異なるような場合は、別途設定します。
+
 #+BEGIN_SRC emacs-lisp
-;; デフォルトエンコード指定
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
+#+END_SRC
+
+以下は明示的に設定しない場合は環境変数から自動で設定されるのですが、
+Mac OSX の Application として動かす場合は、
+シェルの環境変数が引き継がれるわけではないため、すべて明示的に指定しています。
+多分指定していて困るものでもないので、全 =window-system= 共通の設定としています。
+
+#+BEGIN_SRC emacs-lisp
 (setq locale-coding-system 'utf-8)
 (setq system-time-locale "ja_JP.UTF-8")
 (setenv "LANG" "ja_JP.UTF-8")
 (setenv "LC_ALL" "ja_JP.UTF-8")
 (setenv "LC_MESSAGES" "ja_JP.UTF-8")
-;; 一時ファイル
+#+END_SRC
+
+** 各種ファイル、ディレクトリ設定
+Emacs はデフォルトだと、編集ファイルと同じ場所にいろんなファイルを作ります。
+
+他の人も使うような環境だとゴミでしかないため、
+なるべく一箇所に置くように(あるいは置かないように)設定しています。
+
+*** 一時ファイル
+何も設定しなくても、デフォルトではシステムのテンポラリディレクトリが使われるのですが、
+なんとなく Emacs 関連のファイルは分けておきたいので、設定しています。
+
+#+BEGIN_SRC emacs-lisp
 (customize-set-value
  'temporary-file-directory (concat user-emacs-directory "temp/"))
-;; バックアップファイル
-(customize-set-value
- 'backup-directory-alist `(("." . ,(concat user-emacs-directory "backup/"))))
-;; 自動保存ファイル
-(customize-set-value
- 'auto-save-list-file-prefix (concat user-emacs-directory "auto-save-list/.saves-"))
-;; 自動保存ファイル（#ファイル名#）の設定
-(setq auto-save-file-name-transforms
-      `((".*/Dropbox/.*" ,temporary-file-directory t)))
+#+END_SRC
+
+*** バックアップ、auto-save 関連
+バックアップファイルは =hoge.txt~= みたいなファイルで、
+auto-save ファイルは =#hoge.txt#= みたいなファイルです。
+
+いずれも一箇所に保存するように変更しています。
+
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ '(backup-directory-alist `((".*" . ,(concat user-emacs-directory "backup/"))))
+ '(auto-save-file-name-transforms `((".*" ,(concat user-emacs-directory "auto-save/") t)))
+ `(auto-save-list-file-prefix ,(concat user-emacs-directory "auto-save-list/.saves-")))
+#+END_SRC
+
+*** ロックファイル
+=.#hoge.txt= みたいなファイルです。
+
+編集の競合を防いでくれるためにあるらしいのですが、
+あんまり役に立った覚えがないので作らないように設定しています。
+
+この設定は Emacs 24.3 以降でのみ有効です。
+
+#+BEGIN_SRC emacs-lisp
+(customize-set-value 'create-lockfiles nil)
+#+END_SRC
+
+*** その他
+コメントで色々書いてます。
+
+#+BEGIN_SRC emacs-lisp
 ;; リージョンをハイライト
 (setq-default transient-mark-mode t)
 ;; 対応する括弧の強調表示
@@ -32,12 +82,9 @@
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode 0))
 ;; タブでなくスペースでインデント
 (setq-default tab-width 4 indent-tabs-mode nil)
-;; 行番号と列番号の組を表示
-(column-number-mode t)
-(line-number-mode t)
 ;; いちいち音を鳴らすな
 (setq ring-bell-function 'ignore)
-;; electric-pair
+;; electric-pair 勝手に閉じカッコとかを入れてくれるやつ
 (electric-pair-mode 1)
 ;; 現在行をハイライト
 (global-hl-line-mode t)
@@ -45,4 +92,6 @@
 ;; 現在いる関数名をモードラインに表示
 (which-function-mode t)
 (setq-default which-func-unknown "")
+;; キーストロークをすぐにエコーエリアに表示する
+(customize-set-value 'echo-keystrokes 0.2)
 #+END_SRC
