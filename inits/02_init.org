@@ -5,8 +5,6 @@
 どの =.emacs= にもほとんどおまじないのように書いてあるやつです。
 Emacs でマトモに日本語を扱えるように設定します。
 
-=window-system= ごとに異なるような場合は、別途設定します。
-
 #+BEGIN_SRC emacs-lisp
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8-unix)
@@ -16,14 +14,14 @@ Emacs でマトモに日本語を扱えるように設定します。
 以下は明示的に設定しない場合は環境変数から自動で設定されるのですが、
 Mac OSX の Application として動かす場合は、
 シェルの環境変数が引き継がれるわけではないため、すべて明示的に指定しています。
-多分指定していて困るものでもないので、全 =window-system= 共通の設定としています。
 
 #+BEGIN_SRC emacs-lisp
-(setq locale-coding-system 'utf-8)
-(setq system-time-locale "ja_JP.UTF-8")
-(setenv "LANG" "ja_JP.UTF-8")
-(setenv "LC_ALL" "ja_JP.UTF-8")
-(setenv "LC_MESSAGES" "ja_JP.UTF-8")
+(when (eq window-system 'ns)
+  (setq locale-coding-system 'utf-8)
+  (setq system-time-locale "ja_JP.UTF-8")
+  (setenv "LANG" "ja_JP.UTF-8")
+  (setenv "LC_ALL" "ja_JP.UTF-8")
+  (setenv "LC_MESSAGES" "ja_JP.UTF-8"))
 #+END_SRC
 
 ** 各種ファイル、ディレクトリ設定
