@@ -19,8 +19,8 @@ temp/
 url/
 wanderlust/
 
-inits/00_*.el
-inits/99_*.el
+inits/*.el
+
 /bookmarks
 /my-macros.el
 /my-functions.el

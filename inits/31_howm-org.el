@@ -1,8 +1,0 @@
-(eval-after-load "howm"
-  #'(progn
-      (defun my:org-mode-howm-hook ()
-        (howm-mode)
-        (iimage-mode)
-        (show-all))
-      (add-hook 'org-mode-hook #'my:org-mode-howm-hook)
-      (add-to-list 'auto-mode-alist '("\\.howm$" . org-mode))))

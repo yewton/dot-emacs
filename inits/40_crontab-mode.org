@@ -1,0 +1,4 @@
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.cron\\(tab\\)?\\'" . crontab-mode))
+(add-to-list 'auto-mode-alist '("cron\\(tab\\)?\\."    . crontab-mode))
+#+END_SRC

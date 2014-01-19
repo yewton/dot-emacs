@@ -1,0 +1,5 @@
+#+BEGIN_SRC emacs-lisp
+;; uniquify
+(require 'uniquify)
+(customize-set-value 'uniquify-buffer-name-style 'post-forward-angle-brackets)
+#+END_SRC

@@ -1,0 +1,4 @@
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ '(eshell-directory-name (concat user-emacs-directory "eshell/")))
+#+END_SRC

@@ -1,0 +1,6 @@
+#+BEGIN_SRC emacs-lisp
+(eval-after-load "js"
+  #'(progn
+      (custom-set-variables
+       '(js-indent-level 2))))
+#+END_SRC

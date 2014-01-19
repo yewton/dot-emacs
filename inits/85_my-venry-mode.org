@@ -1,0 +1,4 @@
+#+BEGIN_SRC emacs-lisp
+(define-derived-mode my-venry-mode text-mode "My:Venry"
+  "ad hoc major mode for various purpose.")
+#+END_SRC

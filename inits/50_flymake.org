@@ -1,0 +1,5 @@
+#+BEGIN_SRC emacs-lisp
+;; どこだりさファイル作るんでねぇ
+(custom-set-variables
+ '(flymake-run-in-place nil))
+#+END_SRC

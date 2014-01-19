@@ -1,0 +1,4 @@
+#+BEGIN_SRC emacs-lisp
+(require 'popwin)
+(push '("*Google Translate*") popwin:special-display-config)
+#+END_SRC
