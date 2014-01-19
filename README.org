@@ -1,5 +1,5 @@
 * これはなに？
-@yewton の =.emacs.d= です。
+[[[https://twitter.com/yewton][yewton]] の =.emacs.d= です。
 
 * 必要なもの
 - [[http://www.gnu.org/software/emacs/][GNU Emacs]] - 24.x が必要です
