@@ -23,7 +23,7 @@
 使えない場合は =git submodule init= 、 =git submodule update= で。
 
 #+BEGIN_SRC sh
-git clone --recursive git@github.com:yewton/dot-emacs.git ~/yewton.emacs.d
+git clone --recursive https://github.com/yewton/dot-emacs.git ~/yewton.emacs.d
 #+END_SRC
 
 ** for Mac OS X
