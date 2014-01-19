@@ -1,0 +1,73 @@
+* これはなに？
+@yewton の =.emacs.d= です。
+
+* 必要なもの
+- [[http://www.gnu.org/software/emacs/][GNU Emacs]] - 24.x が必要です
+- [[http://w3m.sourceforge.net/][W3M]] - Emacs 内でウェブブラウズするために使うテキストブラウザ。[[http://www.emacswiki.org/emacs/eww][eww]] が使えれば要らなくなるのかも。
+- [[http://www.kaoriya.net/software/cmigemo/][C/Migemo — KaoriYa]] - 日本語をローマ字で検索する
+- [[http://aspell.net/][GNU Aspell]] - スペルチェッカ
+
+以下は依存パッケージのビルドに必要です。
+
+- automake
+- cvs
+- git
+
+* 使い方
+** 共通
+このリポジトリをクローンします。
+
+=gitsubmodule= で管理しているモノもあるので、 =--recursive= を使えるなら使いましょう。
+使えない場合は =git submodule init= 、 =git submodule update= で。
+
+#+BEGIN_SRC sh
+git clone --recursive git@github.com:yewton/dot-emacs.git ~/yewton.emacs.d
+#+END_SRC
+
+** for Mac OS X
+Automator を使います。
+
+=Run shell script= を選択して、以下のように書いてください:
+
+#+BEGIN_SRC sh
+open /Applications/Emacs.app --args -q --debug-init -l ~/yewton.emacs.d/init.el --chdir ~ &
+#+END_SRC
+
+このワークフローをアプリケーションとして保存して、Dock にでも入れておきましょう。
+
+また、[[http://rainbowdevil.jp/?p=1045][Cocoa Emacsで、既存のウインドウにファイルを開く » RainbowDevilsLand]] を参考に
+=emacsclient= の設定もしておいたほうがよいです。
+
+** for Windows
+ショートカットを使います。
+
+=--debug-init -l ~/yewton.emacs.d/init.el= という起動オプションつきのショートカットを作成してください。
+
+GNU Win 32 版の TexInfo に付属の =install-info= でないと、
+=el-get= が動かないので注意しましょう([[https://github.com/dimitri/el-get#installation-dependencies][参考]])。
+
+** for Linux
+色々やりようはあると思いますが、一例としてショートカットを使うことにします。
+
+=/usr/bin/emacs24 -q --debug-init -l ~/yewton.emacs.d/init.el= とかで動くと思います。
+
+* 諸注意など
+1. 初回起動時は依存パッケージを落としたりなんだりで結構時間がかかります
+2. なんだかよくわからない理由でたまに初期化処理が止まったりします(Mac OS X だと起こりやすい？)。
+   なんだかよくわからないですが、Emacs のフレームをアクティブにして、
+   その上でマウスポインタを動かすと復帰する場合があるみたいです([[https://github.com/dimitri/el-get/issues/698#issuecomment-5514456][参考]])
+3. 予期せぬことが起こって、初期化が中途半端に終わってしまった場合などに、
+   =el-get= がバグった =.loaddefs.el= を生成してしまい、無限ループに陥る場合が稀にあります。
+   その場合は、 =el-get= のディレクトリ内の =.loaddefs.el= を消すか、
+   それでも直らない場合は、 =clean.sh= を実行してまっさらにしてから再度実行しましょう。
+
+* 動作確認バージョン
+#+BEGIN_EXAMPLE
+GNU Emacs 24.3.1 (i686-pc-linux-gnu, GTK+ Version 3.8.2)
+ of 2013-07-27 on komainu, modified by Debian
+#+END_EXAMPLE
+
+* 参考
+- [[http://emacs-jp.github.io/][Emacs JP - Emacs JP]]
+- [[http://uwabami.junkhub.org/log/?date=20111213][平衡点(2011-12-13)]]
+- [[http://d.hatena.ne.jp/debiandebian/20101122/1290371677][It's All Text with Emacs導入記録 - Computingしようぜ！]]
