@@ -1,4 +1,14 @@
 (require 'bytecomp)
+(require 'org)
+
+(defun my:org-babel-tangle-and-byte-recompile-file (filename &optional force arg load)
+  "`org-babel-tangle-file' したあと `byte-recompile-file' する。"
+  (let* ((basename (file-name-sans-extension filename))
+         (org (concat basename ".org"))
+         (el (concat basename ".el")))
+    (when (file-newer-than-file-p org el)
+      (org-babel-tangle-file org el "emacs-lisp")
+      (byte-recompile-file el force arg load))))
 
 ;; 独自マクロ
 (byte-recompile-file (concat user-emacs-directory "my-macros.el") nil 0)
@@ -60,18 +70,15 @@
 (package-initialize)
 
 (require 'init-loader)
-(require 'org)
 
 (custom-set-variables
  '(init-loader-directory (concat user-emacs-directory "inits"))
  '(init-loader-show-log-after-init t)
  '(init-loader-byte-compile t))
 
+;; inits 以下の org ファイルをすべて el に変換
 (loop for org in (directory-files init-loader-directory t)
-      for el = (concat (file-name-sans-extension org) ".el")
-      when (and (string-match "org\\'" (file-name-nondirectory org))
-                (file-newer-than-file-p org el))
-      do (org-babel-tangle-file org el "emacs-lisp"))
+      do (my:org-babel-tangle-and-byte-recompile-file org nil 0))
 
 (init-loader-load)
 
