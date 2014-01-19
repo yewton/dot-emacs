@@ -11,13 +11,13 @@
       (byte-recompile-file el force arg load))))
 
 ;; 独自マクロ
-(byte-recompile-file (concat user-emacs-directory "my-macros.el") nil 0)
+(my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-macros.el") nil 0)
 ;; 独自関数
-(byte-recompile-file (concat user-emacs-directory "my-functions.el") nil 0)
+(my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-functions.el") nil 0)
 
 ;; exec-path の設定
 (when (eq window-system 'ns)
-  (byte-recompile-file (concat user-emacs-directory "my-exec-path-from-shell-path.el") nil 0 t))
+  (my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-exec-path-from-shell-path.el") nil 0 t))
 
 ;; el-get
 (defvar my:el-get-base-dir (concat user-emacs-directory "el-get/"))

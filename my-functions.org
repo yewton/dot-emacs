@@ -1,0 +1,50 @@
+* my-functions
+他の設定ファイルから呼び出すための関数定義群です。
+
+** ci-sort
+case-insensitive なソートです。
+以下のように使います。
+
+#+BEGIN_SRC emacs-lisp :tangle no
+(dolist (i (ci-sort (directory-files "~/dot-emacs" t) 'string<))
+  (insert (concat ";; " i "\n")))
+#+END_SRC
+
+=helm= でのファイルソート順を指定するために使っています。
+
+#+BEGIN_SRC emacs-lisp
+(defun ci-sort (l p)
+  (sort l
+        (lambda (a b)
+          (funcall p (upcase a) (upcase b)))))
+#+END_SRC
+
+* sort-by-file-directory-p
+directory 優先でソートします。
+以下のように使います。
+
+#+BEGIN_SRC emacs-lisp :tangle no
+(dolist (i (sort-by-file-directory-p (directory-files "~/dot-emacs" t)))
+  (insert (concat ";; " i "\n")))
+#+END_SRC
+
+こちらも、 =helm= でのファイルソート順を指定するために使っています。
+
+#+BEGIN_SRC emacs-lisp
+(defun sort-by-file-directory-p (l)
+  (sort l
+        (lambda (a b)
+          (let ((a-is-a-directory (file-directory-p a))
+                (b-is-a-directory (file-directory-p b)))
+            (cond
+             ((and a-is-a-directory (not b-is-a-directory)) t)
+             ((and (not a-is-a-directory) b-is-a-directory) nil)
+             (t nil))))))
+#+END_SRC
+
+
+最後に、 =require= 出来るようにしておきます。
+
+#+BEGIN_SRC emacs-lisp
+(provide 'my-functions)
+#+END_SRC

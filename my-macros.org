@@ -1,0 +1,61 @@
+* my-macros
+他の設定ファイルから呼び出すためのマクロ定義群です。
+
+** my:define-keys
+キー定義のヘルパーです。
+冗長なキー定義の記述を減らすことができます。
+
+このマクロがどのように展開されるのかは、
+以下のようにして知ることができます
+(ちなみに、以下の展開結果の注釈は =[[elisp:(describe-function%20'lispxmp)][lispxmp]]= を使いました)。
+
+#+BEGIN_SRC emacs-lisp :tangle no
+(macroexpand '(my:define-keys helm-gtags-mode-map
+                             ((kbd "C-c t") 'helm-gtags-find-tag)
+                             ((kbd "M-.")   'helm-gtags-find-tag)))
+;; => (progn
+;;      (define-key helm-gtags-mode-map
+;;        (kbd "C-c t")
+;;        'helm-gtags-find-tag)
+;;      (define-key helm-gtags-mode-map
+;;        (kbd "M-.")
+;;        'helm-gtags-find-tag))
+#+END_SRC
+
+*** 参考
+- [[http://hke7.wordpress.com/2011/11/15/define-key-%25E3%2582%2584-global-set-key-%25E3%2582%2592%25E3%2581%25BE%25E3%2581%25A8%25E3%2582%2581%25E3%2582%258B/][define-key や global-set-key をまとめる | less ~/.emacs.d/init.el]]
+- =[[elisp:(describe-function%20'ensime-define-keys)][ensime-define-keys]]=
+
+#+BEGIN_SRC emacs-lisp
+(defmacro my:define-keys (keymap &rest key-command)
+  "特定のキーマップをまとめて設定する。
+
+;; 改善前
+(define-key any-mode-map (kbd \"C-x\") 'any-function)
+(define-key any-mode-map (kbd \"M-a\") 'hoge-function)
+
+;; 改善後
+(define-keys any-mode-map
+  ((kbd \"C-x\") 'any-function)
+  ((kbd \"M-a\") 'hoge-function))"
+  `(progn . ,(mapcar (lambda (k-c) `(define-key ,keymap . ,k-c))
+                     key-command)))
+#+END_SRC
+
+** my:global-set-keys
+=global-set-key= の複数版です。
+
+#+BEGIN_SRC emacs-lisp
+(defmacro my:global-set-keys (&rest key-command)
+  "`global-set-key'をまとめて設定する。
+詳細については`my:define-keys'を参照。"
+  `(progn . ,(mapcar (lambda (k-c) `(global-set-key . ,k-c))
+                     key-command)))
+#+END_SRC
+
+
+最後に、 =require= 出来るようにしておきます。
+
+#+BEGIN_SRC emacs-lisp
+(provide 'my-macros)
+#+END_SRC

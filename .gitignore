@@ -22,3 +22,6 @@ wanderlust/
 inits/00_*.el
 inits/99_*.el
 /bookmarks
+/my-macros.el
+/my-functions.el
+/my-exec-path-from-shell-path.el

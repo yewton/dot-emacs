@@ -1,13 +1,9 @@
-;; case-insensitive なソート
-;; (dolist (i (ci-sort (directory-files "~/dot-emacs" t) 'string<))
-;;   (insert (concat ";; " i "\n")))
+
 (defun ci-sort (l p)
   (sort l
         (lambda (a b)
           (funcall p (upcase a) (upcase b)))))
-;; directory 優先でソート
-;; (dolist (i (sort-by-file-directory-p (directory-files "~/dot-emacs" t)))
-;;   (insert (concat ";; " i "\n")))
+
 (defun sort-by-file-directory-p (l)
   (sort l
         (lambda (a b)
