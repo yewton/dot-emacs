@@ -66,13 +66,11 @@
 (set-face-attribute 'mode-line-mode-face nil
     :inherit 'mode-line-face
     :weight 'ultra-bold
-    :foreground "gray80"
-    :height 105)
+    :foreground "gray90")
 (set-face-attribute 'mode-line-minor-mode-face nil
     :inherit 'mode-line-mode-face
     :weight 'normal
-    :foreground "gray40"
-    :height 100)
+    :foreground "gray60")
 (set-face-attribute 'mode-line-which-func-face nil
     :inherit 'mode-line-face
     :foreground "aquamarine")
