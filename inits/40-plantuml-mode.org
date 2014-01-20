@@ -1,0 +1,4 @@
+#+BEGIN_SRC emacs-lisp
+(when (boundp 'org-plantuml-jar-path)
+  (setq-default plantuml-jar-path org-plantuml-jar-path))
+#+END_SRC

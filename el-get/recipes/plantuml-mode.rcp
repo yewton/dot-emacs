@@ -1,0 +1,4 @@
+(:name plantuml-mode
+       :description "plantuml-mode for emacs"
+       :type github
+       :pkgname "zwz/plantuml-mode")
