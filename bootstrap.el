@@ -20,7 +20,6 @@
 (when (eq window-system 'ns)
   (my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-exec-path-from-shell-path.el") nil 0 t))
 
-;(error "test")
 ;; el-get
 (defvar my:el-get-base-dir (concat user-emacs-directory "el-get/"))
 (defvar my:el-get-sources-file (concat my:el-get-base-dir "el-get-sources.el"))
