@@ -1,11 +1,7 @@
 #+BEGIN_SRC emacs-lisp
-(executable-find "plantuml.jar")
-(eval-when-compile (require 'cl-lib))
-(dolist (path exec-path)
-  (let ((jar-path (concat path "/plantuml.jar")))
-    (when (file-exists-p jar-path)
-      (customize-set-value 'org-plantuml-jar-path jar-path)
-      (return))))
+(or
+ (customize-set-value 'org-plantuml-jar-path (executable-find "plantuml"))
+ (customize-set-value 'org-plantuml-jar-path (executable-find "plantuml.jar")))
 
 (defvar my:ob-load-languages '((emacs-lisp . t)))
 
