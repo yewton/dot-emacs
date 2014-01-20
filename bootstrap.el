@@ -7,7 +7,8 @@
          (org (concat basename ".org"))
          (el (concat basename ".el")))
     (when (file-newer-than-file-p org el)
-      (org-babel-tangle-file org el "emacs-lisp")
+      (org-babel-tangle-file org el "emacs-lisp"))
+    (when (file-exists-p el)
       (byte-recompile-file el force arg load))))
 
 ;; 独自マクロ
@@ -19,6 +20,7 @@
 (when (eq window-system 'ns)
   (my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-exec-path-from-shell-path.el") nil 0 t))
 
+;(error "test")
 ;; el-get
 (defvar my:el-get-base-dir (concat user-emacs-directory "el-get/"))
 (defvar my:el-get-sources-file (concat my:el-get-base-dir "el-get-sources.el"))
