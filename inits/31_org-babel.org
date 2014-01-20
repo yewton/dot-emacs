@@ -1,8 +1,16 @@
-#+BEGIN_SRC emacs-lisp
-(or
- (customize-set-value 'org-plantuml-jar-path (executable-find "plantuml"))
- (customize-set-value 'org-plantuml-jar-path (executable-find "plantuml.jar")))
+* 31_org-babel - org-babel 関連の設定
 
+** plantuml のサポート
+このファイルが読み込まれるより先に、
+以下のように =plantuml.jar= のパスを設定する必要があります。
+
+#+BEGIN_SRC emacs-lisp :tangle no
+(customize-set-value
+ 'org-plantuml-jar-path
+ "/usr/local/Cellar/plantuml/7987/plantuml.7987.jar")
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
 (defvar my:ob-load-languages '((emacs-lisp . t)))
 
 (when (and
