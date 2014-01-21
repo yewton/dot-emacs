@@ -5,6 +5,7 @@
 - [[http://www.gnu.org/software/emacs/][GNU Emacs]] - 24.x が必要です
   - Windows の場合は [[http://sourceforge.jp/projects/gnupack/releases/?package_id%3D10839][emacs for gnupack]] の =emacs-24.3-20130503.exe= などを使うとよいです
   - Mac の場合は =brew install --cocoa --srgb --with-gnutls --japanese emacs -v= でインストールするとよいです
+    =brew linkapps= を忘れずに。
 - [[http://w3m.sourceforge.net/][W3M]] - Emacs 内でウェブブラウズするために使うテキストブラウザ。[[http://www.emacswiki.org/emacs/eww][eww]] が使えれば要らなくなるかも。
 - [[http://www.kaoriya.net/software/cmigemo/][C/Migemo — KaoriYa]] - 日本語をローマ字で検索する
 - [[http://aspell.net/][GNU Aspell]] - スペルチェッカ
@@ -27,18 +28,56 @@ git clone --recursive https://github.com/yewton/dot-emacs.git ~/yewton.emacs.d
 #+END_SRC
 
 ** for Mac OS X
-Automator を使います。
+brew でインストールしたものとします。
+そうでない場合、主に =emacsclient= の場所が違ったりすると思うので、適宜読み替えてください。
 
-=Run shell script= を選択して、以下のように書いてください:
+シェルスクリプトと Automator を使います。
 
-#+BEGIN_SRC sh
-open /Applications/Emacs.app --args -q --debug-init -l ~/yewton.emacs.d/init.el --chdir ~ &
+まず、 =/usr/local/bin/myemacs= として、以下の様なシェルスクリプトを置いてください:
+
+#+BEGIN_SRC shell-script
+#!/bin/sh
+open -a /Applications/Emacs.app --args -q --debug-init -l ~/dot-emacs/init.el --chdir ~ "$@"
 #+END_SRC
 
-このワークフローをアプリケーションとして保存して、Dock にでも入れておきましょう。
+次に、Automator でアプリケーションを新規作成し、
+=シェルスクリプトを実行= を選択して、以下のように書いてください:
 
-また、[[http://rainbowdevil.jp/?p=1045][Cocoa Emacsで、既存のウインドウにファイルを開く » RainbowDevilsLand]] を参考に
-=emacsclient= の設定もしておいたほうがよいです。
+#+BEGIN_SRC shell-script
+/usr/local/bin/myemacs
+#+END_SRC
+
+これを =/Applications= に保存して、Dock にでも入れておきましょう。
+ここでは =MyEmacs.app= という名前で保存したとします。
+
+各種アプリケーションから =MyEmacs.app= を利用できるように、
+Automator でアプリケーションを新規作成し、
+=シェルスクリプトを実行= を選択して、以下のように書いてください:
+
+#+BEGIN_SRC shell-script
+/usr/local/bin/emacsclient -n "$1" --alternate-editor /usr/local/bin/myemacs "$1"
+#+END_SRC
+
+例えば、[[https://addons.mozilla.org/ja/firefox/addon/its-all-text/][It's All Text!]] などにこのアプリケーションを指定すると、
+すでに起動している Emacs の frame で、あるいは新しく Emacs を起動して編集することが出来ます。
+
+また、以下の様なシェルスクリプトを作って =VISUAL= に指定しておけば、
+ターミナルからの編集作業( =sudo -e= とか)にも利用することが出来ます。
+
+#+BEGIN_SRC shell-script
+#!/bin/sh
+set -e
+
+if [ "$#" -eq 0 ]; then
+        # Emacs doesn't activate itself when there's no filename.
+        /usr/local/bin/emacsclient -c -a /usr/local/bin/myemacs &
+        sleep 0.1
+        osascript -e "tell application \"Emacs\" to activate"
+        wait
+else
+        /usr/local/bin/emacsclient -c -a /usr/local/bin/myemacs "$@"
+fi
+#+END_SRC
 
 ** for Windows
 ショートカットを使います。
@@ -72,3 +111,4 @@ GNU Win 32 版の TexInfo に付属の =install-info= でないと、
 - [[http://emacs-jp.github.io/][Emacs JP - Emacs JP]]
 - [[http://uwabami.junkhub.org/log/?date=20111213][平衡点(2011-12-13)]]
 - [[http://d.hatena.ne.jp/debiandebian/20101122/1290371677][It's All Text with Emacs導入記録 - Computingしようぜ！]]
+- [[http://korewanetadesu.com/tag/mac-os-x.html][Material - Mac OS X]]
