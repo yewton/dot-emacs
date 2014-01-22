@@ -8,7 +8,7 @@
                 (autoload 'open-junk-file "open-junk-file" "" t))
          (:name buffer-move)
          (:name helm
-                :checkout "56df0e5c8b")
+                :checkout "6209019149ba50b05ce0bed5fa77cf90d33c9f71")
          (:name migemo
                 :checkout "b6fd088296")
          (:name apel)
