@@ -1,5 +1,15 @@
+* uniquify
+同名ファイルを複数開くと、普通は =<2>= などという
+味も素っ気もないサフィックスがバッファ名につけられます。
+
+=uniquify= を使うと、ディレクトリ名をバッファ名に付与してくれるため、
+区別しやすくなります。
+
 #+BEGIN_SRC emacs-lisp
-;; uniquify
 (require 'uniquify)
-(customize-set-value 'uniquify-buffer-name-style 'post-forward-angle-brackets)
+(custom-set-variables
+ ;; Makefile<foo/bar> といったスタイルを適用する
+ '(uniquify-buffer-name-style 'post-forward-angle-brackets)
+ ;; 最低でもひとつはディレクトリ名を付与する
+ '(uniquify-min-dir-content 1))
 #+END_SRC
