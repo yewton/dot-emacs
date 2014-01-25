@@ -26,3 +26,4 @@ inits/*.el
 /my-macros.el
 /my-functions.el
 /my-exec-path-from-shell-path.el
+/tramp
