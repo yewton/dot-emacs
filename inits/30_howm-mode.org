@@ -33,8 +33,6 @@
 (require 'howm)
 (require 'outline)
 (global-set-key (kbd "C-c , ,") 'howm-menu)
-(custom-set-faces
- '(howm-mode-title-face ((t (:inherit outline-1)))))
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars)
 ;; End:
