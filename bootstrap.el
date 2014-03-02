@@ -80,7 +80,7 @@
 ;; inits 以下の org ファイルをすべて el に変換
 (loop for org in (directory-files init-loader-directory t)
       unless (string-match
-              "\\`README.org\\'"
+              "\\(\\`README\\.org\\'\\)\\|\\(\\.el\\'\\)"
               (file-name-nondirectory org))
       do (my:org-babel-tangle-and-byte-recompile-file org nil 0))
 
