@@ -15,7 +15,7 @@
                         helm-source-file-cache helm-source-files-in-current-dir))
  '(helm-boring-file-regexp-list
    '("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$"
-     "\\.class$" "\\.elc$")))
+     "\\.class$" "\\.elc$" "\\.pyc$")))
 (eval-after-load "helm-files"
   #'(progn
       ;; 無視ファイルを表示しない
