@@ -4,6 +4,8 @@
 [[http://howm.sourceforge.jp/index-j.html][howm: Hitori Otegaru Wiki Modoki]] の設定です
 
 #+BEGIN_SRC emacs-lisp
+(require 'howm)
+(require 'outline)
 ;; タイトルの書式を org-mode に合わせる
 (setq howm-view-title-header "*")
 ;; 1 日 1 ファイル
@@ -30,10 +32,6 @@
    ,(concat "#+STARTUP: showall\n\n"
            howm-view-title-header
            " %title%cursor\n")))
-;; コンパイル時にも読み込まないと howm-template の変更が反映されない
-(eval-when-compile
-  (require 'howm)
-  (require 'outline))
 (global-set-key (kbd "C-c , ,") 'howm-menu)
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars)
