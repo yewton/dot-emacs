@@ -44,7 +44,7 @@
                 (autoload 'svn-update "dsvn" "Run `svn update'." t))
          (:name yasnippet
                 :checkout "refs/tags/0.8.0"
-                :submodule ,(if (eq window-system 'w32) nil t))
+                :submodule ,(if (or (eq window-system 'w32) (null window-system)) nil t))
          (:name crontab-mode)
          (:name maxframe)
          (:name ruby-mode)
