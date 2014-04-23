@@ -9,6 +9,7 @@ auto-save-list/
 backup/
 bookmark/
 elmo/
+elpa/
 emacs-w3m/
 eshell/
 howm/
@@ -27,3 +28,4 @@ inits/*.el
 /my-functions.el
 /my-exec-path-from-shell-path.el
 /tramp
+/ac-comphist.dat
