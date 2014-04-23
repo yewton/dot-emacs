@@ -1,8 +1,8 @@
 #+BEGIN_SRC emacs-lisp
 ;; 適当におすすめのフォント設定を試みる
 (when (eq window-system 'x)
-  (let ((font-list '("Monospace-9"
-                     "Ricty-11"
+  (let ((font-list '("Monospace-10"
+                     "Ricty-10"
                      "M+2VM+IPAG circle-10"
                      "Source Code Pro Medium-9"
                      "Ricty-11"
