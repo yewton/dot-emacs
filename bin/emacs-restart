@@ -1,0 +1,4 @@
+#!/bin/bash -x
+pkill -TERM -u $USER -x emacs
+emacs -q -l ~/dot-emacs/init.el --daemon
+
