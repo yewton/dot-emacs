@@ -1,0 +1,3 @@
+#!/bin/bash
+pkill -TERM -u $USER -x emacs24-x
+emacs24-x -q -l ~/dot-emacs/init.el > /dev/null 2>&1 &

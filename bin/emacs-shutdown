@@ -1,0 +1,2 @@
+#!/bin/bash -x
+pkill -TERM -u $USER -x emacs
