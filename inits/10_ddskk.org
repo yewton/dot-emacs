@@ -1,0 +1,36 @@
+#+STARTUP: showall
+
+* 10_ddskk - skk による日本語入力の設定
+
+** キーバインドの設定
+#+BEGIN_SRC emacs-lisp
+(global-set-key "\C-x\C-j" 'skk-mode)
+(global-set-key "\C-xj" 'skk-auto-fill-mode)
+(global-set-key "\C-xt" 'skk-tutorial)
+#+END_SRC
+
+** カスタマイズ
+*** SKK の設定ファイルなどを置くディレクトリ
+#+BEGIN_SRC emacs-lisp
+(customize-set-value 'skk-user-directory (concat user-emacs-directory "ddskk"))
+#+END_SRC
+
+*** sticky キーを使う
+#+BEGIN_SRC emacs-lisp
+(customize-set-value 'skk-sticky-key ";")
+#+END_SRC
+
+*** 雑多な設定
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ ;; 注釈の表示
+ '(skk-show-annotation nil)
+ ;; インジケータを左端に.
+ '(skk-status-indicator 'left)
+ ;; 半角カナを入力
+ '(skk-use-jisx0201-input-method t)
+ ;; Enter で改行しない
+ '(skk-egg-like-newline t)
+ ;;"「"を入力したら"」"も自動で挿入
+ '(skk-auto-insert-paren t))
+#+END_SRC

@@ -1,0 +1,17 @@
+(:name ddskk
+       :website "http://openlab.ring.gr.jp/skk/ddskk.html"
+       :description "A Japanese input method on Emacs."
+       :type http-tar
+       :url "ftp://ftp.ring.gr.jp/pub/elisp/skk/maintrunk/ddskk-15.1.tar.gz"
+       :options ("xzf")
+       :autoloads nil
+       :load-path "share/emacs/site-lisp/skk"
+       :info "share/info/skk.info"
+       :features ("skk-setup")
+       :build
+       (let ((prefix (concat el-get-dir "ddskk")))
+         `((,el-get-emacs
+            "--batch" "-q" "-no-site-file"
+            "--eval" ,(format "(setq PREFIX \"%s\")" prefix)
+            "--eval" "(make-directory (concat PREFIX \"/share/info\") t)"
+            "-l" "SKK-MK" "-f" "SKK-MK-install"))))
