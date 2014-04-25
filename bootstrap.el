@@ -73,7 +73,7 @@
 (require 'init-loader)
 
 (custom-set-variables
- '(init-loader-directory (concat user-emacs-directory "inits"))
+ `(init-loader-directory ,(concat user-emacs-directory "inits"))
  '(init-loader-show-log-after-init t)
  '(init-loader-byte-compile t))
 
