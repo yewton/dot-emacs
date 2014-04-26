@@ -15,13 +15,31 @@
 (customize-set-value 'skk-user-directory (concat user-emacs-directory "ddskk"))
 #+END_SRC
 
+*** 辞書の場所
+#+BEGIN_SRC emacs-lisp
+(require 'el-get-core)
+(customize-set-value 'skk-cdb-large-jisyo (concat (el-get-package-directory 'ddskk) "dic/SKK-JISYO.L.cdb"))
+#+END_SRC
+
 *** sticky キーを使う
 #+BEGIN_SRC emacs-lisp
 (customize-set-value 'skk-sticky-key ";")
 #+END_SRC
 
 *** 雑多な設定
+**** 参考 URL
+- [[http://www.gfd-dennou.org/member/uwabami/cc-env/emacs/ddskk_config.html][Youhei SASAKI's official site: DDSKKの設定]]
+- [[http://mugijiru.seesaa.net/article/275755984.html][暇だったからddskkの設定いじった: 麦汁三昧]]
+
 #+BEGIN_SRC emacs-lisp
+(eval-when-compile
+  (require 'skk-vars)
+  (require 'skk-autoloads))
+(eval-after-load 'skk-mode
+  #'(progn
+      (require 'context-skk)
+      (require 'skk-hint)
+      (customize-set-value 'skk-hint-start-char ?:)))
 (custom-set-variables
  ;; 注釈の表示
  '(skk-show-annotation nil)
@@ -32,5 +50,8 @@
  ;; Enter で改行しない
  '(skk-egg-like-newline t)
  ;;"「"を入力したら"」"も自動で挿入
- '(skk-auto-insert-paren t))
+ '(skk-auto-insert-paren t)
+ ;; 見出し語と送り仮名がマッチした候補を優先して表示
+ '(skk-henkan-strict-okuri-precedence t))
 #+END_SRC
+

@@ -9,9 +9,14 @@
        :info "share/info/skk.info"
        :features ("skk-setup")
        :build
-       (let ((prefix (concat el-get-dir "ddskk")))
+       (let* ((prefix (concat el-get-dir "ddskk"))
+              (dic-name "SKK-JISYO.L")
+              (jisyo-url (format "http://openlab.ring.gr.jp/skk/skk/dic/%s" dic-name))
+              (dic-path (format "%s/dic/%s" prefix dic-name)))
          `((,el-get-emacs
             "--batch" "-q" "-no-site-file"
+            "--eval" ,(format "(url-copy-file \"%s\" \"%s\")" jisyo-url dic-path)
             "--eval" ,(format "(setq PREFIX \"%s\")" prefix)
             "--eval" "(make-directory (concat PREFIX \"/share/info\") t)"
-            "-l" "SKK-MK" "-f" "SKK-MK-install"))))
+            "-l" "SKK-MK" "-f" "SKK-MK-install")
+           ("make cdb"))))
