@@ -58,14 +58,14 @@ ddskk 標準の設定では、 =C-j= (=newline-and-indent=) の挙動を完全�
              '(skk-kakutei-key nil skk-C-j-key))
 (defadvice skk-latin-mode (after skk-latin-mode-free-cj activate)
   ;; latin-mode ではこのキーでかなモードに遷移する
-  (define-key skk-latin-mode-map (kbd "C-x C-k") #'skk-kakutei)
+  (define-key skk-latin-mode-map (kbd "C-;") #'skk-kakutei)
   ;; latin-mode で C-j を明け渡す
   (define-key skk-latin-mode-map (kbd "C-j") nil))
 (defadvice skk-jisx0208-latin-mode (after skk-jisx0208-latin-mode-free-cj activate)
-  ;; 全英モードで C-j を明け渡す
-  (define-key skk-jisx0208-latin-mode-map (kbd "C-j") nil)
   ;; 全英モードではこのキーでかなモードに遷移する
-  (define-key skk-jisx0208-latin-mode-map (kbd "C-x C-k") #'skk-kakutei))
+  (define-key skk-jisx0208-latin-mode-map (kbd "C-;") #'skk-kakutei)
+  ;; 全英モードで C-j を明け渡す
+  (define-key skk-jisx0208-latin-mode-map (kbd "C-j") nil))
 #+END_SRC
 
 *** 雑多な設定
