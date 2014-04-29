@@ -1,0 +1,10 @@
+#+STARTUP: showall
+
+* cua-mode - Common User Access style editing (CUA mode).
+
+=cua-mode= は、本来は普通っぽいキーバインド定義を提供してくれるシロモノなのですが、
+標準の物より便利な矩形選択機能も提供してくれるため、その為にだけ有効にします。
+
+#+BEGIN_SRC emacs-lisp
+(cua-selection-mode 1)
+#+END_SRC
