@@ -1,0 +1,27 @@
+#+STARTUP: showall
+
+* cua-org - cua-mode と org-mode を両立する為の設定
+=cua-selection-mode= を有効にすることで、標準の yank の挙動は変更される。
+しかし、 =org-mode= では、独自の =org-yank= が使われている為、
+矩形関連の挙動変更が反映されない。
+
+そのため、 =org-yank= に =advice= を設定することでこれを実現する。
+
+** 参考リンク
+- [[http://code.google.com/p/ergoemacs/source/browse/ergoemacs/ergoemacs-keybindings/ergoemacs-functions.el?spec=svnff96b6644b773e6c2df5d921f45cdf72ab545ffe&r=ff96b6644b773e6c2df5d921f45cdf72ab545ffe#1506][ergoemacs-functions.el - ergoemacs - A modernized version of emacs, based on emacs's operation. - Google Project Hosting]]
+
+#+BEGIN_SRC emacs-lisp
+(defadvice org-yank (around org-cua-yank activate)
+  (let ((regtxt (and cua--register (get-register cua--register))))
+    (cond
+     ((and mark-active cua--rectangle)
+      ;; call cua-paste
+      (cua-paste arg))
+     ((and cua--last-killed-rectangle
+           (eq (and kill-ring (car kill-ring)) (car cua--last-killed-rectangle)))
+      ;; Call cua-paste
+      (cua-paste arg))
+     (t
+      ;; Call org-yank.
+      ad-do-it))))
+#+END_SRC
