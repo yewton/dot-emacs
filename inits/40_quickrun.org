@@ -1,0 +1,28 @@
+#+STARTUP: showall
+
+* quickrun - すばやくコマンドを実行
+[[https://github.com/syohex/emacs-quickrun][syohex/emacs-quickrun]]
+
+** ユーザ定義コマンドの例
+
+#+BEGIN_SRC emacs-lisp
+;; Use this parameter as C++ default
+(quickrun-add-command "c++/c11"
+                      '((:command . "g++")
+                        (:exec    . ("%c -std=c++0x %o -o %e %s"
+                                     "%e %a"))
+                        (:remove  . ("%e")))
+                      :default "c++")
+
+;; Use this parameter in pod-mode
+(quickrun-add-command "pod"
+                      '((:command . "perldoc")
+                        (:exec    . "%c -T -F %s"))
+                      :mode 'pod-mode)
+
+;; You can override existing command
+(quickrun-add-command "c/gcc"
+                      '((:exec . ("%c -std=c++0x %o -o %e %s"
+                                  "%e %a")))
+                      :override t)
+#+END_SRC
