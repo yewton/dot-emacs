@@ -1,0 +1,5 @@
+(:name wgrep
+       :type github
+       :pkgname "mhayashi1120/Emacs-wgrep"
+       :features wgrep
+       :description "Writable grep buffer and apply the changes to files")

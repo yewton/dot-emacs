@@ -1,0 +1,15 @@
+#+STARTUP: showall
+
+* wgrep - grep 結果を直接編集する
+=grep= や =ag= の結果バッファ内で =r= を入力すると、編集モードに移行します。
+
+編集が終わったら =C-c C-c= で反映します。
+
+また、 =C-c C-k= で編集を取り消します。
+
+#+BEGIN_SRC emacs-lisp
+(autoload 'wgrep-ag-setup "wgrep-ag")
+(add-hook 'ag-mode-hook #'wgrep-ag-setup)
+(custom-set-variables
+ '(wgrep-enable-key (kbd "r")))
+#+END_SRC
