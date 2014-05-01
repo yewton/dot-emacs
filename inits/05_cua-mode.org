@@ -7,4 +7,6 @@
 
 #+BEGIN_SRC emacs-lisp
 (cua-selection-mode 1)
+(custom-set-variables
+ '(cua-delete-selection nil))
 #+END_SRC
