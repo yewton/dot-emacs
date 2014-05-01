@@ -1,23 +1,24 @@
+#+STARTUP: showall
+
+* moccur - 全バッファを対象にした検索/置換
+
+=C-M-o= で、現在開いている全バッファを対象にして検索します。
+
+また、検索結果バッファで =r= を押下すると編集モードに移行します。
+編集を確定させるには =C-c C-c= を、取り消すには =C-c C-k= を入力します。
+
 #+BEGIN_SRC emacs-lisp
-(load "color-moccur")
-;; (setq *moccur-buffer-name-exclusion-list*
-;;       '(".+TAGS.+" "*Completions*" "*Messages*"
-;;         "newsrc.eld" ".bbdb"))
-;; (setq moccur-split-word t)
-;; (setq dmoccur-use-list t)
-;; (setq dmoccur-use-project t)
-;; (setq dmoccur-list
-;;       '(
-;;         ("dir" default-directory (".*") dir)
-;;         ("soft" "~/www/soft/" ("\\.texi$") nil)
-;;         ("config" "~/mylisp/"  ("\\.js" "\\.el$") nil)
-;;         ("1.99" "d:/unix/Meadow2/1.99a6/" (".*") sub)
-;;         ))
-;; (global-set-key "\C-x\C-o" 'occur-by-moccur)
-;; (define-key Buffer-menu-mode-map "O" 'Buffer-menu-moccur)
-;; (define-key dired-mode-map "O" 'dired-do-moccur)
-;; (global-set-key "\C-c\C-x\C-o" 'moccur)
-;; (global-set-key "\M-f" 'grep-buffers)
-;; (global-set-key "\C-c\C-o" 'search-buffers)
-(define-key isearch-mode-map  (kbd "C-o") 'occur-by-moccur)
+(require 'color-moccur)
+(require 'moccur-edit)
+(custom-set-variables
+ '(*moccur-buffer-name-exclusion-list*
+   '("TAGS" "^*.*" "^[ ].+"))
+ '(moccur-use-migemo t))
+(global-set-key (kbd "C-M-o") #'moccur)
+
+;; Local Variables:
+;; byte-compile-warnings: (not unresolved)
+;; End:
 #+END_SRC
+
+なお、複数ファイルに対する検索/置換については、 =ag= 及び =wgrep-ag= を使います。

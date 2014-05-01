@@ -1,0 +1,43 @@
+#+STARTUP: showall
+
+* helm-moccur - helm インタフェースを利用する moccur
+
+** 必要なパッケージの読み込み
+
+#+BEGIN_SRC emacs-lisp
+(require 'color-moccur)
+(require 'helm-regexp)
+#+END_SRC
+
+** 便利関数定義
+=C-x C-o= で現在のバッファを、
+=C-x C-M-o= で全バッファを対象に検索を開始します。
+
+また、検索中に =C-s= で moccur バッファを開くことが出来ます。
+
+#+BEGIN_SRC emacs-lisp
+(defun helm-moccur ()
+  (interactive)
+  (let ((buffers (moccur-filter-buffers (buffer-list))))
+    ;; sort
+    (setq buffers (sort buffers moccur-buffer-sort-method))
+    (helm-multi-occur buffers)))
+
+(eval-after-load "helm-regexp"
+  #'(progn
+      (global-set-key (kbd "C-x C-o") 'helm-occur)
+      (define-key isearch-mode-map (kbd "C-o") #'helm-occur-from-isearch)))
+
+(defun moccur-from-helm-moccur (arg)
+  (interactive "P")
+  (let ((f (if (string-equal "Occur" (helm-attr 'name))
+               #'occur-by-moccur #'moccur)))
+    (helm-run-after-quit f helm-input arg)))
+
+(define-key helm-moccur-map (kbd "C-s") #'moccur-from-helm-moccur)
+(global-set-key (kbd "C-x C-M-o") #'helm-moccur)
+
+;; Local Variables:
+;; byte-compile-warnings: (not unresolved)
+;; End:
+#+END_SRC
