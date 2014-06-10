@@ -1,3 +1,20 @@
+;; el-get
+(defvar my:el-get-base-dir (concat user-emacs-directory "el-get/"))
+(defvar my:el-get-sources-file (concat my:el-get-base-dir "el-get-sources.el"))
+(defvar el-get-dir (concat my:el-get-base-dir "el-get/"))
+(defvar el-get-git-install-url "https://github.com/dimitri/el-get.git")
+(defvar el-get-github-default-url-type "https")
+(add-to-list 'load-path (concat el-get-dir "el-get/"))
+
+;; el-get で入っている org-mode があればそちらを使うための記述
+(when (and (require 'el-get nil t) (fboundp 'el-get-package-directory))
+  (let ((dirs (list "." "lisp" "contrib/lisp")))
+    (mapc (lambda (dir)
+            (add-to-list
+             'load-path
+             (expand-file-name (concat (el-get-package-directory 'org-mode) "/" dir))))
+          dirs)))
+
 (require 'bytecomp)
 (require 'org)
 
@@ -19,14 +36,6 @@
 ;; exec-path の設定
 (when (eq window-system 'ns)
   (my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-exec-path-from-shell-path.el") nil 0 t))
-
-;; el-get
-(defvar my:el-get-base-dir (concat user-emacs-directory "el-get/"))
-(defvar my:el-get-sources-file (concat my:el-get-base-dir "el-get-sources.el"))
-(defvar el-get-dir (concat my:el-get-base-dir "el-get/"))
-(defvar el-get-git-install-url "https://github.com/dimitri/el-get.git")
-(defvar el-get-github-default-url-type "https")
-(add-to-list 'load-path (concat el-get-dir "el-get/"))
 
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
