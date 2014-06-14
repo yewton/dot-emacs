@@ -1,0 +1,8 @@
+#+STARTUP: showall
+* org-reveal org + reveal.js でプレゼンテーション
+
+#+BEGIN_SRC emacs-lisp
+(require 'ox-reveal)
+(custom-set-variables
+ '(org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.6.2/"))
+#+END_SRC
