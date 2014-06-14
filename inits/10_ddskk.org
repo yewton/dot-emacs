@@ -21,13 +21,24 @@
 ** カスタマイズ
 *** SKK の設定ファイルなどを置くディレクトリ
 #+BEGIN_SRC emacs-lisp
-(customize-set-value 'skk-user-directory (concat user-emacs-directory "ddskk"))
+(customize-set-value 'skk-user-directory (concat user-emacs-directory "ddskk/"))
 #+END_SRC
 
 *** 辞書の場所
 #+BEGIN_SRC emacs-lisp
 (require 'el-get-core)
 (customize-set-value 'skk-cdb-large-jisyo (concat (el-get-package-directory 'ddskk) "dic/SKK-JISYO.L.cdb"))
+#+END_SRC
+
+*** 各種ファイルの場所
+
+`skk-user-directory` からデフォルト値が決定されるはずなのだが、
+なぜか反映されないため明示的に指定する。
+
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ `(skk-jisyo ,(concat skk-user-directory "jisyo"))
+ `(skk-record-file ,(concat skk-user-directory "record")))
 #+END_SRC
 
 *** sticky キーを使う
@@ -74,11 +85,14 @@ ddskk 標準の設定では、 =C-j= (=newline-and-indent=) の挙動を完全�
 - [[http://mugijiru.seesaa.net/article/275755984.html][暇だったからddskkの設定いじった: 麦汁三昧]]
 
 #+BEGIN_SRC emacs-lisp
-(eval-after-load 'skk-mode
+(eval-after-load 'skk
   #'(progn
       (require 'context-skk)
       (require 'skk-hint)
-      (customize-set-value 'skk-hint-start-char ?:)))
+      (customize-set-value 'skk-hint-start-char ?:)
+      ;; 空の辞書ファイルを作成
+      (unless (file-exists-p skk-jisyo)
+        (write-region "" nil skk-jisyo))))
 (custom-set-variables
  ;; Enter で改行しない
  '(skk-egg-like-newline t)
