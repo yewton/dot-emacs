@@ -19,4 +19,4 @@
             "--eval" ,(format "(setq PREFIX \"%s\")" prefix)
             "--eval" "(make-directory (concat PREFIX \"/share/info\") t)"
             "-l" "SKK-MK" "-f" "SKK-MK-install")
-           ("make cdb"))))
+           ("make" "cdb"))))
