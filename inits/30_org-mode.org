@@ -1,6 +1,8 @@
 #+STARTUP: showall
 
 #+BEGIN_SRC emacs-lisp
+(require 'org)
+(require 'org-capture)
 (custom-set-faces
  '(org-level-1 ((t (:inherit outline-1 :weight bold :foreground "LightSkyBlue"))))
  '(org-level-2 ((t (:inherit outline-2 :weight bold :foreground "LightGoldenrod"))))
@@ -9,16 +11,46 @@
  '(org-level-5 ((t (:inherit outline-5 :weight normal :foreground "PaleGreen"))))
  '(org-level-6 ((t (:inherit outline-6 :weight normal :foreground "LightSteelBlue"))))
  '(org-level-7 ((t (:inherit outline-7 :weight normal :foreground "Aquamarine"))))
- '(org-level-8 ((t (:inherit outline-8 :weight normal :foreground "LightSalmon")))))
-(eval-when-compile (require 'org))
+ '(org-level-8 ((t (:inherit outline-8 :weight normal :foreground "LightSalmon"))))
+ '(org-agenda-date-weekend ((t (:inherit org-agenda-date :weight bold :foreground "SteelBlue"))))
+ '(org-agenda-date-today ((t (:inherit org-agenda-date :weight bold :foreground "white" :background "orange3")))))
+
+ (defvar my:org-directory "~/Dropbox/org/")
+
 (custom-set-variables
- '(org-adapt-indentation nil))
+ '(org-adapt-indentation nil)
+ `(org-directory ,my:org-directory)
+ '(org-agenda-files `(,org-directory))
+ `(org-default-notes-file ,(concat org-directory "notes.org"))
+ '(org-return-follows-link t)
+ '(org-startup-truncated nil)
+ '(org-agenda-include-diary t)
+ '(org-capture-templates
+   `(
+     ("t" "Todo" entry
+      (file ,(concat org-directory "todo.org"))
+      "* TODO <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
+      :kill-buffer t)
+     ("s" "Schedule" entry
+      (file ,(concat org-directory "schedule.org"))
+      "* <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
+      :kill-buffer t)
+     ("j" "Journal" entry
+      (file (concat org-directory (format-time-string "%Y_%m_%d.org")))
+      "* <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
+      :prepend t
+      :unnarrowed t
+      :kill-buffer t))))
 
 (defun my:org-mode-hook ()
   (org-display-inline-images))
 
 (add-hook 'org-mode-hook #'my:org-mode-hook)
+
+(define-key global-map (kbd "C-c c") 'org-capture)
+(define-key global-map (kbd "C-c a") 'org-agenda)
+
 ;; Local Variables:
-;; byte-compile-warnings: (not unresolved)
+;; byte-compile-warnings: (not unresolved free-vars)
 ;; End:
 #+END_SRC

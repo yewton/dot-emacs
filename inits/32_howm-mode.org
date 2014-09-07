@@ -4,15 +4,15 @@
 [[http://howm.sourceforge.jp/index-j.html][howm: Hitori Otegaru Wiki Modoki]] の設定です
 
 #+BEGIN_SRC emacs-lisp
-(require 'howm)
-(require 'outline)
 ;; タイトルの書式を org-mode に合わせる
 (setq howm-view-title-header "*")
-;; 1 日 1 ファイル
-(setq howm-file-name-format "%Y/%m/%Y_%m_%d.howm")
-(custom-set-variables
  ;; howm ファイル置き場
- `(howm-directory ,(concat user-emacs-directory "howm"))
+(setq howm-directory (concat my:shared-doc-dir "org/howm/"))
+ ;; ファイル名フォーマット
+(setq howm-file-name-format "%Y_%m_%d.org")
+(require 'howm)
+(require 'outline)
+(custom-set-variables
  ;; メニューは日本語で
  '(howm-menu-lang 'ja)
  ;; TODO を 20 個表示
@@ -27,12 +27,20 @@
  '(howm-menu-refresh-after-save nil)
  ;; メニューから更新等をした際に自動保存する
  '(howm-action-lock-forward-save-buffer t)
- ;; 展開した状態で表示されるようにする
- `(howm-template
-   ,(concat "#+STARTUP: showall\n\n"
-           howm-view-title-header
-           " %title%cursor\n")))
-(global-set-key (kbd "C-c , ,") 'howm-menu)
+ ;; 検索で大文字小文字を区別しない
+ '(howm-keyword-case-fold-search t)
+ ;; 日付検索用の regexp
+ `(howm-reminder-regexp-grep-format
+      ,(concat "<" howm-date-regexp-grep "[ :0-9]*>%s"))
+ `(howm-reminder-regexp-format
+      ,(concat "\\(<" howm-date-regexp "[ :0-9]*>\\)\\(\\(%s\\)\\([0-9]*\\)\\)"))
+ ;; テンプレートの設定
+ `(howm-dtime-format ,(concat "<" howm-dtime-body-format ">"))
+ '(howm-insert-date-format "<%s>")
+ '(howm-template-date-format "<%Y-%m-%d %H:%M:%S>")
+ '(howm-template-file-format "==>%s")
+ '(howm-template "* %cursor\n%file\n")
+ `(howm-reminder-today-format ,(format howm-insert-date-format howm-date-format)))
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars)
 ;; End:
