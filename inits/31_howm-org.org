@@ -1,9 +1,0 @@
-#+BEGIN_SRC emacs-lisp
-(eval-after-load "howm"
-  #'(progn
-      (defun my:org-mode-howm-hook ()
-        (howm-mode 1)
-        (iimage-mode 1))
-      (add-hook 'org-mode-hook #'my:org-mode-howm-hook)
-      (add-to-list 'auto-mode-alist '("\\.howm$" . org-mode))))
-#+END_SRC
