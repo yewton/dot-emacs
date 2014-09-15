@@ -43,6 +43,7 @@
       :kill-buffer t))))
 
 (defun my:org-mode-hook ()
+  (set (make-local-variable 'system-time-locale) "C")
   (org-display-inline-images))
 
 (add-hook 'org-mode-hook #'my:org-mode-hook)
