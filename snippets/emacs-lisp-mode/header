@@ -33,6 +33,3 @@
 (provide '`(file-name-base buffer-file-name)`)
 
 ;;; `(file-name-nondirectory buffer-file-name)` ends here
-;; Local Variables:
-;; eval: (auto-async-byte-compile-mode -1)
-;; End:
