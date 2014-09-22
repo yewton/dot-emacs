@@ -12,7 +12,6 @@
          (:name migemo
                 :checkout "b6fd088296")
          (:name apel)
-         (:name auto-async-byte-compile)
          (:name cl-lib)
          (:name howm)
          (:name magit
