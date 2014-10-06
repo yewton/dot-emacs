@@ -1,0 +1,3 @@
+(:name garoon
+       :description "A Garoon client."
+       :type elpa)
