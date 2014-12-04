@@ -83,7 +83,6 @@
          (:name helm-migemo)
          (:name helm-descbinds)
          (:name jaspace)
-         (:name recentf-ext)
          (:name popwin)
          (:name anzu)
          (:name wanderlust)
