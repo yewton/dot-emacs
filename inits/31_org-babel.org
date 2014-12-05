@@ -18,6 +18,8 @@
        org-plantuml-jar-path)
   (add-to-list 'my:ob-load-languages '(plantuml . t)))
 
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
+
 (custom-set-variables
  '(org-babel-load-languages my:ob-load-languages)
  '(org-src-fontify-natively t)
