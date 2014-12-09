@@ -1,4 +1,4 @@
 #+BEGIN_SRC emacs-lisp
-(customize-set-value
- 'url-configuration-directory (concat user-emacs-directory "url/"))
+(custom-set-variables
+ `(url-configuration-directory ,(concat user-emacs-directory "url/")))
 #+END_SRC

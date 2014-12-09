@@ -1,3 +1,5 @@
+#+STARTUP: indent showall
+
 * 02_init - 初期設定
 基本的に一番最初に読み込まれる、雑多な設定です。
 
@@ -35,8 +37,8 @@ Emacs はデフォルトだと、編集ファイルと同じ場所にいろん�
 なんとなく Emacs 関連のファイルは分けておきたいので、設定しています。
 
 #+BEGIN_SRC emacs-lisp
-(customize-set-value
- 'temporary-file-directory (concat user-emacs-directory "temp/"))
+(custom-set-variables
+ `(temporary-file-directory ,(concat user-emacs-directory "temp/")))
 #+END_SRC
 
 *** バックアップ、auto-save 関連
@@ -61,7 +63,7 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
 この設定は Emacs 24.3 以降でのみ有効です。
 
 #+BEGIN_SRC emacs-lisp
-(customize-set-value 'create-lockfiles nil)
+(custom-set-variables '(create-lockfiles nil))
 #+END_SRC
 
 *** その他
@@ -91,5 +93,5 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
 (which-function-mode t)
 (setq-default which-func-unknown "")
 ;; キーストロークをすぐにエコーエリアに表示する
-(customize-set-value 'echo-keystrokes 0.2)
+(custom-set-variables '(echo-keystrokes 0.2))
 #+END_SRC

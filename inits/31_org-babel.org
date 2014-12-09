@@ -5,9 +5,8 @@
 以下のように =plantuml.jar= のパスを設定する必要があります。
 
 #+BEGIN_SRC emacs-lisp :tangle no
-(customize-set-value
- 'org-plantuml-jar-path
- "/usr/local/Cellar/plantuml/7987/plantuml.7987.jar")
+(custom-set-variables
+ '(org-plantuml-jar-path "/usr/local/Cellar/plantuml/7987/plantuml.7987.jar"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

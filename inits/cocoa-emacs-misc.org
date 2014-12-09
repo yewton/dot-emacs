@@ -11,7 +11,7 @@
     (ns-raise-emacs)))
 (let ((ec "/usr/local/bin/emacsclient"))
   (when (file-exists-p ec)
-    (customize-set-value 'magit-emacsclient-executable ec)))
+    (custom-set-variables `(magit-emacsclient-executable ,ec))))
 ;; Local Variables:
 ;; byte-compile-warnings: (not unresolved)
 ;; End:

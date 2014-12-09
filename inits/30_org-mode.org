@@ -60,6 +60,10 @@
 (define-key global-map (kbd "C-c c") 'org-capture)
 (define-key global-map (kbd "C-c a") 'org-agenda)
 
+(eval-after-load "ox"
+  (custom-set-variables
+   '(org-export-allow-bind-keywords t)
+   '(org-export-date-timestamp-format "%M")))
 ;; Local Variables:
 ;; byte-compile-warnings: (not unresolved free-vars)
 ;; End:

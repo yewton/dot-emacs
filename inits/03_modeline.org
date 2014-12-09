@@ -6,7 +6,7 @@
 
 #+BEGIN_SRC emacs-lisp
 (display-battery-mode 1)
-(customize-set-value 'battery-mode-line-format " [%b%p%%]")
+(custom-set-variables '(battery-mode-line-format " [%b%p%%]"))
 #+END_SRC
 
 ** その他の設定

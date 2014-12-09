@@ -7,7 +7,7 @@ IME パッチが当てられている場合の IME の設定です。
 #+BEGIN_SRC emacs-lisp
 (eval-when-compile (require 'cl))
 (when (boundp 'mac-input-method-parameters)
-  (customize-set-value 'default-input-method "MacOSX")
+  (custom-set-variables '(default-input-method "MacOSX"))
   (mac-set-input-method-parameter "com.apple.keylayout.US" 'cursor-color "black")
   (mac-translate-from-yen-to-backslash)
   (cl-flet ((case-cursor-color
