@@ -82,7 +82,6 @@
          (:name color-moccur)
          (:name helm-migemo)
          (:name helm-descbinds)
-         (:name jaspace)
          (:name popwin)
          (:name anzu)
          (:name wanderlust)
