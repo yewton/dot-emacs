@@ -42,7 +42,6 @@
                 (autoload 'svn-status "dsvn" "Run `svn status'." t)
                 (autoload 'svn-update "dsvn" "Run `svn update'." t))
          (:name yasnippet
-                :checkout "refs/tags/0.8.0"
                 :submodule ,(if (or (eq window-system 'w32) (null window-system)) nil t))
          (:name crontab-mode)
          (:name maxframe)
@@ -122,4 +121,5 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
          (:name s)
          (:name f)
          (:name dash)
-         (:name garoon)))))
+         (:name garoon)
+         (:name org-journal)))))

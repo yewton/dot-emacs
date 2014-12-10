@@ -1,0 +1,3 @@
+(:name org-journal
+       :description "A simple org-mode based journaling mode "
+       :type elpa)
