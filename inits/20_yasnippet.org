@@ -1,5 +1,11 @@
 #+BEGIN_SRC emacs-lisp
 (require 'yasnippet)
+
+;; cf. yas/current-snippet-table is gone which auto-complete is using. · Issue #311 · capitaomorte/yasnippet
+;; https://github.com/capitaomorte/yasnippet/issues/311#issuecomment-31425332
+(defalias 'yas/get-snippet-tables 'yas--get-snippet-tables)
+(defalias 'yas/table-hash 'yas--table-hash)
+
 (yas-global-mode 1)
 (custom-set-variables
  '(yas-snippet-dirs
