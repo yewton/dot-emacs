@@ -1,3 +1,4 @@
+#+STARTUP: showall indent
 * 31_org-babel - org-babel 関連の設定
 
 ** plantuml のサポート
@@ -23,7 +24,37 @@
  '(org-babel-load-languages my:ob-load-languages)
  '(org-src-fontify-natively t)
  '(org-edit-src-content-indentation 0))
+#+END_SRC
 
+** taskjuggler の設定
+- [[http://orgmode.org/worg/exporters/taskjuggler/ox-taskjuggler.html][Exporting Gantt charts with Taskjuggler v3 (tj3)]]
+
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ ;; http://www.taskjuggler.org/tj3/manual/resource.html
+ '(org-taskjuggler-valid-resource-attributes
+   '(booking
+     chargeset
+     efficiency
+     email
+     fail
+     flags
+     journalentry
+     leaveallowance
+     leaves
+     limits
+     managers
+     purge
+     rate
+     resource
+     shifts
+     supplement
+     vacation
+     warn
+     workinghours)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
 ;; Local Variables:
 ;; byte-compile-warnings: (not unresolved)
 ;; End:
