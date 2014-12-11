@@ -3,6 +3,7 @@
 #+BEGIN_SRC emacs-lisp
 (require 'org)
 (require 'org-capture)
+(require 'org-journal)
 (require 'ox-taskjuggler)
 (custom-set-faces
  '(org-level-1 ((t (:inherit outline-1 :weight bold :foreground "LightSkyBlue"))))
@@ -21,6 +22,15 @@
 (defvar my:org-directory "~/Dropbox/org/")
 (defvar my:org-schedule-file (concat my:org-directory "schedule.org"))
 
+;;; org-journal
+(define-key global-map (kbd "C-c C-j") 'org-journal-new-entry)
+(define-key org-mode-map (kbd "C-c C-j") 'org-journal-new-entry)
+(custom-set-variables
+ `(org-journal-dir ,(expand-file-name (concat my:org-directory "/journal/")))
+ '(org-journal-file-format "%Y-%m-%d.org")
+ '(org-journal-date-format "%A, %x")
+ `(org-journal-time-format ,(concat (org-time-stamp-format t) " ")))
+
 (custom-set-variables
  '(org-adapt-indentation nil)
  `(org-directory ,my:org-directory)
@@ -31,7 +41,9 @@
  '(org-agenda-include-diary t)
  '(org-agenda-custom-commands
    '(("h" "Schedule" agenda nil
-      ((org-agenda-files `(,my:org-schedule-file))))))
+      ((org-agenda-files `(,my:org-schedule-file))))
+     ("j" "Journal" agenda nil
+      ((org-agenda-files `(,org-journal-dir))))))
  '(org-capture-templates
    `(
      ("t" "Todo" entry
@@ -41,12 +53,6 @@
      ("s" "Schedule" entry
       (file ,my:org-schedule-file)
       "* <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
-      :kill-buffer t)
-     ("j" "Journal" entry
-      (file (concat org-directory (format-time-string "%Y_%m_%d.org")))
-      "* <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
-      :prepend t
-      :unnarrowed t
       :kill-buffer t)))
       '(org-taskjuggler-default-global-properties
       ""))
