@@ -94,7 +94,7 @@
 (defvar my:inits-org-directory (my:path-ued "inits-org/"))
 (loop for org in (directory-files my:inits-org-directory t)
       unless (string-match
-              "\\(\\`README\\.org\\'\\)\\|\\(\\.elc?\\'\\)"
+              "\\`README\\.org\\'"
               (file-name-nondirectory org))
       do (my:org-babel-tangle-and-byte-recompile-file org nil 0 nil init-loader-directory))
 
