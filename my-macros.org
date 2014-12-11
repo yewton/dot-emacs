@@ -1,3 +1,4 @@
+#+STARTUP: showall indent
 * my-macros
 他の設定ファイルから呼び出すためのマクロ定義群です。
 
@@ -53,8 +54,16 @@
                      key-command)))
 #+END_SRC
 
+** my:path-ued
+=user-emacs-directory= 以下のファイル・ディレクトリのパスを取得します。
 
-最後に、 =require= 出来るようにしておきます。
+#+BEGIN_SRC emacs-lisp
+(defmacro my:path-ued (filename)
+  `(progn ,(expand-file-name (concat user-emacs-directory "/" filename))))
+#+END_SRC
+
+** 最後に
+=require= 出来るようにしておきます。
 
 #+BEGIN_SRC emacs-lisp
 (provide 'my-macros)

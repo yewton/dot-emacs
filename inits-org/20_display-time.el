@@ -1,0 +1,4 @@
+(custom-set-variables
+ '(display-time-format "%m月%d日(%a) %H:%M")
+ '(display-time-default-load-average nil))
+(display-time-mode 1)

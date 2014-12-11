@@ -1,0 +1,32 @@
+(defun my:insert-current-time ()
+  (interactive)
+  (insert (format-time-string "[%Y-%m-%d %H:%M:%S]@")))
+(global-set-key [f5] #'my:insert-current-time)
+;; smb://fs01/projects/smile/開発/受け渡し/2014/20140115_resolution_variation/result.tsv
+;; \Volumes\projects\ニコニコ共通ヘッダ
+;; \\fs01\PROJECTS\ニコニコ動画\ニコニコ動画：GINZA\新動画選択画面
+(defun my:convert-path-style (beg end)
+  (interactive "r")
+  (when (region-active-p)
+    (let* ((selection (buffer-substring-no-properties beg end))
+           (result
+            (cond
+             ((string-match "^smb://" selection) (my:convert-path-style-smb-to-unc selection))
+             ((string-match "^\\\\" selection) (my:convert-path-style-unc-to-smb selection))
+             (t selection)))
+           (result-len (length result)))
+      (delete-region beg end)
+      (insert result)
+      (backward-char result-len)
+      (set-mark-command nil)
+      (forward-char result-len)
+      (setq deactivate-mark nil))))
+(defun my:convert-path-style-smb-to-unc (str)
+  (save-match-data
+    (setq str (replace-regexp-in-string "/" "\\\\" str))
+    (if (string-match "smb:\\\\+\\([^\\]*\\)\\(.*\\)" str)
+        (let ((server (match-string 1 str))
+              (last (match-string 2 str)))
+          (format "\\\\%s%s" server last)))))
+(defun my:convert-path-style-unc-to-smb (str)
+  (format "smb:%s" (replace-regexp-in-string "\\\\" "/" str)))

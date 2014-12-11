@@ -17,25 +17,29 @@
 
 (require 'bytecomp)
 (require 'org)
+(require 'cl-lib)
 
-(defun my:org-babel-tangle-and-byte-recompile-file (filename &optional force arg load)
+(defun* my:org-babel-tangle-and-byte-recompile-file (filename &optional force arg load dest)
   "`org-babel-tangle-file' したあと `byte-recompile-file' する。"
-  (let* ((basename (file-name-sans-extension filename))
-         (org (concat basename ".org"))
-         (el (concat basename ".el")))
+  (let* ((dir (file-name-directory filename))
+         (basename (file-name-base filename))
+         (org (concat dir basename ".org"))
+         (el (concat (if dest (file-name-as-directory dest) dir) basename ".el")))
+    (message org)
+    (message el)
     (when (file-newer-than-file-p org el)
       (org-babel-tangle-file org el "emacs-lisp"))
     (when (file-exists-p el)
       (byte-recompile-file el force arg load))))
 
 ;; 独自マクロ
-(my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-macros.el") nil 0)
+(my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-macros.el") nil 0 t)
 ;; 独自関数
-(my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-functions.el") nil 0)
+(my:org-babel-tangle-and-byte-recompile-file (my:path-ued "my-functions.el") nil 0)
 
 ;; exec-path の設定
 (when (eq window-system 'ns)
-  (my:org-babel-tangle-and-byte-recompile-file (concat user-emacs-directory "my-exec-path-from-shell-path.el") nil 0 t))
+  (my:org-babel-tangle-and-byte-recompile-file (my:path-ued "my-exec-path-from-shell-path.el") nil 0 t))
 
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -82,16 +86,17 @@
 (require 'init-loader)
 
 (custom-set-variables
- `(init-loader-directory ,(concat user-emacs-directory "inits"))
+ `(init-loader-directory ,(my:path-ued "inits/"))
  '(init-loader-show-log-after-init t)
  '(init-loader-byte-compile t))
 
-;; inits 以下の org ファイルをすべて el に変換
-(loop for org in (directory-files init-loader-directory t)
+;; inits-org 以下の org ファイルをすべて el に変換して inits 以下に配置する
+(defvar my:inits-org-directory (my:path-ued "inits-org/"))
+(loop for org in (directory-files my:inits-org-directory t)
       unless (string-match
-              "\\(\\`README\\.org\\'\\)\\|\\(\\.el\\'\\)"
+              "\\(\\`README\\.org\\'\\)\\|\\(\\.elc?\\'\\)"
               (file-name-nondirectory org))
-      do (my:org-babel-tangle-and-byte-recompile-file org nil 0))
+      do (my:org-babel-tangle-and-byte-recompile-file org nil 0 nil init-loader-directory))
 
 (init-loader-load)
 
