@@ -4,7 +4,9 @@
     (require 'git-gutter)
   (require 'git-gutter-fringe))
 (defun my:eval-after-git-gutter-load ()
-  (global-git-gutter-mode +1))
+  (global-git-gutter-mode +1)
+  (custom-set-variables
+   '(git-gutter:update-threshold 2)))
 
 (eval-after-load "git-gutter" #'my:eval-after-git-gutter-load)
 (eval-after-load "git-gutter-fringe" #'my:eval-after-git-gutter-load)
