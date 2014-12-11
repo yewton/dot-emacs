@@ -94,10 +94,18 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
 (setq-default which-func-unknown "")
 ;; キーストロークをすぐにエコーエリアに表示する
 (custom-set-variables '(echo-keystrokes 0.2))
-;; デスクトップを保存する
+;; セッションを保存する
 ;; cf. http://www.emacswiki.org/DeskTop
 (desktop-save-mode 1)
 (custom-set-variables
  `(desktop-dirname ,(expand-file-name (concat user-emacs-directory "/desktop/")))
- '(desktop-save 'ask-if-new))
+ '(desktop-save 'ask-if-new)
+ '(desktop-globals-to-save '(extended-command-history
+                             desktop-missing-file-warning
+                             tags-file-name
+                             tags-table-list
+                             search-ring
+                             regexp-search-ring
+                             register-alist
+                             file-name-history)))
 #+END_SRC
