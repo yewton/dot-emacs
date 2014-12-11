@@ -105,9 +105,7 @@ GNU Win 32 版の TexInfo に付属の =install-info= でないと、
    それでも直らない場合は、 =clean.sh= を実行してまっさらにしてから再度実行しましょう。
 
 * 動作確認バージョン
-- =GNU Emacs 24.3.1 (i686-pc-linux-gnu, GTK+ Version 3.8.2)=
-- =GNU Emacs 24.3.1 (x86_64-apple-darwin13.0.0, NS apple-appkit-1265.00)=
-- =GNU Emacs 24.3.1 (i386-mingw-nt6.1.7601)=
+- =GNU Emacs 24.4.1 (x86_64-apple-darwin14.0.0, NS apple-appkit-1343.16)=
 
 * 参考
 - [[http://emacs-jp.github.io/][Emacs JP - Emacs JP]]
