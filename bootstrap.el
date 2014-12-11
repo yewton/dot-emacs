@@ -25,8 +25,6 @@
          (basename (file-name-base filename))
          (org (concat dir basename ".org"))
          (el (concat (if dest (file-name-as-directory dest) dir) basename ".el")))
-    (message org)
-    (message el)
     (when (file-newer-than-file-p org el)
       (org-babel-tangle-file org el "emacs-lisp"))
     (when (file-exists-p el)
