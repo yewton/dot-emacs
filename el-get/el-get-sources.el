@@ -14,21 +14,7 @@
          (:name apel)
          (:name cl-lib)
          (:name howm)
-         (:name magit
-                :checkout "c775f3d96a"
-                :build/windows-nt
-                (let* ((target-dir (concat el-get-dir "magit/"))
-                       (autoloads-file "magit-autoloads.el")
-                       (generated-autoload-file (concat target-dir autoloads-file)))
-                  `((,el-get-emacs
-                     "--batch" "-q" "--no-site-file" "--eval"
-                     ,(concat
-                       "(progn (add-to-list (quote load-path) \".\") (ignore-errors (byte-recompile-directory \".\" 0))"
-                       (format "(let ((generated-autoload-file \"%s\"))" generated-autoload-file)
-                       (format "(update-directory-autoloads \"%s\")))" target-dir)))))
-                :info nil
-                :features magit-autoloads
-                :autoloads nil)
+         (:name magit)
          (:name php-completion)
          (:name markdown-mode)
          (:name emacs-w3m
@@ -37,10 +23,7 @@
                    "--batch" "-q" "--no-site-file" "-l" "w3mhack.el"
                    "NONE" "-f" "w3mhack-nonunix-install"))
                 :info nil)
-         (:name dsvn
-                :before
-                (autoload 'svn-status "dsvn" "Run `svn status'." t)
-                (autoload 'svn-update "dsvn" "Run `svn update'." t))
+         (:name dsvn)
          (:name yasnippet
                 :submodule ,(if (or (eq window-system 'w32) (null window-system)) nil t))
          (:name crontab-mode)
@@ -116,10 +99,10 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
          (:name quickrun)
          (:name moccur-edit)
          (:name wgrep)
-         (:name org-mode)
          (:name org-reveal)
          (:name s)
          (:name f)
          (:name dash)
          (:name garoon)
-         (:name org-journal)))))
+         (:name org-journal)
+         (:name sbt-mode)))))

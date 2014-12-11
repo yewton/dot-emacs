@@ -1,7 +1,7 @@
 (:name scala-mode
        :description "Major mode for editing Scala code."
-       :type git
-       :url "https://github.com/scala/scala-dist.git"
+       :type github
+       :pkgname "scala/scala-tool-support"
        :compile ("scala-mode"
                  "scala-mode-auto"
                  "scala-mode-inf"
@@ -16,5 +16,5 @@
                  "scala-mode-feature-speedbar"
                  "scala-mode-feature-tags"
                  "scala-mode-variables")
-       :load-path ("tool-support/src/emacs")
+       :load-path ("tool-support/emacs")
        :features scala-mode-auto)

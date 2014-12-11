@@ -2,7 +2,7 @@
        :website "http://openlab.ring.gr.jp/skk/ddskk.html"
        :description "A Japanese input method on Emacs."
        :type http-tar
-       :url "ftp://ftp.ring.gr.jp/pub/elisp/skk/maintrunk/ddskk-15.1.tar.gz"
+       :url "http://www.ring.gr.jp/archives/elisp/skk/maintrunk/ddskk-15.1.tar.gz"
        :options ("xzf")
        :autoloads nil
        :load-path "share/emacs/site-lisp/skk"
