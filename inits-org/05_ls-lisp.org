@@ -5,5 +5,5 @@
  '(ls-lisp-dirs-first t)
  '(ls-lisp-use-insert-directory-program nil)
  '(ls-lisp-use-localized-time-format t)
- '(dired-listing-switches "-AFlh"))
+ '(dired-listing-switches "-aFlh"))
 #+END_SRC

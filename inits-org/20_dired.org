@@ -1,6 +1,8 @@
 #+BEGIN_SRC emacs-lisp
 (eval-after-load 'dired
   #'(progn
+      (define-key dired-mode-map "i" 'dired-subtree-insert)
+      (define-key dired-mode-map ";" 'dired-subtree-remove)
       (define-key ctl-x-map "d" #'dired)
       (define-key ctl-x-4-map "d" #'dired-other-window)
       (define-key dired-mode-map "r" #'wdired-change-to-wdired-mode)))
