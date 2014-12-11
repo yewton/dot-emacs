@@ -100,12 +100,33 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
 (custom-set-variables
  `(desktop-dirname ,(expand-file-name (concat user-emacs-directory "/desktop/")))
  '(desktop-save 'ask-if-new)
- '(desktop-globals-to-save '(extended-command-history
+ '(desktop-globals-to-save '(
+                             bookmark-history
+                             buffer-name-history
+                             command-history
                              desktop-missing-file-warning
-                             tags-file-name
-                             tags-table-list
-                             search-ring
+                             extended-command-history
+                             file-name-history
+                             find-tag-history
+                             frame-name-history
+                             grep-files-history
+                             grep-find-history
+                             grep-history
+                             grep-regexp-history
+                             helm-build-regexp-history
+                             helm-eshell-command-on-file-input-history
+                             helm-external-command-history
+                             helm-ff-history
+                             helm-file-name-history
+                             helm-source-complex-command-history
+                             helm-source-file-name-history
+                             minibuffer-history
+                             minibuffer-history-search-history
+                             minibuffer-text-before-history
                              regexp-search-ring
                              register-alist
-                             file-name-history)))
+                             search-ring
+                             tags-file-name
+                             tags-table-list
+                             )))
 #+END_SRC
