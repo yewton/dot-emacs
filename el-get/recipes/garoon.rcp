@@ -1,3 +1,5 @@
 (:name garoon
        :description "A Garoon client."
-       :type elpa)
+       :type github
+       :branch "0.1.x"
+       :pkgname "yewton/garoon.el")
