@@ -1,9 +1,9 @@
 #+BEGIN_SRC emacs-lisp
 (when (display-graphic-p)
+  (setq ns-use-native-fullscreen nil)
   (if (fboundp 'toggle-frame-fullscreen)
       (defun my:toggle-frame-size ()
         (interactive)
-        (custom-set-variables '(ns-use-native-fullscreen nil))
         (toggle-frame-fullscreen))
     (eval-and-compile (require 'maxframe))
     (defvar my:frame-max-flag nil)
@@ -15,6 +15,5 @@
             (setq my:frame-max-flag nil))
         (maximize-frame)
         (setq my:frame-max-flag t))))
-  (add-hook 'window-setup-hook 'my:toggle-frame-size t)
   (global-set-key [f11] 'my:toggle-frame-size))
 #+END_SRC
