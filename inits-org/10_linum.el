@@ -1,5 +1,0 @@
-;; linum-mode
-(require 'linum)
-(global-linum-mode 1)
-(custom-set-variables
- '(linum-format "%5d "))
