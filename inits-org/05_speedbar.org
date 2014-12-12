@@ -1,0 +1,22 @@
+#+STARTUP: showall indent
+
+* 05_speedbar - speedbar 関連の設定
+sr-speedbar を利用する。
+
+#+BEGIN_SRC emacs-lisp
+(define-key global-map (kbd "<f8>") #'sr-speedbar-toggle)
+(with-eval-after-load 'speedbar
+  (define-key speedbar-mode-map (kbd "q") #'sr-speedbar-close)
+  (define-key speedbar-mode-map (kbd "^") #'speedbar-up-directory))
+(custom-set-variables
+ '(speedbar-hide-button-brackets-flag t)
+ '(speedbar-indentation-width 2)
+ '(speedbar-select-frame-method 'attached)
+ '(speedbar-show-unknown-files t)
+ '(speedbar-smart-directory-expand-flag t)
+ '(speedbar-use-images nil)
+ '(sr-speedbar-auto-refresh t)
+ '(sr-speedbar-right-side nil)
+ '(sr-speedbar-width 40))
+#+END_SRC
+
