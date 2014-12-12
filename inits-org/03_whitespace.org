@@ -1,0 +1,38 @@
+#+STARTUP: indent showall
+
+* 03_whitespace.org - 空白表示に関する設定
+- [[http://cloverrose.hateblo.jp/entry/2013/04/12/041758][Emacsで全角スペース・タブ・trailing spacesを目立たせる　by WhiteSpace.el - cloverrose's blog]]
+
+#+BEGIN_SRC emacs-lisp
+;; 全角スペース タブ trailing-spacesを目立たせる
+(require 'whitespace)
+;; space-markとtab-mark、それからspacesとtrailingを対象とする
+(custom-set-variables
+ '(whitespace-style '(space-mark tab-mark face spaces trailing))
+ '(whitespace-display-mappings
+   '(
+     ;; (space-mark ?\ [?\u00B7] [?.]) ; space - centered dot
+     (space-mark ?\xA0 [?\u00A4] [?_]) ; hard space - currency
+     (space-mark ?\x8A0 [?\x8A4] [?_]) ; hard space - currency
+     (space-mark ?\x920 [?\x924] [?_]) ; hard space - currency
+     (space-mark ?\xE20 [?\xE24] [?_]) ; hard space - currency
+     (space-mark ?\xF20 [?\xF24] [?_]) ; hard space - currency
+     (space-mark ?\u3000 [?\u3000] [?_ ?_]) ; full-width-space - square
+     ;;
+     ;; WARNING: the mapping below has a problem.
+     ;; When a TAB occupies exactly one column, it will display the
+     ;; character ?\xBB at that column followed by a TAB which goes to
+     ;; the next TAB column.
+     ;; If this is a problem for you, please, comment the line below.
+     (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t]) ; tab - left quote mark
+     ))
+ ;; whitespace-spaceの定義を全角スペースにし、色をつけて目立たせる
+ '(whitespace-space-regexp "\\(\u3000+\\)"))
+(set-face-foreground 'whitespace-space 'unspecified)
+(set-face-background 'whitespace-space "dim gray")
+;; whitespace-trailingを色つきアンダーラインで目立たせる
+(set-face-underline 'whitespace-trailing t)
+(set-face-foreground 'whitespace-trailing "dim gray")
+(set-face-background 'whitespace-trailing 'unspecified)
+(global-whitespace-mode 1)
+#+END_SRC
