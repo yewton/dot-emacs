@@ -47,4 +47,6 @@
   (setq ad-return-value
         (sort-by-file-directory-p
          (ci-sort ad-return-value 'string<))))
+(require 'helm-descbinds)
+(helm-descbinds-mode)
 #+END_SRC
