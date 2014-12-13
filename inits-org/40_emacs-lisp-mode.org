@@ -1,3 +1,0 @@
-#+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-lisp-mode-hook (lambda () (electric-indent-local-mode 1)))
-#+END_SRC
