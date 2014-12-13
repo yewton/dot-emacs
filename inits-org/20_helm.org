@@ -49,4 +49,6 @@
          (ci-sort ad-return-value 'string<))))
 (require 'helm-descbinds)
 (helm-descbinds-mode)
+(custom-set-variables
+ '(helm-descbinds-window-style 'split))
 #+END_SRC
