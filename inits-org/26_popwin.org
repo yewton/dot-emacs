@@ -3,30 +3,28 @@
 (popwin-mode 1)
 (custom-set-variables
  '(popwin:special-display-config
- '(;; Emacs
-   help-mode
-   (completion-list-mode :noselect t)
-   (compilation-mode :noselect t)
-   (grep-mode :noselect t)
-   (occur-mode :noselect t)
-   ("*Pp Macroexpand Output*" :noselect t)
-   "*Shell Command Output*"
-   ;; VC
-   "*vc-diff*"
-   "*vc-change-log*"
-   ;; Undo-Tree
-   (" *undo-tree*" :width 60 :position right)
-   ;; Anything
-   ("^\\*anything.*\\*$" :regexp t)
-   ;; SLIME
-   "*slime-apropos*"
-   "*slime-macroexpansion*"
-   "*slime-description*"
-   ("*slime-compilation*" :noselect t)
-   "*slime-xref*"
-   (sldb-mode :stick t)
-   slime-repl-mode
-   slime-connection-list-mode
-   ("*grep*" :noselect t)
-   ("*auto-async-byte-compile*" :noselect t))))
+   '(;; cf. popwin.elとhelmを併用したときre-builderを実行するとフォーカスが外れる · Issue #14 · emacs-jp/issues
+     ;; https://github.com/emacs-jp/issues/issues/14
+     ((lambda (buffer)
+        (let ((name (buffer-name buffer)))
+          (unless (member name '("*helm-mode-execute-extended-command*"
+                                 "*helm M-x*"))
+            (string-match-p "helm" name))))
+      :height 15)
+     ("*Google Translate*" :height 20)
+     ("*Miniedit Help*" :noselect t)
+     help-mode
+     (completion-list-mode :noselect t)
+     (compilation-mode :noselect t)
+     (grep-mode :noselect t)
+     (occur-mode :noselect t)
+     ("*Pp Macroexpand Output*" :noselect t)
+     "*Shell Command Output*" "*vc-diff*" "*vc-change-log*"
+     (" *undo-tree*" :width 60 :position right)
+     "*slime-apropos*" "*slime-macroexpansion*" "*slime-description*"
+     ("*slime-compilation*" :noselect t)
+     "*slime-xref*"
+     (sldb-mode :stick t)
+     slime-repl-mode
+     slime-connection-list-mode)))
 #+END_SRC
