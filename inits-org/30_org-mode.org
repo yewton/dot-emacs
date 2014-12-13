@@ -54,8 +54,8 @@
       (file ,my:org-schedule-file)
       "* <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
       :kill-buffer t)))
-      '(org-taskjuggler-default-global-properties
-      ""))
+ '(org-taskjuggler-default-global-properties "")
+ '(org-src-window-setup 'current-window))
 
 (defun my:org-mode-hook ()
   (set (make-local-variable 'system-time-locale) "C")
