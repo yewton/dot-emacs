@@ -34,3 +34,5 @@
 /var/temp/
 /var/url/
 /var/wanderlust/
+/projectile.cache
+/etc/my-packages.el
