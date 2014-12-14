@@ -1,0 +1,5 @@
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(custom-set-variables
+ `(eshell-directory-name ,(my-expand-dir-name "eshell" my-var-dir)))
+#+END_SRC

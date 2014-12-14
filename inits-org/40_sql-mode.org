@@ -1,4 +1,0 @@
-#+BEGIN_SRC emacs-lisp
-(eval-after-load "sql"
-  (add-hook 'sql-mode-hook #'sql-highlight-mysql-keywords))
-#+END_SRC

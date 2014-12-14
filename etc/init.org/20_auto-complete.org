@@ -1,0 +1,11 @@
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(require 'auto-complete-config)
+(ac-config-default)
+(let* ((ac-dir (my-expand-dir-name "auto-complete" my-var-dir))
+       (ac-dict-dir (my-expand-dir-name "dict" ac-dir)))
+  (custom-set-variables
+   `(ac-comphist-file ,(f-expand "ac-comphist.dat" ac-dir))))
+(ac-flyspell-workaround)
+(global-auto-complete-mode t)
+#+END_SRC

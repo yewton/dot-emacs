@@ -1,0 +1,11 @@
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(require 'recentf)
+(recentf-mode 1)
+(custom-set-variables
+ `(recentf-save-file ,(f-join  my-var-dir "recentf" "recentf"))
+ '(recentf-max-saved-items 100)
+ '(recentf-auto-cleanup 'never))
+(run-with-idle-timer 300 t #'recentf-save-list)
+(run-with-idle-timer 600 t #'recentf-cleanup)
+#+END_SRC

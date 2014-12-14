@@ -1,3 +1,8 @@
+#+STARTUP: showall
+* Emacsの起動処理
+
+** el-get で入っている org-mode があればそちらを使う
+#+BEGIN_SRC emacs-lisp :padline no
 ;;; -*- coding: utf-8; lexical-binding: t -*-
 (setq el-get-dir (expand-file-name "opt/el-get/" user-emacs-directory))
 
@@ -8,16 +13,27 @@
   (let ((dirs (list "." "lisp" "contrib/lisp")))
     (loop for dir in dirs
           do (add-to-list 'load-path (expand-file-name dir (el-get-package-directory 'org-mode))))))
+#+END_SRC
 
+** 必要最低限の各種定義情報をロード
+#+BEGIN_SRC emacs-lisp
 (require 'org)
 
 (let* ((etc-dir (expand-file-name "etc/" user-emacs-directory))
        (essentials (expand-file-name "my-setup-essentials.org" etc-dir)))
   (add-to-list 'load-path etc-dir)
   (org-babel-load-file essentials))
+#+END_SRC
 
+** =PATH= の設定
+MacOS X の場合には適切に =PATH= を設定してやる必要がある。
+
+#+BEGIN_SRC emacs-lisp
 (when (eq window-system 'ns) (my-set-exec-path-from-shell-PATH))
+#+END_SRC
 
+** el-get の設定
+#+BEGIN_SRC emacs-lisp
 (setq el-get-git-install-url "https://github.com/dimitri/el-get.git")
 (setq el-get-github-default-url-type "https")
 (setq el-get-verbose t)
@@ -46,7 +62,10 @@
          (if trial
              (sleep-for (car trial))
            (error "el-get failed with: %s" err-var)))))))
+#+END_SRC
 
+** 必要最小限のパッケージをインスト―ル
+#+BEGIN_SRC emacs-lisp
 (require 'package)
 (package-initialize)
 (custom-set-variables
@@ -63,16 +82,29 @@
 ;; el-get の org-mode が使われることを保証したい
 (unload-feature 'org t)
 (require 'org)
+#+END_SRC
 
+** その他のパッケージのインストール
+#+BEGIN_SRC emacs-lisp
 (my-el-get-sync my-packages)
+#+END_SRC
 
+** テーマの適用
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'custom-theme-load-path (my-expand-dir-name "themes" my-opt-dir))
 (load-theme 'clarity t)
+#+END_SRC
 
+** 独自ライブラリのロード・設定
+#+BEGIN_SRC emacs-lisp
 (my-add-to-load-path my-lib-dir)
 (org-babel-load-file (expand-file-name "my-org-babel-tangle-and-byte-recompile-file.org" my-lib-dir))
 (my-org-babel-tangle-and-byte-recompile-dir my-lib-dir)
+#+END_SRC
 
+** init-loader による初期化
+
+#+BEGIN_SRC emacs-lisp
 (require 'init-loader)
 (custom-set-variables
  `(init-loader-directory ,(my-expand-dir-name "init.d" my-etc-dir))
@@ -85,3 +117,4 @@
 
 (init-loader-load)
 ;; boostrap.el ends here
+#+END_SRC

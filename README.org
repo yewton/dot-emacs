@@ -3,11 +3,9 @@
 [[https://twitter.com/yewton][yewton]] の =.emacs.d= です。
 
 * 必要なもの
-- [[http://www.gnu.org/software/emacs/][GNU Emacs]] - 24.x が必要です
-  - Windows の場合は [[http://sourceforge.jp/projects/gnupack/releases/?package_id%3D10839][emacs for gnupack]] の =emacs-24.3-20130503.exe= などを使うとよいです
-  - Mac の場合は =brew install --cocoa --srgb --with-gnutls --japanese emacs -v= でインストールするとよいです
+- [[http://www.gnu.org/software/emacs/][GNU Emacs]] - 24.4.x が必要です
+  - Mac の場合は =brew install emacs --with-glib --with-gnutls --with-imagemagick= でインストールするとよいです
     =brew linkapps= を忘れずに。
-- [[http://w3m.sourceforge.net/][W3M]] - Emacs 内でウェブブラウズするために使うテキストブラウザ。[[http://www.emacswiki.org/emacs/eww][eww]] が使えれば要らなくなるかも。
 - [[http://www.kaoriya.net/software/cmigemo/][C/Migemo — KaoriYa]] - 日本語をローマ字で検索する
 - [[http://aspell.net/][GNU Aspell]] - スペルチェッカ
 

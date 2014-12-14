@@ -1,0 +1,46 @@
+#+STARTUP: showall
+* ユーティリティ関数
+他の設定ファイルから呼び出すための関数定義群。
+
+** ci-sort
+case-insensitive なソート。以下のように使う。
+
+#+BEGIN_SRC emacs-lisp :tangle no
+(dolist (i (ci-sort (directory-files "~/dot-emacs" t) 'string<))
+  (insert (concat ";; " i "\n")))
+#+END_SRC
+
+=helm= でのファイルソート順を指定するために使う。
+
+#+BEGIN_SRC emacs-lisp :padline no
+;;; -*- coding: utf-8; lexical-binding: t -*-
+(defun ci-sort (l p)
+  (sort l
+        (lambda (a b)
+          (funcall p (upcase a) (upcase b)))))
+#+END_SRC
+
+** sort-by-file-directory-p
+directory 優先のソート。以下のように使う。
+
+#+BEGIN_SRC emacs-lisp :tangle no
+(dolist (i (sort-by-file-directory-p (directory-files "~/dot-emacs" t)))
+  (insert (concat ";; " i "\n")))
+#+END_SRC
+
+こちらも、 =helm= でのファイルソート順の指定に使う。
+
+#+BEGIN_SRC emacs-lisp
+(defun sort-by-file-directory-p (l)
+  (sort l
+        (lambda (a b)
+          (let ((a-is-a-directory (file-directory-p a))
+                (b-is-a-directory (file-directory-p b)))
+            (cond
+             ((and a-is-a-directory (not b-is-a-directory)) t)
+             ((and (not a-is-a-directory) b-is-a-directory) nil)
+             (t nil))))))
+
+(provide 'my-utils)
+;;; my-utils.el ends here
+#+END_SRC

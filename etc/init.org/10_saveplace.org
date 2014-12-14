@@ -1,0 +1,7 @@
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(require 'saveplace)
+(custom-set-variables
+ '(save-place t)
+ `(save-place-file ,(f-join my-var-dir "saveplace" "places")))
+#+END_SRC

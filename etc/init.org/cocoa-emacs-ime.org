@@ -1,0 +1,31 @@
+#+STARTUP: showall
+* cocoa-emacs-ime - Mac での IME の設定
+IME パッチが当てられている場合の IME の設定です。
+
+** 参考
+- [[http://blog.n-z.jp/blog/2013-11-12-cocoa-emacs-ime.html][HomebrewのEmacsにIMEインラインパッチが取り込まれたので設定した - @znz blog]]
+
+#+BEGIN_SRC emacs-lisp
+(require 'cl-lib)
+(when (boundp 'mac-input-method-parameters)
+  (with-no-warnings
+    (custom-set-variables '(default-input-method "MacOSX"))
+    (mac-set-input-method-parameter "com.apple.keylayout.US" 'cursor-color "black")
+    (mac-translate-from-yen-to-backslash)
+    (cl-flet ((case-cursor-color
+               (regexp name color)
+               (and
+                (string-match regexp name)
+                (mac-set-input-method-parameter name 'cursor-color color))))
+      (loop for param in mac-input-method-parameters
+            for name = (car param)
+            do (or
+                ;; ひらがなの日本語入力
+                (case-cursor-color "Japanese\\(\\.base\\)?\\'" name "firebrick")
+                ;; 英字
+                (case-cursor-color "Roman" name "yellow")
+                ;; カナなどの日本語入力
+                (case-cursor-color "Japanese" name "red")
+                ;; その他
+                (mac-set-input-method-parameter name 'cursor-color "cyan"))))))
+#+END_SRC

@@ -1,0 +1,9 @@
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(defun revert-buffer-force () (interactive) (revert-buffer t t))
+(my-global-set-keys
+ ((kbd "C-c C-x C-j") 'revert-buffer-force)
+ ((kbd "C-c C-x j") 'revert-buffer-force)
+ ((kbd "C-x C-j") 'revert-buffer)
+ ((kbd "C-x j") 'revert-buffer))
+#+END_SRC

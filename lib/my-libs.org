@@ -1,0 +1,22 @@
+#+STARTUP: showall
+* 独自の各種ライブラリ
+
+** 依存ライブラリのロード
+#+BEGIN_SRC emacs-lisp :padline no
+;;; -*- coding: utf-8; lexical-binding: t -*-
+(require 'my-setup-essentials)
+
+(require 'my-org-babel-tangle-and-byte-recompile-file)
+(require 'my-utils nil t)
+
+(require 'cl-lib)
+(require 'f)
+(require 'dash)
+(require 'ht)
+(require 's)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'my-libs)
+;;; my-libs.el ends here
+#+END_SRC

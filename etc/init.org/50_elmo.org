@@ -1,0 +1,6 @@
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(defvar my-elmo-dir (my-expand-dir-name "elmo" my-var-dir))
+(custom-set-variables
+ `(elmo-msgdb-directory ,(my-expand-dir-name "dict" my-elmo-dir)))
+#+END_SRC

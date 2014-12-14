@@ -1,0 +1,133 @@
+#+STARTUP: showall
+
+* 02_init - 初期設定
+基本的に一番最初に読み込まれる、雑多な設定です。
+
+** 言語環境設定
+どの =.emacs= にもほとんどおまじないのように書いてあるやつです。
+Emacs でマトモに日本語を扱えるように設定します。
+
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(set-language-environment 'Japanese)
+(prefer-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8-unix)
+#+END_SRC
+
+以下は明示的に設定しない場合は環境変数から自動で設定されるのですが、
+Mac OSX の Application として動かす場合は、
+シェルの環境変数が引き継がれるわけではないため、すべて明示的に指定しています。
+
+#+BEGIN_SRC emacs-lisp
+(when (eq window-system 'ns)
+  (setq locale-coding-system 'utf-8)
+  (setq system-time-locale "ja_JP.UTF-8")
+  (setenv "LANG" "ja_JP.UTF-8")
+  (setenv "LC_ALL" "ja_JP.UTF-8")
+  (setenv "LC_MESSAGES" "ja_JP.UTF-8"))
+#+END_SRC
+
+** 各種ファイル、ディレクトリ設定
+Emacs はデフォルトだと、編集ファイルと同じ場所にいろんなファイルを作ります。
+
+他の人も使うような環境だとゴミでしかないため、
+なるべく一箇所に置くように(あるいは置かないように)設定しています。
+
+*** 一時ファイル
+何も設定しなくても、デフォルトではシステムのテンポラリディレクトリが使われるのですが、
+なんとなく Emacs 関連のファイルは分けておきたいので、設定しています。
+
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ `(temporary-file-directory ,(my-dpath-ued "tmp")))
+#+END_SRC
+
+*** バックアップ、auto-save 関連
+バックアップファイルは =hoge.txt~= みたいなファイルで、
+auto-save ファイルは =#hoge.txt#= みたいなファイルです。
+
+いずれも一箇所に保存するように変更しています。
+
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables
+ '(backup-directory-alist `((".*" . ,(my-expand-dir-name "backup" my-var-dir))))
+ '(auto-save-file-name-transforms `((".*" ,(my-expand-dir-name "auto-save" my-var-dir) t)))
+ `(auto-save-list-file-prefix ,(f-join my-var-dir "auto-save-list" ".saves-")))
+#+END_SRC
+
+*** ロックファイル
+=.#hoge.txt= みたいなファイルです。
+
+編集の競合を防いでくれるためにあるらしいのですが、
+あんまり役に立った覚えがないので作らないように設定しています。
+
+この設定は Emacs 24.3 以降でのみ有効です。
+
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables '(create-lockfiles nil))
+#+END_SRC
+
+*** その他
+コメントで色々書いてます。
+
+#+BEGIN_SRC emacs-lisp
+;; リージョンをハイライト
+(setq-default transient-mark-mode t)
+;; 対応する括弧の強調表示
+(show-paren-mode t)
+;;; ツールバーを消す
+(when (fboundp 'tool-bar-mode) (tool-bar-mode 0))
+;;; タイトルバーにいろいろ表示する
+(setq frame-title-format (format "%%f - %s-%s@%s" invocation-name emacs-version system-name))
+;; スクロールバーも消す
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode 0))
+;; タブでなくスペースでインデント
+(setq-default tab-width 4 indent-tabs-mode nil)
+;; いちいち音を鳴らすな
+(setq ring-bell-function 'ignore)
+;; electric-pair 勝手に閉じカッコとかを入れてくれるやつ
+(electric-pair-mode 1)
+;; 現在行をハイライト
+(global-hl-line-mode t)
+(set-face-background 'hl-line "gray15")
+;; 現在いる関数名をモードラインに表示
+(which-function-mode t)
+(setq-default which-func-unknown "")
+;; キーストロークをすぐにエコーエリアに表示する
+(custom-set-variables '(echo-keystrokes 0.2))
+;; セッションを保存する
+;; cf. http://www.emacswiki.org/DeskTop
+(desktop-save-mode 1)
+(custom-set-variables
+ `(desktop-dirname ,(my-expand-dir-name "desktop" my-var-dir))
+ '(desktop-save 'ask-if-new)
+ '(desktop-globals-to-save '(
+                             bookmark-history
+                             buffer-name-history
+                             command-history
+                             desktop-missing-file-warning
+                             extended-command-history
+                             file-name-history
+                             find-tag-history
+                             frame-name-history
+                             grep-files-history
+                             grep-find-history
+                             grep-history
+                             grep-regexp-history
+                             helm-build-regexp-history
+                             helm-eshell-command-on-file-input-history
+                             helm-external-command-history
+                             helm-ff-history
+                             helm-file-name-history
+                             helm-source-complex-command-history
+                             helm-source-file-name-history
+                             minibuffer-history
+                             minibuffer-history-search-history
+                             minibuffer-text-before-history
+                             regexp-search-ring
+                             register-alist
+                             search-ring
+                             tags-file-name
+                             tags-table-list
+                             )))
+#+END_SRC

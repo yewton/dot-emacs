@@ -1,0 +1,38 @@
+#+STARTUP: showall
+* =tangle= とバイトコンパイルを行う為のヘルパ関数定義
+
+** 依存ライブラリのロード
+
+#+BEGIN_SRC emacs-lisp :padline no
+;;; -*- coding: utf-8; lexical-binding: t -*-
+(eval-and-compile (require 'my-setup-essentials))
+(require 'bytecomp)
+(eval-when-compile (require 'cl-lib))
+(require 'f)
+(require 'org)
+(require 's)
+#+END_SRC
+
+** 関数定義本体
+
+#+BEGIN_SRC emacs-lisp
+(defun* my-org-babel-tangle-and-byte-recompile-file (filename &key force (arg 0) load dest)
+  "`org-babel-tangle-file' したあと `byte-recompile-file' する。"
+  (let* ((dir (f-dirname filename))
+         (basename (f-base filename))
+         (org (f-expand (format "%s.org" basename) dir))
+         (dest (if dest (file-name-as-directory dest) dir))
+         (el (f-expand (format "%s.el" basename) dest)))
+    (when (file-newer-than-file-p org el)
+      (org-babel-tangle-file org el "emacs-lisp"))
+    (when (f-exists? el)
+      (byte-recompile-file el force arg load))))
+
+(defun* my-org-babel-tangle-and-byte-recompile-dir (dir &key fn force (arg 0) load dest)
+  (loop for file in (f-files dir fn)
+        if (s-equals? "org" (f-ext file))
+        do (my-org-babel-tangle-and-byte-recompile-file file :force force :arg arg :load load :dest dest)))
+
+(provide 'my-org-babel-tangle-and-byte-recompile-file)
+;;; my-org-babel-tangle-and-byte-recompile-file.el ends here
+#+END_SRC

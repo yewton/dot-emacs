@@ -1,0 +1,35 @@
+#+BEGIN_SRC emacs-lisp
+;; migemo
+(require 'my-libs)
+(let* ((migemo-executable (executable-find "cmigemo"))
+       (migemo-base-directory
+        (when migemo-executable
+          (f-dirname (f-canonical migemo-executable))))
+       (migemo-dictionary-candidates
+        (when migemo-base-directory
+          (list (f-expand "../share/migemo/utf-8/migemo-dict" migemo-base-directory)
+                (f-expand "../share/cmigemo/utf-8/migemo-dict" migemo-base-directory)
+                (f-expand "/dict/utf-8/migemo-dict" migemo-base-directory))))
+       (migemo-dictionary-file
+        (car-safe
+         (delq nil (mapcar (lambda (x) (and (f-exists? x) x))
+                           migemo-dictionary-candidates)))))
+  (when (and migemo-executable migemo-dictionary-file)
+    (require 'migemo)
+    (let ((migemo-dir (my-expand-dir-name "migemo" my-var-dir)))
+      (custom-set-variables
+       `(migemo-command ,migemo-executable)
+       '(migemo-options '("-q" "--emacs"))
+       '(migemo-coding-system 'utf-8)
+       `(migemo-dictionary ,(f-canonical migemo-dictionary-file))
+       '(migemo-user-dictionary nil)
+       '(migemo-regex-dictionary nil)
+       '(migemo-use-pattern-alist t)
+       '(migemo-use-frequent-pattern-alist t)
+       '(migemo-pattern-alist-length 2048)
+       `(migemo-pattern-alist-file ,(f-expand "migemo-pattern" migemo-dir))
+       `(migemo-frequent-pattern-alist-file ,(f-expand "migemo-frequent" migemo-dir))))
+    (load-library "migemo")
+    (migemo-init)
+    (define-key isearch-mode-map (kbd "C-e") 'migemo-isearch-toggle-migemo)))
+#+END_SRC

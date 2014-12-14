@@ -1,0 +1,10 @@
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(defvar bookmark-dir (my-expand-dir-name "bookmark" my-var-dir))
+(custom-set-variables
+ `(bookmark-default-file ,(f-expand "bookmarks" bookmark-dir))
+ `(bmkp-last-as-first-bookmark-file bookmark-default-file)
+ `(bmkp-bmenu-commands-file ,(f-expand ".emacs-bmk-bmenu-commands" bookmark-dir))
+ `(bmkp-bmenu-state-file,(f-expand ".emacs-bmk-bmenu-state" bookmark-dir))
+ `(bmkp-bmenu-image-bookmark-icon-file ,(f-expand ".emacs-bmk-bmenu-image-file-icon.png" bookmark-dir)))
+#+END_SRC

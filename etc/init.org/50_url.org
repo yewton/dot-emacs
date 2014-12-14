@@ -1,0 +1,5 @@
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(custom-set-variables
+ `(url-configuration-directory ,(my-expand-dir-name "url" my-var-dir)))
+#+END_SRC

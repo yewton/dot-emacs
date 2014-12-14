@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: setup-wl-gmail-folders
-# key: setup-wl-gmail-folders
-# expand-env: ((yas-indent-line 'fixed))
-# --
-%Inbox "${1:受信トレイ}"
-%/
