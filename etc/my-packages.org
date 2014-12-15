@@ -56,6 +56,6 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))))
                         lispxmp google-translate plantuml-mode coffee-mode
                         apache-mode yaml-mode ddskk free-keys elisp-slime-nav
                         quickrun moccur-edit wgrep org-reveal garoon org-journal
-                        sbt-mode sr-speedbar projectile)
+                        sbt-mode sr-speedbar projectile guide-key)
           (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 #+END_SRC
