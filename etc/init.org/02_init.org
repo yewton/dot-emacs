@@ -97,6 +97,7 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
 (custom-set-variables '(echo-keystrokes 0.2))
 ;; セッションを保存する
 ;; cf. http://www.emacswiki.org/DeskTop
+(require 'desktop)
 (desktop-save-mode 1)
 (custom-set-variables
  `(desktop-dirname ,(my-expand-dir-name "desktop" my-var-dir))
@@ -130,4 +131,9 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
                              tags-file-name
                              tags-table-list
                              )))
+(require 'f)
+(defun my--desktop-window-setup-hook ()
+  (when (and desktop-dirname (f-exists? (desktop-full-file-name)) (y-or-n-p "Revert desktop?"))
+    (desktop-revert)))
+(add-hook 'emacs-startup-hook #'my--desktop-window-setup-hook)
 #+END_SRC
