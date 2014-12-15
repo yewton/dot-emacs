@@ -5,6 +5,7 @@
 /bootstrap.el
 
 /etc/init.d/
+/etc/*.el
 
 /lib/*.el
 
@@ -34,6 +35,6 @@
 /var/temp/
 /var/url/
 /var/wanderlust/
+
 /projectile.cache
-/etc/my-packages.el
 /projectile-bookmarks.eld
