@@ -3,15 +3,7 @@
 (popwin-mode 1)
 (custom-set-variables
  '(popwin:special-display-config
-   '(;; cf. popwin.elとhelmを併用したときre-builderを実行するとフォーカスが外れる · Issue #14 · emacs-jp/issues
-     ;; https://github.com/emacs-jp/issues/issues/14
-     ((lambda (buffer)
-        (let ((name (buffer-name buffer)))
-          (unless (member name '("*helm-mode-execute-extended-command*"
-                                 "*helm M-x*"))
-            (string-match-p "helm" name))))
-      :height 15)
-     ("*Google Translate*" :height 20)
+   '(("*Google Translate*" :height 20)
      ("*Miniedit Help*" :noselect t)
      help-mode
      (completion-list-mode :noselect t)
