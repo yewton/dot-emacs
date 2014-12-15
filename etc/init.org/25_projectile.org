@@ -1,3 +1,9 @@
 #+BEGIN_SRC emacs-lisp
 (projectile-global-mode 1)
+(require 'helm-projectile)
+(helm-projectile-on)
+(custom-set-variables
+ '(projectile-enable-caching t)
+ '(projectile-switch-project-action #'projectile-dired)
+ '(projectile-remember-window-configs t))
 #+END_SRC
