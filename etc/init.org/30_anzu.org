@@ -3,7 +3,8 @@
 (custom-set-variables
  '(anzu-use-migemo t)
  '(anzu-input-idle-delay 0.5)
- '(anzu-minimum-input-length 2))
+ '(anzu-minimum-input-length 2)
+ '(anzu-mode-lighter ""))
 
 ;; Local Variables:
 ;; byte-compile-warnings: (not unresolved)

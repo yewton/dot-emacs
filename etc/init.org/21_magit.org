@@ -4,5 +4,6 @@
 ;; 'allではなくtにすると現在選択中のhunkのみ強調表示する
 (custom-set-variables
  '(magit-diff-refine-hunk 'all)
- `(magit-git-executable ,(if (eq window-system 'w32) "c:/Git/bin/git.exe" "git")))
+ `(magit-git-executable ,(if (eq window-system 'w32) "c:/Git/bin/git.exe" "git"))
+ '(magit-auto-revert-mode-lighter ""))
 #+END_SRC
