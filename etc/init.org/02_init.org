@@ -122,6 +122,7 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
                              helm-file-name-history
                              helm-source-complex-command-history
                              helm-source-file-name-history
+                             kill-ring
                              minibuffer-history
                              minibuffer-history-search-history
                              minibuffer-text-before-history
