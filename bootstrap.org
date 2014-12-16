@@ -1,22 +1,10 @@
 #+STARTUP: showall
 * Emacsの起動処理
 
-** el-get で入っている org-mode があればそちらを使う
+** 必要最低限の各種定義情報をロード
 #+BEGIN_SRC emacs-lisp :padline no
 ;;; -*- coding: utf-8; lexical-binding: t -*-
-(setq el-get-dir (expand-file-name "opt/el-get/" user-emacs-directory))
-
-(add-to-list 'load-path (expand-file-name "el-get" el-get-dir))
-
 (require 'cl-lib)
-(when (and (require 'el-get nil t) (fboundp 'el-get-package-directory))
-  (let ((dirs (list "." "lisp" "contrib/lisp")))
-    (loop for dir in dirs
-          do (add-to-list 'load-path (expand-file-name dir (el-get-package-directory 'org-mode))))))
-#+END_SRC
-
-** 必要最低限の各種定義情報をロード
-#+BEGIN_SRC emacs-lisp
 (require 'org)
 
 (let* ((etc-dir (expand-file-name "etc/" user-emacs-directory))
@@ -67,25 +55,21 @@ MacOS X の場合には適切に =PATH= を設定してやる必要がある。
 ** 必要最小限のパッケージをインスト―ル
 #+BEGIN_SRC emacs-lisp
 (require 'package)
-(package-initialize)
 (custom-set-variables
  `(package-user-dir ,(my-expand-dir-name "elpa" my-opt-dir))
  '(package-archives '(("melpa" . "http://melpa.org/packages/")
                       ("gnu" . "http://elpa.gnu.org/packages/")
                       ("tromey" . "http://tromey.com/elpa/")
                       ("marmalade" . "http://marmalade-repo.org/packages/"))))
+(package-initialize)
 
 (defvar my-essential-packages '(dash el-get f ht org-mode package s use-package))
-(org-babel-load-file (expand-file-name "my-packages.org" my-etc-dir))
-
 (my-el-get-sync my-essential-packages)
-;; el-get の org-mode が使われることを保証したい
-(unload-feature 'org t)
-(require 'org)
 #+END_SRC
 
 ** その他のパッケージのインストール
 #+BEGIN_SRC emacs-lisp
+(org-babel-load-file (expand-file-name "my-packages.org" my-etc-dir))
 (my-el-get-sync my-packages)
 #+END_SRC
 
