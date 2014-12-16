@@ -136,4 +136,7 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
   (when (and desktop-dirname (f-exists? (desktop-full-file-name)) (y-or-n-p "Revert desktop?"))
     (desktop-revert)))
 (add-hook 'emacs-startup-hook #'my--desktop-window-setup-hook)
+;; スタートアップの画面を表示しない
+(custom-set-variables
+ '(inhibit-startup-screen t))
 #+END_SRC
