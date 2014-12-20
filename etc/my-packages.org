@@ -54,6 +54,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 apel
                 auto-complete
                 auto-highlight-symbol
+                bm
                 bookmark+
                 buffer-move
                 cl-lib

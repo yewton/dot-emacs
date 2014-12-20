@@ -1,0 +1,31 @@
+#+STARTUP: showall
+
+* bm.el 関連設定
+- [[https://github.com/joodland/bm][joodland/bm]]
+- [[http://rubikitch.com/2014/11/21/bm/][emacs bm.el : 【遠距離移動のお供】目に見えるマーク・ブックマークを実現！ | MELPA Emacs Lisp Elisp パッケージ インストール 設定 使い方 スクリーンショット | るびきち「日刊Emacs」]]
+
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+
+(setq bm-restore-repository-on-load t)
+(require 'bm)
+
+(defun my--bm-kill-emacs-hook ()
+  (bm-buffer-save-all)
+  (bm-repository-save))
+
+(add-hook 'find-file-hook #'bm-buffer-restore)
+(add-hook 'kill-buffer-hook #'bm-buffer-save)
+(add-hook 'after-save-hook #'bm-buffer-save)
+(add-hook 'after-revert-hook #'bm-buffer-restore)
+(add-hook 'vc-before-checkin-hook #'bm-buffer-save)
+(add-hook 'kill-emacs-hook #'my--bm-kill-emacs-hook)
+
+(my-global-set-keys
+ ((kbd "M-SPC") #'bm-toggle)
+ ((kbd "M-[") #'bm-next)
+ ((kbd "M-]") #'bm-previous))
+
+(custom-set-variables
+ `(bm-repository-file ,(f-expand "bm/.bm-repository" my-var-dir)))
+#+END_SRC
