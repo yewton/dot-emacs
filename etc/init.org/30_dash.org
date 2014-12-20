@@ -1,0 +1,3 @@
+#+BEGIN_SRC emacs-lisp
+(eval-after-load "dash" #'(dash-enable-font-lock))
+#+END_SRC
