@@ -4,7 +4,7 @@
 (defvar default-frame-left 0)
 (defvar default-frame-width 100)
 (defvar default-frame-height 48)
-(defvar default-frame-alpha 90)
+(defvar default-frame-alpha 95)
 (setq initial-frame-alist
       (append
        (list

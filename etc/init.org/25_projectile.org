@@ -7,7 +7,5 @@
  '(projectile-switch-project-action #'projectile-dired)
  '(projectile-remember-window-configs t)
  '(projectile-ignored-projects '("/usr/local/"))
- '(projectile-mode-line '(:eval
-                          (format " P[%s]"
-                                  (projectile-project-name)))))
+ '(projectile-mode-line ""))
 #+END_SRC

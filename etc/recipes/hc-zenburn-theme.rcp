@@ -1,0 +1,3 @@
+(:name hc-zenburn-theme
+       :description "An higher contrast version of the popular Zenburn theme for Emacs"
+       :type elpa)
