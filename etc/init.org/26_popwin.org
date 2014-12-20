@@ -5,11 +5,8 @@
  '(popwin:special-display-config
    '(("*Google Translate*" :height 20)
      ("*Miniedit Help*" :noselect t)
-     help-mode
      (completion-list-mode :noselect t)
      (compilation-mode :noselect t)
-     (grep-mode :noselect t)
-     (occur-mode :noselect t)
      ("*Pp Macroexpand Output*" :noselect t)
      "*Shell Command Output*" "*vc-diff*" "*vc-change-log*"
      (" *undo-tree*" :width 60 :position right)
