@@ -28,13 +28,11 @@
 /var/howm/
 /var/junk/
 /var/migemo/
+/var/projectile/
 /var/recentf/
 /var/request/
-/var/server/
 /var/saveplace/
+/var/server/
 /var/temp/
 /var/url/
 /var/wanderlust/
-
-/projectile.cache
-/projectile-bookmarks.eld

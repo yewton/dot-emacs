@@ -1,11 +1,15 @@
 #+BEGIN_SRC emacs-lisp
+(require 'my-libs)
 (projectile-global-mode 1)
 (require 'helm-projectile)
 (helm-projectile-on)
-(custom-set-variables
- '(projectile-enable-caching t)
- '(projectile-switch-project-action #'projectile-dired)
- '(projectile-remember-window-configs t)
- '(projectile-ignored-projects '("/usr/local/"))
- '(projectile-mode-line ""))
+(let ((projectile-var-dir (my-expand-dir-name "projectile" my-var-dir)))
+  (custom-set-variables
+   '(projectile-enable-caching t)
+   '(projectile-switch-project-action #'projectile-dired)
+   '(projectile-remember-window-configs t)
+   '(projectile-ignored-projects '("/usr/local/"))
+   '(projectile-mode-line "")
+   `(projectile-known-projects-file ,(f-expand "projectile-bookmarks.eld" projectile-var-dir))
+   `(projectile-cache-file ,(f-expand "projectile.cache" projectile-var-dir))))
 #+END_SRC
