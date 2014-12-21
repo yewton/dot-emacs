@@ -5,7 +5,17 @@
 (let* ((ac-dir (my-expand-dir-name "auto-complete" my-var-dir))
        (ac-dict-dir (my-expand-dir-name "dict" ac-dir)))
   (custom-set-variables
-   `(ac-comphist-file ,(f-expand "ac-comphist.dat" ac-dir))))
+   `(ac-comphist-file ,(f-expand "ac-comphist.dat" ac-dir))
+   '(ac-use-menu-map t)
+   '(ac-auto-start 4)
+   '(ac-use-comphist t)
+   '(ac-candidate-limit nil)
+   '(ac-use-quick-help t)))
+
+(my-define-keys ac-menu-map
+                ((kbd "C-n") #'ac-next)
+                ((kbd "C-p") #'ac-previous))
+
 (ac-flyspell-workaround)
 (global-auto-complete-mode t)
 #+END_SRC
