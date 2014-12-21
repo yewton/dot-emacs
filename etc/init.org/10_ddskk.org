@@ -106,4 +106,5 @@ ddskk 標準の設定では、 =C-j= (=newline-and-indent=) の挙動を完全�
  '(skk-auto-insert-paren t)
  ;; 見出し語と送り仮名がマッチした候補を優先して表示
  '(skk-henkan-strict-okuri-precedence t))
+(add-hook 'before-make-frame-hook #'ccc-setup)
 #+END_SRC
