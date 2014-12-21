@@ -1,4 +1,5 @@
 #+BEGIN_SRC emacs-lisp
+(require 'my-libs)
 (require 'yasnippet)
 
 ;; cf. yas/current-snippet-table is gone which auto-complete is using. · Issue #311 · capitaomorte/yasnippet
@@ -9,8 +10,8 @@
 (yas-global-mode 1)
 (custom-set-variables
  '(yas-snippet-dirs
-   `(,(concat user-emacs-directory "snippets")
-     ,(concat el-get-dir  "yasnippet/snippets"))))
+   `(,(f-join my-opt-dir "yasnippet" "snippets")
+     ,(f-join el-get-dir  "yasnippet/snippets"))))
 ;; 既存スニペットを挿入する
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
 ;; 新規スニペットを作成するバッファを用意する
