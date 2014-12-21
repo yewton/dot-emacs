@@ -1,0 +1,46 @@
+#+STARTUP: showall
+* desktop
+- http://www.emacswiki.org/DeskTop
+
+#+BEGIN_SRC emacs-lisp
+(require 'desktop)
+(require 'f)
+(desktop-save-mode 1)
+(custom-set-variables
+ `(desktop-dirname ,(my-expand-dir-name "desktop" my-var-dir))
+ '(desktop-save 'ask-if-new)
+ '(desktop-globals-to-save '(
+                             bookmark-history
+                             buffer-name-history
+                             command-history
+                             desktop-missing-file-warning
+                             extended-command-history
+                             file-name-history
+                             find-tag-history
+                             frame-name-history
+                             grep-files-history
+                             grep-find-history
+                             grep-history
+                             grep-regexp-history
+                             helm-build-regexp-history
+                             helm-eshell-command-on-file-input-history
+                             helm-external-command-history
+                             helm-ff-history
+                             helm-file-name-history
+                             helm-source-complex-command-history
+                             helm-source-file-name-history
+                             kill-ring
+                             minibuffer-history
+                             minibuffer-history-search-history
+                             minibuffer-text-before-history
+                             regexp-search-ring
+                             register-alist
+                             search-ring
+                             tags-file-name
+                             tags-table-list
+                             )))
+(defun my--desktop-window-setup-hook ()
+  (when (and desktop-dirname (f-exists? (desktop-full-file-name)) (y-or-n-p "Revert desktop?"))
+    (desktop-revert)))
+(add-hook 'emacs-startup-hook #'my--desktop-window-setup-hook)
+#+END_SRC

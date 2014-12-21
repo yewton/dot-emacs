@@ -94,48 +94,6 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
 (setq-default which-func-unknown "")
 ;; キーストロークをすぐにエコーエリアに表示する
 (custom-set-variables '(echo-keystrokes 0.2))
-;; セッションを保存する
-;; cf. http://www.emacswiki.org/DeskTop
-(require 'desktop)
-(desktop-save-mode 1)
-(custom-set-variables
- `(desktop-dirname ,(my-expand-dir-name "desktop" my-var-dir))
- '(desktop-save 'ask-if-new)
- '(desktop-globals-to-save '(
-                             bookmark-history
-                             buffer-name-history
-                             command-history
-                             desktop-missing-file-warning
-                             extended-command-history
-                             file-name-history
-                             find-tag-history
-                             frame-name-history
-                             grep-files-history
-                             grep-find-history
-                             grep-history
-                             grep-regexp-history
-                             helm-build-regexp-history
-                             helm-eshell-command-on-file-input-history
-                             helm-external-command-history
-                             helm-ff-history
-                             helm-file-name-history
-                             helm-source-complex-command-history
-                             helm-source-file-name-history
-                             kill-ring
-                             minibuffer-history
-                             minibuffer-history-search-history
-                             minibuffer-text-before-history
-                             regexp-search-ring
-                             register-alist
-                             search-ring
-                             tags-file-name
-                             tags-table-list
-                             )))
-(require 'f)
-(defun my--desktop-window-setup-hook ()
-  (when (and desktop-dirname (f-exists? (desktop-full-file-name)) (y-or-n-p "Revert desktop?"))
-    (desktop-revert)))
-(add-hook 'emacs-startup-hook #'my--desktop-window-setup-hook)
 ;; スタートアップの画面を表示しない
 (custom-set-variables
  '(inhibit-startup-screen t))
