@@ -1,0 +1,7 @@
+#+STARTUP: showall
+
+* hippie-expand
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-/") #'hippie-expand)
+#+END_SRC
