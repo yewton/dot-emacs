@@ -6,9 +6,8 @@
 
 #+BEGIN_SRC emacs-lisp
 (require 'my-libs)
-
-(setq bm-restore-repository-on-load t)
 (require 'bm)
+(setq-default bm-buffer-persistence t)
 
 (defun my--bm-kill-emacs-hook ()
   (bm-buffer-save-all)
@@ -28,4 +27,6 @@
 
 (custom-set-variables
  `(bm-repository-file ,(f-expand "bm/.bm-repository" my-var-dir)))
+
+(bm-repository-load)
 #+END_SRC
