@@ -14,6 +14,7 @@
 
 /tmp/
 
+/var/auth-source/
 /var/auto-complete/
 /var/auto-save-list/
 /var/auto-save/
