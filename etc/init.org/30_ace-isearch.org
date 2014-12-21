@@ -1,0 +1,8 @@
+#+STARTUP: showall
+
+* ace-isearch
+- [[https://github.com/tam17aki/ace-isearch][tam17aki/ace-isearch]]
+
+#+BEGIN_SRC emacs-lisp
+(global-ace-isearch-mode +1)
+#+END_SRC

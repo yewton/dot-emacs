@@ -48,7 +48,10 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
 #+BEGIN_SRC emacs-lisp
 (defvar my-packages)
 (setq my-packages
-      (append '(ag
+      (append '(ace-isearch
+                ace-jump-mode
+                ace-jump-buffer
+                ag
                 anzu
                 apache-mode
                 apel
@@ -81,6 +84,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 helm-descbinds
                 helm-gtags
                 helm-migemo
+                helm-swoop
                 howm
                 htmlize
                 japanese-holidays
