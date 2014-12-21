@@ -1,0 +1,21 @@
+#+STARTUP: showall
+
+* eww
+- [[http://rubikitch.com/2014/11/12/eww-lnum/][emacs eww-lnum.el : 組み込みブラウザewwでHit-a-Hintしようぜ | MELPA Emacs Lisp Elisp パッケージ インストール 設定 使い方 スクリーンショット | るびきち「日刊Emacs」]]
+
+#+BEGIN_SRC emacs-lisp
+(require 'my-libs)
+(with-eval-after-load 'eww
+  (custom-set-variables
+   '(eww-search-prefix "https://www.google.co.jp/search?q="))
+  (my-define-keys eww-mode-map
+                  ((kbd "f") #'eww-lnum-follow)
+                  ((kbd "F") 'eww-lnum-universal)))
+(defun eww-lnum-read-interactive--not-truncate-lines (&rest them)
+  (let ((truncate-lines nil))
+    (apply them)))
+(advice-add 'eww-lnum-read-interactive :around
+            'eww-lnum-read-interactive--not-truncate-lines)
+
+(global-set-key (kbd "C-x g") #'eww)
+#+END_SRC

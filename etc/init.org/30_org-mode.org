@@ -59,6 +59,18 @@
   (custom-set-variables
    '(org-export-allow-bind-keywords t)
    '(org-export-date-timestamp-format "%M")))
+#+END_SRC
+
+* org-ac
+
+#+BEGIN_SRC emacs-lisp
+(require 'org-ac)
+(org-ac/config-default)
+#+END_SRC
+
+* EOF
+
+#+BEGIN_SRC emacs-lisp
 ;; Local Variables:
 ;; byte-compile-warnings: (not unresolved free-vars)
 ;; End:

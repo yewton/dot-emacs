@@ -73,6 +73,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 elisp-slime-nav
                 emacs-mozc
                 ensime
+                eww-lnum
                 flymake
                 free-keys
                 garoon
@@ -86,8 +87,11 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 helm-gtags
                 helm-migemo
                 helm-swoop
+                help+
+                help-mode+
                 howm
                 htmlize
+                info+
                 japanese-holidays
                 js2-mode
                 lispxmp
@@ -96,6 +100,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 maxframe
                 moccur-edit
                 multiple-cursors
+                org-ac
                 org-journal
                 org-reveal
                 php-completion
