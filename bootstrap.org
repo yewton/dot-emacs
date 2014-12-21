@@ -76,7 +76,7 @@ MacOS X の場合には適切に =PATH= を設定してやる必要がある。
 ** テーマの適用
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'custom-theme-load-path (my-expand-dir-name "themes" my-opt-dir))
-(load-theme 'dream t)
+(load-theme 'hc-zenburn t)
 #+END_SRC
 
 ** 独自ライブラリのロード・設定
