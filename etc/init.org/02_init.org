@@ -99,7 +99,7 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
  '(inhibit-startup-screen t))
 ;; 認証情報を暗号化して保存
 (custom-set-variables
- `(auth-sources ,(f-join my-var-dir "auth-source" "authinfo.gpg")))
+ `(auth-sources '(,(f-join my-var-dir "auth-source" "authinfo.gpg"))))
 ;; M-SPC を明け渡す
 (global-set-key (kbd "M-S-SPC") #'just-one-space)
 #+END_SRC
