@@ -81,6 +81,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 google-translate
                 guide-key
                 hc-zenburn-theme
+                helm-c-yasnippet
                 helm-descbinds
                 helm-gtags
                 helm-migemo

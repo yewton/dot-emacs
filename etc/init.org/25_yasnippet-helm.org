@@ -1,4 +1,5 @@
 #+BEGIN_SRC emacs-lisp
+(require 'helm-c-yasnippet)
 (eval-after-load "helm"
   #'(progn
       (require 'yasnippet)
