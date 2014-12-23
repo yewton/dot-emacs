@@ -12,6 +12,11 @@
 (eval-after-load "git-gutter" #'my--eval-after-git-gutter-load)
 (eval-after-load "git-gutter-fringe" #'my--eval-after-git-gutter-load)
 
+(defun my--search-forwad-ad (this-func &rest args)
+  (if (nth 2 args) (ignore-errors (apply this-func args))
+    (apply this-func args)))
+
+(advice-add #'search-forward :around #'my--search-forwad-ad)
 ;; Local Variables:
 ;; byte-compile-warnings: (not unresolved)
 ;; End:
