@@ -89,16 +89,21 @@ MacOS X の場合には適切に =PATH= を設定してやる必要がある。
 ** init-loader による初期化
 
 #+BEGIN_SRC emacs-lisp
+(require 'dash)
 (require 'init-loader)
 (custom-set-variables
- `(init-loader-directory ,(my-expand-dir-name "init.d" my-etc-dir))
  `(init-loader-show-log-after-init t)
  `(init-loader-byte-compile nil))
 
-(my-org-babel-tangle-and-byte-recompile-dir (my-expand-dir-name "init.org" my-etc-dir)
-                                            :fn (lambda (f) (not (s-match "README" (f-filename f))))
-                                            :dest init-loader-directory)
+(let* ((directories (--map (my-expand-dir-name it my-etc-dir) '("init.org" "init.d" "init.local")))
+       (org-dir (nth 0 directories))
+       (el-dir (nth 1 directories))
+       (local-dir (nth 2 directories)))
 
-(init-loader-load)
+  (my-org-babel-tangle-and-byte-recompile-dir org-dir
+                                              :fn (lambda (f) (not (s-match "README" (f-filename f))))
+                                              :dest el-dir)
+  (cl-loop for dir in (list el-dir local-dir)
+           do (init-loader-load dir)))
 ;; boostrap.el ends here
 #+END_SRC

@@ -5,6 +5,7 @@
 /bootstrap.el
 
 /etc/init.d/
+/etc/init.local/
 /etc/*.el
 
 /lib/*.el
