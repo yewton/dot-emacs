@@ -69,12 +69,12 @@ ddskk 標準の設定では、 =C-j= (=newline-and-indent=) の挙動を完全�
              '(skk-kakutei-key nil skk-C-j-key))
 (defadvice skk-latin-mode (after skk-latin-mode-free-cj activate)
   ;; latin-mode ではこのキーでかなモードに遷移する
-  (define-key skk-latin-mode-map (kbd "C-;") #'skk-kakutei)
+  (define-key skk-latin-mode-map (kbd "C-o") #'skk-kakutei)
   ;; latin-mode で C-j を明け渡す
   (define-key skk-latin-mode-map (kbd "C-j") nil))
 (defadvice skk-jisx0208-latin-mode (after skk-jisx0208-latin-mode-free-cj activate)
   ;; 全英モードではこのキーでかなモードに遷移する
-  (define-key skk-jisx0208-latin-mode-map (kbd "C-;") #'skk-kakutei)
+  (define-key skk-jisx0208-latin-mode-map (kbd "C-o") #'skk-kakutei)
   ;; 全英モードで C-j を明け渡す
   (define-key skk-jisx0208-latin-mode-map (kbd "C-j") nil))
 #+END_SRC
@@ -97,7 +97,7 @@ ddskk 標準の設定では、 =C-j= (=newline-and-indent=) の挙動を完全�
  ;; Enter で改行しない
  '(skk-egg-like-newline t)
  ;; 注釈の表示
- '(skk-show-annotation nil)
+ '(skk-show-annotation t)
  ;; インジケータを左端に.
  '(skk-status-indicator 'left)
  ;; 半角カナを入力
@@ -105,6 +105,8 @@ ddskk 標準の設定では、 =C-j= (=newline-and-indent=) の挙動を完全�
  ;;"「"を入力したら"」"も自動で挿入
  '(skk-auto-insert-paren t)
  ;; 見出し語と送り仮名がマッチした候補を優先して表示
- '(skk-henkan-strict-okuri-precedence t))
+ '(skk-henkan-strict-okuri-precedence t)
+ ;; インクリメンタルサーチではskkを利用しない
+ '(skk-isearch-mode-enable nil))
 (add-hook 'before-make-frame-hook #'ccc-setup)
 #+END_SRC
