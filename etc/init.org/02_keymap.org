@@ -2,8 +2,6 @@
 (require 'my-libs)
 (keyboard-translate ?\C-h ?\C-?)
 (my-global-set-keys
- ;; 指定行ジャンプ
- ((kbd "M-g") 'goto-line)
  ;; なにもしなくていい
  ((kbd "C-\\") 'ignore)
  ([M-kanji] 'ignore)
