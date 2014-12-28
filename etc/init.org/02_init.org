@@ -102,4 +102,6 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
  `(auth-sources '(,(f-join my-var-dir "auth-source" "authinfo.gpg"))))
 ;; M-SPC を明け渡す
 (global-set-key (kbd "M-S-SPC") #'just-one-space)
+;; info の見た目や操作性をちょっと改善する
+(eval-after-load "info" '(require 'info+))
 #+END_SRC
