@@ -2,21 +2,37 @@
        :website "http://openlab.ring.gr.jp/skk/ddskk.html"
        :description "A Japanese input method on Emacs."
        :type http-tar
-       :url "http://ring.maffin.ad.jp/archives/elisp/skk/maintrunk/ddskk-15.1.tar.gz"
+       :url "http://ring.maffin.ad.jp/archives/elisp/skk/maintrunk/ddskk-15.2.tar.gz"
        :options ("xzf")
        :autoloads nil
        :load-path "share/emacs/site-lisp/skk"
        :info "share/info/skk.info"
        :features ("skk-setup")
        :build
-       (let* ((prefix (concat el-get-dir "ddskk"))
+       (let* ((prefix (el-get-package-directory "ddskk"))
+              (dic-dir (expand-file-name "dic/" prefix))
+              (tools-dir (expand-file-name "tools/" prefix))
+              (info-dir (expand-file-name "share/info/" prefix))
+              (base-url "http://openlab.ring.gr.jp/skk/skk/")
+              (dic-base-url (url-expand-file-name "dic/" base-url))
+              (tools-base-url (url-expand-file-name "tools/" base-url))
               (dic-name "SKK-JISYO.L")
-              (jisyo-url (format "http://openlab.ring.gr.jp/skk/skk/dic/%s" dic-name))
-              (dic-path (format "%s/dic/%s" prefix dic-name)))
-         `((,el-get-emacs
-            "--batch" "-q" "-no-site-file"
-            "--eval" ,(format "(url-copy-file \"%s\" \"%s\")" jisyo-url dic-path)
-            "--eval" ,(format "(setq PREFIX \"%s\")" prefix)
-            "--eval" "(make-directory (concat PREFIX \"/share/info\") t)"
-            "-l" "SKK-MK" "-f" "SKK-MK-install")
-           ("make" "cdb"))))
+              (dic-url (url-expand-file-name dic-name dic-base-url))
+              (dic-path (expand-file-name dic-name dic-dir))
+              (dic-makefile-url (url-expand-file-name "Makefile" dic-base-url))
+              (dic-makefile-path (expand-file-name "Makefile" dic-dir))
+              (skk2cdb "skk2cdb.py")
+              (skk2cdb-url (url-expand-file-name skk2cdb tools-base-url))
+              (skk2cdb-path (expand-file-name skk2cdb tools-dir)))
+         `(,@(mapcar (lambda (cmd) `(,el-get-emacs "--batch" "--no-site-file" "--eval" ,cmd))
+                  `(,@(mapcar (lambda (dir) (format "(make-directory \"%s\" t)" dir))
+                              (list dic-dir info-dir tools-dir))
+                    ,@(mapcar (lambda (p) (format "(url-copy-file \"%s\" \"%s\")" (car p) (cdr p)))
+                              (list (cons dic-url dic-path)
+                                    (cons dic-makefile-url dic-makefile-path)
+                                    (cons skk2cdb-url skk2cdb-path)))))
+          (,el-get-emacs
+             "--batch" "--no-site-file"
+             "--eval" ,(format "(setq PREFIX \"%s\")" prefix)
+             "-l" "SKK-MK" "-f" "SKK-MK-install")
+          "cd dic && make cdb")))
