@@ -5,6 +5,7 @@
  ;; なにもしなくていい
  ((kbd "C-\\") 'ignore)
  ([M-kanji] 'ignore)
+ ((kbd "C-`") #'skk-mode)
  ;; EmacsWiki: Backspace Key
  ;; http://www.emacswiki.org/emacs/BackspaceKey
  ((kbd "C-h") 'delete-backward-char)
