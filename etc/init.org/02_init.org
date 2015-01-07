@@ -104,4 +104,6 @@ auto-save ファイルは =#hoge.txt#= みたいなファイルです。
 (global-set-key (kbd "M-S-SPC") #'just-one-space)
 ;; info の見た目や操作性をちょっと改善する
 (eval-after-load "info" '(require 'info+))
+(custom-set-variables
+ '(fill-column 100))
 #+END_SRC
