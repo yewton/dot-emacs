@@ -60,4 +60,5 @@
       (when (eq mode major-mode)
         (setq mode-name mode-str)))))
 (add-hook 'after-change-major-mode-hook #'my--clean-mode-line)
+(column-number-mode +1)
 #+END_SRC
