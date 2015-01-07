@@ -106,7 +106,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 org-reveal
                 php-completion
                 php-eldoc
-                php-mode-improved
+                php-mode
                 pig-mode
                 plantuml-mode
                 popwin
