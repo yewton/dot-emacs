@@ -29,11 +29,13 @@
  '(org-agenda-custom-commands
    '(("h" "Schedule" agenda nil
       ((org-agenda-files `(,my:org-schedule-file))))
-     ("j" "Journal" agenda nil
+     ("j" . "JOURNAL")
+     ("ja" "Journal Agenda" agenda nil
+      ((org-agenda-files `(,org-journal-dir))))
+     ("jt" "Journal TODO" todo nil
       ((org-agenda-files `(,org-journal-dir))))))
  '(org-capture-templates
-   `(
-     ("t" "Todo" entry
+   `(("t" "Todo" entry
       (file ,(concat org-directory "todo.org"))
       "* TODO <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
       :kill-buffer t)
