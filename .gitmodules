@@ -1,6 +1,3 @@
-[submodule "themes"]
-	path = themes
-	url = https://github.com/emacs-jp/replace-colorthemes.git
 [submodule "opt/themes"]
 	path = opt/themes
-	url = git@github.com:emacs-jp/replace-colorthemes.git
+	url = https://github.com/emacs-jp/replace-colorthemes.git
