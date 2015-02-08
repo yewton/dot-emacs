@@ -5,6 +5,7 @@
 
 #+BEGIN_SRC emacs-lisp
 (defvar my--org-modeline-format)
+(defvar my--org-frame-alpha)
 
 (defun my-org-present-mode-hook ()
   (org-present-big)
@@ -13,6 +14,8 @@
   (org-present-read-only)
   (setq my--org-modeline-format mode-line-format)
   (setq mode-line-format nil)
+  (setq my--org-frame-alpha (frame-parameter (selected-frame) 'alpha))
+  (set-frame-parameter (selected-frame) 'alpha '(100 100))
   (linum-mode -1))
 
 (defun my-org-present-mode-quit-hook ()
@@ -21,6 +24,7 @@
   (org-present-show-cursor)
   (org-present-read-write)
   (setq mode-line-format my--org-modeline-format)
+  (set-frame-parameter (selected-frame) 'alpha my--org-frame-alpha)
   (linum-mode +1))
 
 (with-eval-after-load 'org-present
