@@ -103,6 +103,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 multiple-cursors
                 org-ac
                 org-journal
+                org-present
                 org-reveal
                 php-completion
                 php-eldoc

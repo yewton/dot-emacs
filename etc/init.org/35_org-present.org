@@ -1,0 +1,29 @@
+#+STARTUP: showall
+
+* org-present
+- [[https://github.com/rlister/org-present][rlister/org-present]]
+
+#+BEGIN_SRC emacs-lisp
+(defvar my--org-modeline-format)
+
+(defun my-org-present-mode-hook ()
+  (org-present-big)
+  (org-display-inline-images)
+  (org-present-hide-cursor)
+  (org-present-read-only)
+  (setq my--org-modeline-format mode-line-format)
+  (setq mode-line-format nil)
+  (linum-mode -1))
+
+(defun my-org-present-mode-quit-hook ()
+  (org-present-small)
+  (org-remove-inline-images)
+  (org-present-show-cursor)
+  (org-present-read-write)
+  (setq mode-line-format my--org-modeline-format)
+  (linum-mode +1))
+
+(with-eval-after-load 'org-present
+  (add-hook 'org-present-mode-hook #'my-org-present-mode-hook)
+  (add-hook 'org-present-mode-quit-hook #'my-org-present-mode-quit-hook))
+#+END_SRC
