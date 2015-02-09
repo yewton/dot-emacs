@@ -1,5 +1,5 @@
 (:name emacs-mozc
        :description "emacs-mozc"
        :type svn
-       :url "http://mozc.googlecode.com/svn/trunk/src/unix/emacs/"
+       :url "https://mozc.googlecode.com/svn/trunk/src/unix/emacs/"
        :features mozc)

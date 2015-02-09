@@ -3,9 +3,6 @@
   (interactive)
   (insert (format-time-string "[%Y-%m-%d %H:%M:%S]@")))
 (global-set-key [f5] #'my:insert-current-time)
-;; smb://fs01/projects/smile/開発/受け渡し/2014/20140115_resolution_variation/result.tsv
-;; \Volumes\projects\ニコニコ共通ヘッダ
-;; \\fs01\PROJECTS\ニコニコ動画\ニコニコ動画：GINZA\新動画選択画面
 (defun my:convert-path-style (beg end)
   (interactive "r")
   (when (region-active-p)
