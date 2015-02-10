@@ -109,4 +109,12 @@ ddskk 標準の設定では、 =C-j= (=newline-and-indent=) の挙動を完全�
  ;; インクリメンタルサーチではskkを利用しない
  '(skk-isearch-mode-enable nil))
 (add-hook 'before-make-frame-hook #'ccc-setup)
+
+(defun my--org-return-skk-ad (this-func &rest args)
+  "org-modeの表の中でもskkが使えるようにする."
+  (cond ((and (org-at-table-p) skk-henkan-mode)
+         (skk-kakutei))
+        (t
+         (apply this-func args))))
+(advice-add #'org-return :around #'my--org-return-skk-ad)
 #+END_SRC
