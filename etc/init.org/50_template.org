@@ -1,0 +1,8 @@
+#+STARTUP: showall
+
+* Template
+- [[https://github.com/AmirHooshangi/Template][AmirHooshangi/Template]]
+
+#+BEGIN_SRC emacs-lisp
+(require 'template)
+#+END_SRC
