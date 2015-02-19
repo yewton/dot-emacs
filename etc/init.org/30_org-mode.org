@@ -5,6 +5,8 @@
 (require 'org-capture)
 (require 'org-journal)
 (require 'ox-taskjuggler)
+(require 'ox-md)
+(require 'ox-confluence)
 
 (defvar my:org-directory "~/Dropbox/org/")
 (defvar my:org-schedule-file (concat my:org-directory "schedule.org"))
