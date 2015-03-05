@@ -2,7 +2,8 @@
 ;; safe-local-variable-values
 (custom-set-variables
  '(safe-local-variable-values
-   '((encoding . utf-8)
+   '((org-export-allow-bind-keywords . t)
+     (encoding . utf-8)
      (eval when
            (require 'rainbow-mode nil t)
            (rainbow-mode 1))

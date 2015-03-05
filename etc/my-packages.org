@@ -41,7 +41,9 @@ HTML files embedding parts (CSS/JavaScript)
 and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
         (:name imenu-anywhere
                :pkgname "yewton/imenu-anywhere"
-               :branch "no-byte-compile")))
+               :branch "no-byte-compile")
+        (:name org-reveal
+               :branch "stable")))
 #+END_SRC
 
 ** インストールパッケージのリスト
