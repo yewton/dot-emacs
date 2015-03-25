@@ -3,28 +3,19 @@
 #+BEGIN_SRC emacs-lisp
 (require 'org)
 (require 'org-capture)
-(require 'org-journal)
 (require 'ox-taskjuggler)
 (require 'ox-md)
 (require 'ox-confluence)
 
-(defvar my:org-directory "~/Dropbox/org/")
-(defvar my:org-schedule-file (concat my:org-directory "schedule.org"))
-
-;;; org-journal
-(define-key global-map (kbd "C-c C-j") 'org-journal-new-entry)
-(define-key org-mode-map (kbd "C-c C-j") 'org-journal-new-entry)
-(custom-set-variables
- `(org-journal-dir ,(expand-file-name (concat my:org-directory "/journal/")))
- '(org-journal-file-format "%Y-%m-%d.org")
- '(org-journal-date-format "%A, %x")
- `(org-journal-time-format ,(concat (org-time-stamp-format t) " ")))
+(defvar my:org-directory (expand-file-name "~/Dropbox/org/"))
+(defvar my:org-schedule-file (expand-file-name "schedule.org" my:org-directory))
+(defvar my:org-journal-dir (expand-file-name "journal/" my:org-directory))
 
 (custom-set-variables
  '(org-adapt-indentation nil)
  `(org-directory ,my:org-directory)
  '(org-agenda-files `(,org-directory))
- `(org-default-notes-file ,(concat org-directory "notes.org"))
+ `(org-default-notes-file ,(expand-file-name "notes.org" org-directory))
  '(org-return-follows-link t)
  '(org-startup-truncated nil)
  '(org-agenda-include-diary t)
@@ -33,20 +24,35 @@
       ((org-agenda-files `(,my:org-schedule-file))))
      ("j" . "JOURNAL")
      ("ja" "Journal Agenda" agenda nil
-      ((org-agenda-files `(,org-journal-dir))))
+      ((org-agenda-files `(,my:org-journal-dir))))
      ("jt" "Journal TODO" todo nil
-      ((org-agenda-files `(,org-journal-dir))))))
+      ((org-agenda-files `(,my:org-journal-dir))))))
  '(org-capture-templates
    `(("t" "Todo" entry
-      (file ,(concat org-directory "todo.org"))
+      (file ,(expand-file-name "todo.org" org-directory))
       "* TODO <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
       :kill-buffer t)
      ("s" "Schedule" entry
       (file ,my:org-schedule-file)
       "* <%<%Y-%m-%d %H:%M>> %?\n%i\n\n"
-      :kill-buffer t)))
+      :kill-buffer t)
+     ("j" "Journal" entry
+      (file+datetree ,(expand-file-name (format-time-string "journal-%Y.org") my:org-journal-dir))
+      "* %?\n%T\n%i"
+      :prepend t
+      :empty-lines 1
+      :jump-to-captured t)))
  '(org-taskjuggler-default-global-properties "")
  '(org-src-window-setup 'current-window))
+
+;;; journal
+(defun my:org-journal-new-entry (&optional goto)
+  (interactive "P")
+  (cond
+   ((equal goto '(4)) (org-capture-goto-target "j"))
+   (t (org-capture nil "j"))))
+(define-key global-map (kbd "C-c C-j") 'my:org-journal-new-entry)
+(define-key org-mode-map (kbd "C-c C-j") 'my:org-journal-new-entry)
 
 (defun my:org-mode-hook ()
   (set (make-local-variable 'system-time-locale) "C")
