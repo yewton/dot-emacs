@@ -2,4 +2,6 @@
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook 'rainbow-identifiers-mode)
+(add-hook 'taskjuggler-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'taskjuggler-mode-hook 'rainbow-identifiers-mode)
 #+END_SRC

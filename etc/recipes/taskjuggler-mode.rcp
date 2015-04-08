@@ -1,0 +1,5 @@
+(:name taskjuggler-mode
+       :website "http://www.skamphausen.de/cgi-bin/ska/taskjuggler-mode"
+       :description "Editing Taskjuggler Files"
+       :type http
+       :url "http://www.skamphausen.de/cgi-bin/ska/download/taskjuggler-mode.el")

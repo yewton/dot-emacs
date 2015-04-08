@@ -1,0 +1,12 @@
+#+STARTUP: showall
+
+* taskjuggler-mode
+- [[http://www.taskjuggler.org/][TaskJuggler - A Free and Open Source Project Management Software - About TaskJuggler]] 
+
+#+BEGIN_SRC emacs-lisp
+(autoload 'taskjuggler-mode "taskjuggler-mode" "Editing Taskjuggler Files" t)
+
+(add-to-list 'auto-mode-alist '("\\.tjp\\'" . taskjuggler-mode))
+(add-to-list 'auto-mode-alist '("\\.tji\\'" . taskjuggler-mode))
+(add-to-list 'auto-mode-alist '("\\.tjsp\\'" . taskjuggler-mode))
+#+END_SRC

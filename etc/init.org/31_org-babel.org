@@ -1,4 +1,4 @@
-#+STARTUP: showall indent
+#+STARTUP: showall
 * 31_org-babel - org-babel 関連の設定
 
 ** plantuml のサポート
@@ -51,7 +51,24 @@
      supplement
      vacation
      warn
-     workinghours)))
+     workinghours))
+ '(org-taskjuggler-valid-report-attributes
+   '(headline
+     columns
+     definitions
+     timeformat
+     hideresource
+     hidetask
+     loadunit
+     sorttasks
+     formats
+     period
+     header
+     timeformat
+     balance
+     caption
+     footer))
+ '(org-taskjuggler-target-version 3.5))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
