@@ -20,13 +20,15 @@
  '(org-startup-truncated nil)
  '(org-agenda-include-diary t)
  '(org-agenda-custom-commands
-   '(("h" "Schedule" agenda nil
-      ((org-agenda-files `(,my:org-schedule-file))))
+   `(("h" "Schedule" agenda nil
+      ((org-agenda-files (list ,my:org-schedule-file))))
      ("j" . "JOURNAL")
      ("ja" "Journal Agenda" agenda nil
-      ((org-agenda-files `(,my:org-journal-dir))))
+      ((org-agenda-files (list ,my:org-journal-dir))))
      ("jt" "Journal TODO" todo nil
-      ((org-agenda-files `(,my:org-journal-dir))))))
+      ((org-agenda-files (list ,my:org-journal-dir))))
+     ("js" "Journal Search" search nil
+      ((org-agenda-files (list ,my:org-journal-dir))))))
  '(org-capture-templates
    `(("t" "Todo" entry
       (file ,(expand-file-name "todo.org" org-directory))
