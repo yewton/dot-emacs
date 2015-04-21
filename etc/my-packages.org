@@ -103,7 +103,6 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 moccur-edit
                 multiple-cursors
                 org-ac
-                org-journal
                 org-present
                 org-reveal
                 php-completion
