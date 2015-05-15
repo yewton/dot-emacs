@@ -45,7 +45,8 @@
       :empty-lines 1
       :jump-to-captured t)))
  '(org-taskjuggler-default-global-properties "")
- '(org-src-window-setup 'current-window))
+ '(org-src-window-setup 'current-window)
+ '(org-html-htmlize-output-type 'css))
 
 ;;; journal
 (defun my:org-journal-new-entry (&optional goto)
