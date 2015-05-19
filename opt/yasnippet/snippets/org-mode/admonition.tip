@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Tip admonition
+# key: <t
+# --
+#+BEGIN_TIP
+$0
+#+END_TIP

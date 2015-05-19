@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Warning admonition
+# key: <w
+# --
+#+BEGIN_WARNING
+$0
+#+END_WARNING

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Note admonition
+# key: <n
+# --
+#+BEGIN_NOTE
+$0
+#+END_NOTE
