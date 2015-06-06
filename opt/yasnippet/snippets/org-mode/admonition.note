@@ -2,6 +2,6 @@
 # name: Note admonition
 # key: <n
 # --
-#+BEGIN_NOTE
+#+begin_note
 $0
-#+END_NOTE
+#+end_note

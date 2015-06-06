@@ -2,6 +2,6 @@
 # name: Tip admonition
 # key: <t
 # --
-#+BEGIN_TIP
+#+begin_tip
 $0
-#+END_TIP
+#+end_tip

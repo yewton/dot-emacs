@@ -2,6 +2,6 @@
 # name: Warning admonition
 # key: <w
 # --
-#+BEGIN_WARNING
+#+begin_warning
 $0
-#+END_WARNING
+#+end_warning
