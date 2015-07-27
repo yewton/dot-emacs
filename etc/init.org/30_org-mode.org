@@ -48,6 +48,10 @@
  '(org-src-window-setup 'current-window)
  '(org-html-htmlize-output-type 'css))
 
+;; cf. http://emacs.stackexchange.com/a/13828
+(setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n")
+(org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
 ;;; journal
 (defun my:org-journal-new-entry (&optional goto)
   (interactive "P")
