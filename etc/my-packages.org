@@ -73,7 +73,6 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 dream-theme
                 dsvn
                 elisp-slime-nav
-                emacs-mozc
                 eww-lnum
                 flymake
                 free-keys
@@ -105,7 +104,6 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 org-ac
                 org-present
                 org-reveal
-                php-completion
                 php-eldoc
                 php-mode
                 pig-mode
