@@ -10,7 +10,7 @@
         (:name init-loader :checkout "a2fbec1382")
         (:name open-junk-file
                :before (autoload 'open-junk-file "open-junk-file" "" t))
-        (:name helm :checkout "v1.6.5")
+        (:name helm :checkout "v1.7.7")
         (:name migemo :checkout "b6fd088296")
         (:name yasnippet :submodule ,(if (or (eq window-system 'w32) (null window-system)) nil t))
         (:name haskell-mode
