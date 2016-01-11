@@ -1,4 +1,0 @@
-#+BEGIN_SRC emacs-lisp
-(require 'auto-highlight-symbol)
-(global-auto-highlight-symbol-mode t)
-#+END_SRC
