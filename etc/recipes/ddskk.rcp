@@ -1,9 +1,8 @@
 (:name ddskk
+       :type github
+       :pkgname "skk-dev/ddskk"
        :website "http://openlab.ring.gr.jp/skk/ddskk.html"
        :description "A Japanese input method on Emacs."
-       :type http-tar
-       :url "http://ring.maffin.ad.jp/archives/elisp/skk/maintrunk/ddskk-15.2.tar.gz"
-       :options ("xzf")
        :autoloads nil
        :load-path "share/emacs/site-lisp/skk"
        :info "share/info/skk.info"
@@ -25,14 +24,14 @@
               (skk2cdb-url (url-expand-file-name skk2cdb tools-base-url))
               (skk2cdb-path (expand-file-name skk2cdb tools-dir)))
          `(,@(mapcar (lambda (cmd) `(,el-get-emacs "--batch" "--no-site-file" "--eval" ,cmd))
-                  `(,@(mapcar (lambda (dir) (format "(make-directory \"%s\" t)" dir))
-                              (list dic-dir info-dir tools-dir))
-                    ,@(mapcar (lambda (p) (format "(url-copy-file \"%s\" \"%s\")" (car p) (cdr p)))
-                              (list (cons dic-url dic-path)
-                                    (cons dic-makefile-url dic-makefile-path)
-                                    (cons skk2cdb-url skk2cdb-path)))))
-          (,el-get-emacs
-             "--batch" "--no-site-file"
-             "--eval" ,(format "(setq PREFIX \"%s\")" prefix)
-             "-l" "SKK-MK" "-f" "SKK-MK-install")
-          "cd dic && make cdb")))
+                     `(,@(mapcar (lambda (dir) (format "(make-directory \"%s\" t)" dir))
+                                 (list dic-dir info-dir tools-dir))
+                       ,@(mapcar (lambda (p) (format "(url-copy-file \"%s\" \"%s\")" (car p) (cdr p)))
+                                 (list (cons dic-url dic-path)
+                                       (cons dic-makefile-url dic-makefile-path)
+                                       (cons skk2cdb-url skk2cdb-path)))))
+           (,el-get-emacs
+            "--batch" "--no-site-file"
+            "--eval" ,(format "(setq PREFIX \"%s\")" prefix)
+            "-l" "SKK-MK" "-f" "SKK-MK-install")
+           "cd dic && make cdb")))
