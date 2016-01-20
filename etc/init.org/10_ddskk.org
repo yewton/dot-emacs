@@ -117,4 +117,10 @@ ddskk 標準の設定では、 =C-j= (=newline-and-indent=) の挙動を完全�
         (t
          (apply this-func args))))
 (advice-add #'org-return :around #'my--org-return-skk-ad)
+
+(defun my--markdown-entery-key-ad (this-func &rest args)
+  "markdown-modeでskk-henkan-mode中にエンターすると行頭にカーソルが飛んでしまう問題の対応"
+  (if skk-henkan-mode (skk-kakutei)
+    (apply this-func args)))
+(advice-add #'markdown-enter-key :around #'my--markdown-entery-key-ad)
 #+END_SRC
