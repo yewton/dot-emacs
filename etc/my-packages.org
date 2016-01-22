@@ -70,6 +70,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 ddskk
                 dired+
                 dired-hacks
+                dockerfile-mode
                 dream-theme
                 dsvn
                 elisp-slime-nav
