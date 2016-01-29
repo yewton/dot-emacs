@@ -8,6 +8,9 @@
 (setq el-get-sources
       `((:name org-mode :checkout "e8a2f33519e7ce4317e8adb7a94f6e68c9b79774")
         (:name markdown-mode :checkout "v2.1")
+        (:name magit
+               :pkgname "dunn/magit"
+               :branch "without-editor")
         (:name init-loader :checkout "a2fbec1382")
         (:name open-junk-file
                :before (autoload 'open-junk-file "open-junk-file" "" t))
