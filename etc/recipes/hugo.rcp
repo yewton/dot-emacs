@@ -1,0 +1,4 @@
+(:name hugo
+       :description "hugo.el"
+       :type github
+       :pkgname "yewton/hugo.el")

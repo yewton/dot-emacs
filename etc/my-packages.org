@@ -96,6 +96,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 help-mode+
                 howm
                 htmlize
+                hugo
                 info+
                 japanese-holidays
                 js2-mode
