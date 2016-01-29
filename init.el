@@ -13,7 +13,6 @@
            (fboundp 'el-get-package-directory)
            (el-get-package-installed-p 'org-mode))
   (let ((dirs (list "." "lisp" "contrib/lisp"))
-        (built-in-org-dir (directory-file-name (file-name-directory (locate-library "org"))))
         (el-get-org-dir (el-get-package-directory 'org-mode)))
     (loop for dir in dirs
           do (add-to-list 'load-path (expand-file-name dir el-get-org-dir)))))
