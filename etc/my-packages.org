@@ -102,6 +102,7 @@ and blocks (PHP, Erb, Django/Twig, Smarty, JSP, ASP, etc.)" t))
                 maxframe
                 moccur-edit
                 multiple-cursors
+                nginx
                 org-ac
                 org-present
                 org-reveal
