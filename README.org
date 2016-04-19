@@ -1,4 +1,7 @@
 #+STARTUP: showall
+
+[[https://github.com/yewton/.emacs.d]] に移行しました。
+
 * これはなに？
 [[https://twitter.com/yewton][yewton]] の =.emacs.d= です。
 
